@@ -10,8 +10,9 @@
     "type": "git",
     "url": "https://github.com/LockinChina/lockin-web-design-lib.git"
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "dependencies": {
+    "styled-components": "^4.2.0",
     "user": "0.0.0"
   },
   "scripts": {

@@ -1,13 +1,25 @@
 import React from "react";
-import "./TextInput.css";
+import styled from 'styled-components';
 
-const TextInput = ({ type = "text", label, value, onChange }) => (
-  <div className="simple-form-group">
-    {label && <label className="simple-text-label">{label}</label>}
-    <input
+
+const StyleInput = styled.input`
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-size: ${props => (props.big ? '16px' : '10px')};
+  font-weight: 400;
+  color: rgb(33, 37, 41);
+`
+
+
+const TextInput = ({ type = "text", label, value, big,onChange,placeholder }) => (
+  <div >
+    {label && <label >{label}</label>}
+    <StyleInput
       type={type}
-      className="simple-text-input"
       value={value}
+      placeholder = {placeholder}
+      big = {true}
+      size ={100}
       onChange={e => onChange && onChange(e.target.value)}
     />
   </div>
