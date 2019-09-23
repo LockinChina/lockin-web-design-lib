@@ -90,7 +90,7 @@ const IconDiv = styled.div`
     );
 }
 
-ButtonStyle.ProTypes = {
+ButtonStyle.propTypes = {
     type: PropTypes.number,
     onClick: PropTypes.func,
     hasIcon: PropTypes.bool,

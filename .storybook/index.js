@@ -4,7 +4,7 @@ import Button from '../src/lib/Button';
 import { H1, H2, H3, H4, H5, H6 } from "../src/lib/H";
 
 storiesOf('button样式', module).add('button样式1', () =>
-    <Button type={1}>按钮</Button>
+    <Button type={1} onClick={() => alert('1')}>按钮</Button>
 ).add('button样式2', () =>
     <Button type={2}>按钮</Button>
 ).add('button样式3', () =>
