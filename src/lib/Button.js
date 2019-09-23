@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import React, { Children } from 'react';
-import ProTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 function ButtonStyle (props){
     // type 按钮样式4种 hasIcon 是否有Icon
@@ -90,12 +90,12 @@ const IconDiv = styled.div`
 }
 
 ButtonStyle.ProTypes = {
-    type: ProTypes.number,
-    onClick: ProTypes.func,
-    hasIcon: ProTypes.bool,
-    style: ProTypes.object,
-    className: ProTypes.string,
-    IconName: ProTypes.string,
+    type: PropTypes.number,
+    onClick: PropTypes.func,
+    hasIcon: PropTypes.bool,
+    style: PropTypes.object,
+    className: PropTypes.string,
+    IconName: PropTypes.string,
 };
 
 ButtonStyle.defaultProps = {
