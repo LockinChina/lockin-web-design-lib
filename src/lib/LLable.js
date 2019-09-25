@@ -9,8 +9,8 @@ const InputLabel = styled.label`
   margin-bottom: 5px;
 `;
 
-const Llable = ({ text, htmlFor }) => (
+const LLable = ({ text, htmlFor }) => (
     <InputLabel for={htmlFor}>{text}</InputLabel>
 );
 
-export default Llable;
+export default LLable;
