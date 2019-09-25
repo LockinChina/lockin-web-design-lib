@@ -1,0 +1,1 @@
+export const sexJson =[{"label":"男","value":"男","children":[]},{"label":"女","value":"女","children":[]},{"label":"保密","value":"保密","children":[]}];

@@ -1,0 +1,1 @@
+export const subordinatesJsonEn = [{"label":"None","value":"无","children":[]},{"label":"Below 5","value":"五人以下","children":[]},{"label":"6~10","value":"六到十人","children":[]},{"label":"10~20","value":"十到二十人","children":[]},{"label":"20~50","value":"二十人至五十人","children":[]},{"label":"Above 50","value":"五十以上","children":[]}];

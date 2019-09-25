@@ -1,0 +1,1 @@
+export const degreeJson =[{"label":"大专","value":"大专","children":[]},{"label":"本科","value":"本科","children":[]},{"label":"硕士","value":"硕士","children":[]},{"label":"MBA","value":"MBA","children":[]},{"label":"EMBA","value":"EMBA","children":[]},{"label":"博士","value":"博士","children":[]},{"label":"其他","value":"其他","children":[]}];
