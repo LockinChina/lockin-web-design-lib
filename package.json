@@ -12,7 +12,6 @@
   },
   "version": "0.1.1",
   "dependencies": {
-    "styled-components": "^4.2.0",
     "user": "0.0.0"
   },
   "scripts": {
@@ -45,6 +44,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.1",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.6.3",
+    "lodash": "4.17.11",
+    "styled-components": "^4.2.0"
   }
 }
