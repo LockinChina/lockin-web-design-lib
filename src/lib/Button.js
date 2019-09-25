@@ -5,7 +5,7 @@ import '../iconfont/iconfont.css';
 
 function ButtonStyle (props){
     // type 按钮样式4种 hasIcon 是否有Icon
-    const { type, onClick, hasIcon, style, className, IconName } = props;
+    const { type, onClick, hasIcon, style, className, IconName, width } = props;
     const ButtonBasic = css`
         font-size: 16px;
         padding: 0 30px;
@@ -15,6 +15,9 @@ function ButtonStyle (props){
         cursor: pointer;
         position: relative;
         &:focus{ outline: none; }
+        ${width && css`
+            width: ${width}px;
+        `}
     `;
 
     let ButtonStyle = styled.button`
@@ -73,14 +76,16 @@ function ButtonStyle (props){
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       position: relative;
-      padding-left: 20px;
       &:before {
           position: absolute;
           top: 0;
           left: 0;
           font-size: 12px;
       }
+      ${hasIcon && css`
+          padding-left: 20px;
 
+      `};
     `;
 
     return (
@@ -99,6 +104,7 @@ ButtonStyle.propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
     IconName: PropTypes.string,
+    width: PropTypes.number,
 };
 
 ButtonStyle.defaultProps = {

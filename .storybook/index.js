@@ -14,7 +14,7 @@ import Modal from '../src/lib/Modal';
 storiesOf('button样式', module).add('button样式1', () =>
     <Button type={1} onClick={() => alert('1')}>按钮</Button>
 ).add('button样式2', () =>
-    <Button type={2}>按钮</Button>
+    <Button type={2} width={200}>按钮</Button>
 ).add('button样式3', () =>
     <Button type={3}>按钮</Button>
 ).add('button样式4', () =>
