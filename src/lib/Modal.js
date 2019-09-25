@@ -59,8 +59,7 @@ function getWindowHeight() {
     return windowHeight;
 }
 
-const Modal = ({ visible, type = 1, okText, onOk, cancelText, onCancel, title, detail, contentText, contentNode, btnStyle = 1 }) => {
-    console.log('getWindowHeight', getWindowHeight());
+const Modal = ({ visible, type = 1, okText = '确定', onOk, cancelText = '取消', onCancel, title, detail, contentText, contentNode, btnStyle = 1 }) => {
     return (
         <ModalBg style={{ display: visible ? 'block' : 'none' }}>
             {type === 1 && (
