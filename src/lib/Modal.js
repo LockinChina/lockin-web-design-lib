@@ -60,7 +60,7 @@ function getWindowHeight() {
 const Modal = ({ visible, type = 1, okText, onOk, cancelText, onCancel, title, detail, contentText, contentNode, btnStyle = 1 }) => {
     console.log('getWindowHeight', getWindowHeight());
     return (
-        <ModalBg style={{ display: visible ? 'block' : 'none'}}>
+        <ModalBg style={{ display: visible ? 'block' : 'none' }}>
             {type === 1 && (
                 <div className={'modal-content'}>
                     <div>{contentNode}</div>
@@ -84,11 +84,11 @@ const Modal = ({ visible, type = 1, okText, onOk, cancelText, onCancel, title, d
                                     <Button style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
                                 </div>
                             ) : (
-                                <div style={{ textAlign: 'right' }}>
-                                    <Button type={4} onClick={() => onOk()}>{cancelText}</Button>
-                                    <Button type={2} style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
-                                </div>
-                            )
+                                    <div style={{ textAlign: 'right' }}>
+                                        <Button type={4} onClick={() => onOk()}>{cancelText}</Button>
+                                        <Button type={2} style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
+                                    </div>
+                                )
                         }
                     </div>
                 )
@@ -109,11 +109,11 @@ const Modal = ({ visible, type = 1, okText, onOk, cancelText, onCancel, title, d
                                 <Button style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
                             </div>
                         ) : (
-                            <div style={{ textAlign: 'right', marginTop: 10 }}>
-                                <Button type={4} onClick={() => onOk()}>{cancelText}</Button>
-                                <Button type={2} style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
-                            </div>
-                        )
+                                <div style={{ textAlign: 'right', marginTop: 10 }}>
+                                    <Button type={4} onClick={() => onOk()}>{cancelText}</Button>
+                                    <Button type={2} style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
+                                </div>
+                            )
                     }
                 </ModalNodeContent>)}
         </ModalBg>);

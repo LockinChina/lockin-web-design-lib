@@ -34,37 +34,37 @@ storiesOf('H', module).add('H1', () =>
 );
 
 storiesOf('搜索框', module).add('大搜索框', () =>
-    <LSearch placeholder={'search'} btnText={'btn'} onClick={() => alert('123')} onChange={(e) => alert(e)}/>
+    <LSearch placeholder={'search'} btnText={'btn'} onClick={() => alert('123')} onChange={(e) => alert(e)} />
 ).add('小搜索框', () =>
-    <LSearch big={false} placeholder={'search'} btnText={'btn'} onClick={() => alert('123')} onChange={(e) => alert(e)}/>
+    <LSearch big={false} placeholder={'search'} btnText={'btn'} onClick={() => alert('123')} onChange={(e) => alert(e)} />
 );
 
 storiesOf('表单label', module).add('label', () =>
-    <Llabel text={'姓名'} htmlFor={'name'}/>
+    <Llabel text={'姓名'} htmlFor={'name'} />
 );
 
 storiesOf('表单ErrorText', module).add('ErrorText', () =>
-    <LError text={'error'}/>
+    <LError text={'error'} />
 );
 
 storiesOf('标签', module).add('不可编辑', () =>
-    <LEditableLabel text={'标签标签'}/>
+    <LEditableLabel text={'标签标签'} />
 ).add('可编辑', () =>
-    <LEditableLabel text={'标签标签'} removable/>
+    <LEditableLabel text={'标签标签'} removable />
 );
 
 storiesOf('复选框', module).add('checkbox', () => {
     return (
         <div>
-            <LCheckBox text={'复选框'} checked={true} onChange={() => {}}/>
-            <LCheckBox text={'复选框'} checked={false} onChange={() => {}}/>
+            <LCheckBox text={'复选框'} checked={true} onChange={() => { }} />
+            <LCheckBox text={'复选框'} checked={false} onChange={() => { }} />
         </div>
     )
 }).add('radio', () => {
     return (
         <div>
-            <LCheckBox type={'radio'} text={'单选框'} checked={true} onChange={() => {}}/>
-            <LCheckBox type={'radio'} text={'单选框'} checked={false} onChange={() => {}}/>
+            <LCheckBox type={'radio'} text={'单选框'} checked={true} onChange={() => { }} />
+            <LCheckBox type={'radio'} text={'单选框'} checked={false} onChange={() => { }} />
         </div>
     )
 });
@@ -78,26 +78,27 @@ storiesOf('文字点击域', module).add('a', () => {
 
 storiesOf('Tab', module).add('a', () => {
     return (
-        <LTab data={[{name: '1'},{name: '2'},{name: '3'}]} selectIndex={2} />
+        <LTab data={[{ name: '1' }, { name: '2' }, { name: '3' }]} selectIndex={2} />
     )
 });
+let show = true;
 
 storiesOf('Modal', module).add('Modal1一个按钮', () => {
     return (
-        <Modal visible={true} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} onCancel={'取消'}/>
+        <Modal visible={true} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} onCancel={'取消'} />
     )
 }).add('Modal2按钮1', () => {
     return (
-        <Modal visible={true} type={2} btnStyle={1} title={'title'} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} cancelText={'取消'}/>
+        <Modal visible={true} type={2} btnStyle={1} title={'title'} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} cancelText={'取消'} />
     )
 }).add('Modal3按钮2', () => {
     return (
-        <Modal visible={true} type={2} btnStyle={2} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} title={'tip'} okText={'确定'} cancelText={'取消'}/>
+        <Modal visible={show} onCancel={() => show = false} type={2} btnStyle={2} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} title={'tip'} okText={'确定'} cancelText={'取消'} />
     )
 }).add('Modal4最高高度到屏幕80%', () => {
     return (
         <Modal visible={true} type={3} btnStyle={1} title={'tip'} contentNode={<div>
             Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-        </div>} okText={'确定'} cancelText={'取消'}/>
+        </div>} okText={'确定'} cancelText={'取消'} />
     )
 });
