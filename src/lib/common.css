@@ -66,8 +66,8 @@ input[type="checkbox"]::before{content: "";position: absolute;top: 0;left: 0;bac
 input[type="checkbox"]:checked::before{content: "\2713";background-color: #fff;position: absolute;top: 0;left: 0;width:100%;border: 1px solid  rgba(0,0,153,1); color: rgba(0,0,153,1);font-size: 16px;font-weight: bold;}
 
 input[type="radio"] {  -webkit-appearance: none;appearance: none;outline: none;
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
     vertical-align: center;
     background: #fff;
@@ -83,8 +83,8 @@ input[type="radio"]:checked::before {
     left: 2px;
     right: 0;
     bottom: 0;
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background-color: rgba(0,0,153,1);
     border-radius: 50%;
 }
