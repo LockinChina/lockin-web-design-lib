@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import Button from '../src/lib/Button';
 import { H1, H2, H3, H4, H5, H6 } from "../src/lib/H";
 import Llabel from '../src/lib/LLable';
@@ -78,13 +79,16 @@ storiesOf('文字点击域', module).add('a', () => {
 
 storiesOf('Tab', module).add('a', () => {
     return (
-        <LTab data={[{name: '1'},{name: '2'},{name: '3'}]} selectIndex={2} />
+        <LTab data={[{name: '1'},{name: '2'},{name: '3'}]} selectIndex={2} onClick={() => alert('1')}/>
     )
 });
 
 storiesOf('Modal', module).add('Modal1一个按钮', () => {
     return (
-        <Modal visible={true} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} onCancel={'取消'}/>
+        <div>
+            <Button type={1} onClick={action('btnclick')}>按钮</Button>
+            <Modal visible={false} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} onCancel={'取消'}/>
+        </div>
     )
 }).add('Modal2按钮1', () => {
     return (

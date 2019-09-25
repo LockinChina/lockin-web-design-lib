@@ -1,5 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
+import PropTypes from "prop-types";
+import LError from "./LError";
 
 const NormalSpan = styled.span`
     height:26px;
@@ -59,6 +61,13 @@ const LEditableLabel = ({ text, removable, onClick }) => {
         return (
             <NormalSpan>{text}</NormalSpan>
         )
-    }};
+    }
+};
+
+LEditableLabel.propTypes = {
+    text: PropTypes.string,
+    removable: PropTypes.bool,
+    onClick: PropTypes.func,
+};
 
 export default LEditableLabel;

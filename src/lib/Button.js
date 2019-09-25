@@ -53,6 +53,7 @@ function ButtonStyle (props){
               border-color: rgba(143,143,143,1);
             };
             &:active {
+              color: #535353;
               border-color: rgba(90,90,90,1);
             };
         `};

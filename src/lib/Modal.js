@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from 'styled-components';
+import PropTypes from "prop-types";
 import Button from './Button';
 import './common.css';
 
@@ -118,5 +119,19 @@ const Modal = ({ visible, type = 1, okText, onOk, cancelText, onCancel, title, d
                 </ModalNodeContent>)}
         </ModalBg>);
 };
+
+Modal.propTypes = {
+    visible: PropTypes.bool,
+    type: PropTypes.number,
+    okText: PropTypes.string,
+    onOk: PropTypes.func,
+    cancelText: PropTypes.string,
+    title: PropTypes.string,
+    detail: PropTypes.string,
+    contentText: PropTypes.string,
+    contentNode: PropTypes.node,
+    btnStyle: PropTypes.number,
+};
+
 
 export default Modal;

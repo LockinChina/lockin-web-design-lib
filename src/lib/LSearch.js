@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from 'styled-components';
-import Button from './Button';
+import PropTypes from "prop-types";
+import Modal from "./Modal";
 
 
 const StyleInput = styled.input`
@@ -58,5 +59,15 @@ const LSearch = ({ type = "text", value, big = true, onChange, placeholder, btnT
         <ButtonStyle big={big} onClick={() => onClick()}>{btnText}</ButtonStyle>
     </InputDiv>
 );
+
+LSearch.propTypes = {
+    type: PropTypes.string,
+    value: PropTypes.string,
+    big: PropTypes.bool,
+    onChange: PropTypes.func,
+    placeholder: PropTypes.string,
+    btnText: PropTypes.string,
+    onClick: PropTypes.func,
+};
 
 export default LSearch;
