@@ -1,5 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
+import PropTypes from "prop-types";
+import LError from "./LError";
 
 const NormalSpan = styled.span`
     height:26px;
@@ -53,12 +55,19 @@ const DeleteIcon = styled.span`
 
 const LEditableLabel = ({ text, removable, onClick }) => {
     if (removable) {
-        return (<EditSpan onClick={() => onClick()}><span>{text}</span><DeleteIcon>&times;</DeleteIcon></EditSpan>)
+        return (<EditSpan onClick={onClick}><span>{text}</span><DeleteIcon>&times;</DeleteIcon></EditSpan>)
 
     } else {
         return (
             <NormalSpan>{text}</NormalSpan>
         )
-    }};
+    }
+};
+
+LEditableLabel.propTypes = {
+    text: PropTypes.string,
+    removable: PropTypes.bool,
+    onClick: PropTypes.func,
+};
 
 export default LEditableLabel;

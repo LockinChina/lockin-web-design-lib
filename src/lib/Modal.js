@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from 'styled-components';
+import PropTypes from "prop-types";
 import Button from './Button';
 import './common.css';
 
@@ -34,7 +35,7 @@ const ModalNodeContent = styled.div`
     }
     
     & > div:first-child > div:first-child {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 500;
         color:rgba(51,51,51,1);
         line-height:22px;
@@ -43,6 +44,7 @@ const ModalNodeContent = styled.div`
     & > div:first-child > div:last-child {
         font-size: 18px;
         color: rgba(102,102,102,1);
+        cursor: pointer;
     }
 `;
 
@@ -64,7 +66,7 @@ const Modal = ({ visible, type = 1, okText, onOk, cancelText, onCancel, title, d
             {type === 1 && (
                 <div className={'modal-content'}>
                     <div>{contentNode}</div>
-                    <Button onClick={() => onOk()}>按钮</Button>
+                    <Button onClick={onOk}>按钮</Button>
                 </div>
             )}
 
@@ -73,20 +75,20 @@ const Modal = ({ visible, type = 1, okText, onOk, cancelText, onCancel, title, d
                     <div className={'modal-title-content'}>
                         <div>
                             <div>{title}</div>
-                            <div>&times;</div>
+                            <div onClick={onCancel}>&times;</div>
                         </div>
 
                         <div>{contentNode}</div>
                         {
                             btnStyle === 1 ? (
                                 <div style={{ textAlign: 'right' }}>
-                                    <Button type={2} onClick={() => onOk()}>{cancelText}</Button>
-                                    <Button style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
+                                    <Button type={2} onClick={onCancel}>{cancelText}</Button>
+                                    <Button style={{ marginLeft: 10 }} onClick={onOk}>{okText}</Button>
                                 </div>
                             ) : (
                                     <div style={{ textAlign: 'right' }}>
-                                        <Button type={4} onClick={() => onOk()}>{cancelText}</Button>
-                                        <Button type={2} style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
+                                        <Button type={4} onClick={onCancel}>{cancelText}</Button>
+                                        <Button type={2} style={{ marginLeft: 10 }} onClick={onOk}>{okText}</Button>
                                     </div>
                                 )
                         }
@@ -98,25 +100,40 @@ const Modal = ({ visible, type = 1, okText, onOk, cancelText, onCancel, title, d
                 <ModalNodeContent>
                     <div>
                         <div>{title}</div>
-                        <div>&times;</div>
+                        <div onClick={onCancel}>&times;</div>
                     </div>
 
                     <div>{contentNode}</div>
                     {
                         btnStyle === 1 ? (
                             <div style={{ textAlign: 'right', marginTop: 10 }}>
-                                <Button type={2} onClick={() => onOk()}>{cancelText}</Button>
-                                <Button style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
+                                <Button type={2} onClick={onCancel}>{cancelText}</Button>
+                                <Button style={{ marginLeft: 10 }} onClick={onOk}>{okText}</Button>
                             </div>
                         ) : (
                                 <div style={{ textAlign: 'right', marginTop: 10 }}>
-                                    <Button type={4} onClick={() => onOk()}>{cancelText}</Button>
-                                    <Button type={2} style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
+                                    <Button type={4} onClick={onCancel}>{cancelText}</Button>
+                                    <Button type={2} style={{ marginLeft: 10 }} onClick={onOk}>{okText}</Button>
                                 </div>
                             )
                     }
                 </ModalNodeContent>)}
         </ModalBg>);
 };
+
+Modal.propTypes = {
+    visible: PropTypes.bool,
+    type: PropTypes.number,
+    okText: PropTypes.string,
+    onOk: PropTypes.func,
+    onCancel: PropTypes.func,
+    cancelText: PropTypes.string,
+    title: PropTypes.string,
+    detail: PropTypes.string,
+    contentText: PropTypes.string,
+    contentNode: PropTypes.node,
+    btnStyle: PropTypes.number,
+};
+
 
 export default Modal;

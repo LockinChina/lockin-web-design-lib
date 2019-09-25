@@ -1,5 +1,7 @@
 import React from "react";
 import styled, { css } from 'styled-components';
+import PropTypes from "prop-types";
+import Modal from "./Modal";
 
 const TabDiv = styled.div`
   font-size: 18px;
@@ -25,15 +27,21 @@ const TabDiv = styled.div`
   `)}
 `;
 
-const LTab = ({ data, selectIndex }) => {
+const LTab = ({ data, selectIndex, onClick }) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'row' }}>
             {data.map((item, index) => (
-                <TabDiv key={'LTab' + index} select={Number(index) === Number(selectIndex)} onClick={() => alert(1)}>{item.name}</TabDiv>
+                <TabDiv key={'LTab' + index} select={Number(index) === Number(selectIndex)} onClick={onClick}>{item.name}</TabDiv>
             ))}
         </div>
     )
 
+};
+
+LTab.propTypes = {
+    data: PropTypes.array,
+    selectIndex: PropTypes.number,
+    onClick: PropTypes.func,
 };
 
 export default LTab;
