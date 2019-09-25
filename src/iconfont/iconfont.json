@@ -1,0 +1,198 @@
+{
+  "id": "1284301",
+  "name": "New LockinChina Web",
+  "font_family": "lockinu",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "32305",
+      "name": "right",
+      "font_class": "right",
+      "unicode": "e6a3",
+      "unicode_decimal": 59043
+    },
+    {
+      "icon_id": "1053358",
+      "name": "公司 (1)",
+      "font_class": "gongsi1",
+      "unicode": "e6e1",
+      "unicode_decimal": 59105
+    },
+    {
+      "icon_id": "1766271",
+      "name": "指向-top",
+      "font_class": "top",
+      "unicode": "e676",
+      "unicode_decimal": 58998
+    },
+    {
+      "icon_id": "2835269",
+      "name": "互联网",
+      "font_class": "hulianwang",
+      "unicode": "e6ab",
+      "unicode_decimal": 59051
+    },
+    {
+      "icon_id": "3073909",
+      "name": "快消品",
+      "font_class": "kuaixiaopin",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "3878686",
+      "name": "教育",
+      "font_class": "study",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "4253732",
+      "name": "分享",
+      "font_class": "fenxiang",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "5017612",
+      "name": "类目 品类 分类 类别-2-02",
+      "font_class": "leimupinleifenleileibie--",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "5133184",
+      "name": "收 藏",
+      "font_class": "favorite",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "5350754",
+      "name": "视频",
+      "font_class": "shipin",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "5524677",
+      "name": "wechat",
+      "font_class": "wechat",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "5612619",
+      "name": "金融",
+      "font_class": "jinrong",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "6731075",
+      "name": "扫描",
+      "font_class": "saomiao",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "6822778",
+      "name": "发送",
+      "font_class": "fasong",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "7725898",
+      "name": "模具制造",
+      "font_class": "mojuzhizao-copy-copy-copy",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "7903678",
+      "name": "验证码",
+      "font_class": "yanzhengma",
+      "unicode": "e72a",
+      "unicode_decimal": 59178
+    },
+    {
+      "icon_id": "9025083",
+      "name": "实习",
+      "font_class": "shixi",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "9793232",
+      "name": "我的简历",
+      "font_class": "wodejianli",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "9793362",
+      "name": "关注公司",
+      "font_class": "guanzhugongsi",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "9793481",
+      "name": "职位收藏",
+      "font_class": "zhiweishoucang",
+      "unicode": "e66d",
+      "unicode_decimal": 58989
+    },
+    {
+      "icon_id": "9793494",
+      "name": "投递反馈",
+      "font_class": "toudifankui",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "9793607",
+      "name": "关注成功",
+      "font_class": "guanzhuchenggong",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "9794544",
+      "name": "关注",
+      "font_class": "guanzhu",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "9794547",
+      "name": "xinxi",
+      "font_class": "xinxi",
+      "unicode": "e671",
+      "unicode_decimal": 58993
+    },
+    {
+      "icon_id": "9795401",
+      "name": "小喇叭",
+      "font_class": "xiaolaba",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "9799768",
+      "name": "未关注",
+      "font_class": "weiguanzhu",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "10152943",
+      "name": "gongsi",
+      "font_class": "gongsi",
+      "unicode": "e674",
+      "unicode_decimal": 58996
+    }
+  ]
+}
