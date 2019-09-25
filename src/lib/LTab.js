@@ -1,7 +1,6 @@
 import React from "react";
 import styled, { css } from 'styled-components';
 import PropTypes from "prop-types";
-import Modal from "./Modal";
 
 const TabDiv = styled.div`
   font-size: 18px;
