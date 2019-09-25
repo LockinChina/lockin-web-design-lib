@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import Button from '../src/lib/Button';
 import { H1, H2, H3, H4, H5, H6 } from "../src/lib/H";
 import Llabel from '../src/lib/LLable';
-import SearchInput from '../src/lib/SearchInput';
+import LSearch from '../src/lib/LSearch';
 import LError from '../src/lib/LError';
 import LEditableLabel from '../src/lib/LEditableLabel';
 import LCheckBox from '../src/lib/LCheckbox';
@@ -34,9 +34,9 @@ storiesOf('H', module).add('H1', () =>
 );
 
 storiesOf('搜索框', module).add('大搜索框', () =>
-    <SearchInput placeholder={'search'} btnText={'btn'} onClick={() => alert('123')} onChange={(e) => alert(e)}/>
+    <LSearch placeholder={'search'} btnText={'btn'} onClick={() => alert('123')} onChange={(e) => alert(e)}/>
 ).add('小搜索框', () =>
-    <SearchInput big={false} placeholder={'search'} btnText={'btn'} onClick={() => alert('123')} onChange={(e) => alert(e)}/>
+    <LSearch big={false} placeholder={'search'} btnText={'btn'} onClick={() => alert('123')} onChange={(e) => alert(e)}/>
 );
 
 storiesOf('表单label', module).add('label', () =>

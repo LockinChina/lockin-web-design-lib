@@ -46,7 +46,7 @@ const InputDiv = styled.div`
   align-items: center;
 `;
 
-const SearchInput = ({ type = "text", value, big = true, onChange, placeholder, btnText, onClick }) => (
+const LSearch = ({ type = "text", value, big = true, onChange, placeholder, btnText, onClick }) => (
     <InputDiv>
         <StyleInput
             type={type}
@@ -59,4 +59,4 @@ const SearchInput = ({ type = "text", value, big = true, onChange, placeholder, 
     </InputDiv>
 );
 
-export default SearchInput;
+export default LSearch;
