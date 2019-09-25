@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+
 import Button from '../src/lib/Button';
 import { H1, H2, H3, H4, H5, H6 } from "../src/lib/H";
 import Llabel from '../src/lib/LLable';
@@ -11,6 +13,25 @@ import LCheckBox from '../src/lib/LCheckbox';
 import LA from '../src/lib/LA';
 import LTab from '../src/lib/LTab';
 import Modal from '../src/lib/Modal';
+
+import GlobelStyle from '../src/globalStyle';
+import ButtonDemo from '../src/containers/buttonDemo/ButtonDemo';
+import InputDemo from '../src/containers/inputDemo/InputDemo';
+import TextAreaDemo from '../src/containers/textAreaDemo/textAreaDemo';
+import CascadeSelectDemo from '../src/containers/cascadeSelectDemo/CascadeSelectDemo';
+
+storiesOf('Button', module).add('Button', () =>
+    <div><ButtonDemo/><GlobelStyle /></div>
+);
+storiesOf('Input', module).add('Input', () =>
+    <div><InputDemo/><GlobelStyle /></div>
+);
+storiesOf('TextArea', module).add('TextArea', () =>
+    <div><TextAreaDemo/><GlobelStyle /></div>
+);
+storiesOf('CascadeSelect', module).add('CascadeSelect', () =>
+    <div><CascadeSelectDemo/><GlobelStyle /></div>
+);
 
 storiesOf('button样式', module).add('button样式1', () =>
     <Button type={1} onClick={() => alert('1')}>按钮</Button>
