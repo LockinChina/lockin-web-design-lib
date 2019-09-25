@@ -66,24 +66,26 @@ function ButtonStyle (props){
         `};
     `;
 
-const IconDiv = styled.div`
-  position: relative;
-  ${hasIcon && css`
-    padding-left: 20px;
-    &:before {
+    let IconDiv = styled.div`
       font-family: "lockinu" !important;
-      content: '${IconName}';
-      position: absolute;
-      font-size: 12px;
-      top: 0;
-      left: 0px;
-    }
-  `};
-`;
+      font-size: 16px;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+      padding-left: 20px;
+      &:before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          font-size: 12px;
+      }
+
+    `;
 
     return (
         <ButtonStyle type={type} className={className} style={style} hasIcon={hasIcon} onClick={() => onClick()}>
-            <IconDiv>
+            <IconDiv className={`${hasIcon ? `${IconName}` : ''}`}>
                 {Children.toArray(props.children)}
             </IconDiv>
         </ButtonStyle>

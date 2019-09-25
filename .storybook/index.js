@@ -20,7 +20,7 @@ storiesOf('button样式', module).add('button样式1', () =>
 ).add('button样式4', () =>
     <Button type={4}>按钮</Button>
 ).add('button样式1 有icon', () =>
-    <Button type={1} hasIcon IconName={"\\e633"}>有icon按钮</Button>
+    <Button type={1} hasIcon IconName={'iconguanzhu'}>有icon按钮</Button>
 );
 
 storiesOf('H', module).add('H1', () =>
@@ -100,4 +100,4 @@ storiesOf('Modal', module).add('Modal1一个按钮', () => {
             Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
         </div>} okText={'确定'} cancelText={'取消'}/>
     )
-})
+});
