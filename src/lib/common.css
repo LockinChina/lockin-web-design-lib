@@ -41,6 +41,7 @@
 .modal-title-content div:first-child > div:last-child{
     font-size: 18px;
     color: rgba(102,102,102,1);
+    cursor: pointer;
 }
 .modal-title-content > div:last-child {
     position: absolute;

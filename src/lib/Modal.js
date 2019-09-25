@@ -44,6 +44,7 @@ const ModalNodeContent = styled.div`
     & > div:first-child > div:last-child {
         font-size: 18px;
         color: rgba(102,102,102,1);
+        cursor: pointer;
     }
 `;
 
