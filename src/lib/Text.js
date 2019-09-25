@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import React, { Children } from 'react';
+import styled from 'styled-components';
+import React, {Children} from 'react';
 
 function TextStyle(props) {
     let lineHeight = '22px';
