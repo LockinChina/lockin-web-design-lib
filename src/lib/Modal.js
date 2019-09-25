@@ -12,6 +12,40 @@ const ModalBg = styled.div`
     background-color: rgba(0, 0, 0, 0.3);
 `;
 
+const ModalNodeContent = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width:470px;
+    margin-left: -235px;
+    max-height: ${Number(getWindowHeight() * 0.8).toFixed()}px;
+    overflow-y: auto;
+    margin-top: -${Number(getWindowHeight() * 0.8).toFixed() / 2}px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 6px 0px rgba(0,0,0,0.2);
+    border-radius:3px;
+    padding: 20px 20px 10px;
+    & > div:first-child {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    
+    & > div:first-child > div:first-child {
+        font-size: 16px;
+        font-weight: 500;
+        color:rgba(51,51,51,1);
+        line-height:22px;
+    }
+    
+    & > div:first-child > div:last-child {
+        font-size: 18px;
+        color: rgba(102,102,102,1);
+    }
+`;
+
 
 function getWindowHeight() {
     let windowHeight = 0;
@@ -28,7 +62,7 @@ const Modal = ({ visible, type = 1, okText, onOk, cancelText, onCancel, title, d
     return (
         <ModalBg style={{ display: visible ? 'block' : 'none'}}>
             {type === 1 && (
-                <div class={'modal-content'}>
+                <div className={'modal-content'}>
                     <div>{contentNode}</div>
                     <Button onClick={() => onOk()}>按钮</Button>
                 </div>
@@ -61,7 +95,7 @@ const Modal = ({ visible, type = 1, okText, onOk, cancelText, onCancel, title, d
             }
 
             {type === 3 && (
-                <div className={'modal-node-content'}>
+                <ModalNodeContent>
                     <div>
                         <div>{title}</div>
                         <div>&times;</div>
@@ -81,7 +115,7 @@ const Modal = ({ visible, type = 1, okText, onOk, cancelText, onCancel, title, d
                             </div>
                         )
                     }
-                </div>)}
+                </ModalNodeContent>)}
         </ModalBg>);
 };
 

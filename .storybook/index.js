@@ -82,19 +82,19 @@ storiesOf('Tab', module).add('a', () => {
     )
 });
 
-storiesOf('Modal', module).add('Modal1', () => {
+storiesOf('Modal', module).add('Modal1一个按钮', () => {
     return (
         <Modal visible={true} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} onCancel={'取消'}/>
     )
-}).add('Modal2', () => {
+}).add('Modal2按钮1', () => {
     return (
         <Modal visible={true} type={2} btnStyle={1} title={'title'} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} cancelText={'取消'}/>
     )
-}).add('Modal3', () => {
+}).add('Modal3按钮2', () => {
     return (
         <Modal visible={true} type={2} btnStyle={2} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} title={'tip'} okText={'确定'} cancelText={'取消'}/>
     )
-}).add('Modal4不限高度', () => {
+}).add('Modal4最高高度到屏幕80%', () => {
     return (
         <Modal visible={true} type={3} btnStyle={1} title={'tip'} contentNode={<div>
             Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
