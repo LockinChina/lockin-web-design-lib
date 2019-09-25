@@ -1,11 +1,11 @@
 import React from "react";
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 
 const StyleInput = styled.input`
   display: inline-block;
   width:276px;
-  height:36px;
+  height: 36px;
   background:rgba(255,255,255,1);
   border-radius:2px;
   border: ${props => (props.wrongText ? '1px solid rgba(255,82,82,1)': '1px solid rgba(160,160,160,1)')};
@@ -14,7 +14,7 @@ const StyleInput = styled.input`
     outline-color: #005ED4;
     box-shadow:0px 2px 4px 0px rgba(0,94,212,0.2);
   };
-`
+`;
 
 const InputLabel = styled.label`
   font-size: 14px;
@@ -32,10 +32,9 @@ const WrongText = styled.div`
 `;
 
 const InputDiv = styled.div`
-  height: 82px;
 `;
 
-const TextInput = ({ type = "text", label, value, big,onChange,placeholder, wrongText }) => (
+const TextInput = ({ type = "text", label, value, big,onChange,placeholder, isSearchInput }) => (
   <InputDiv>
     {label && <InputLabel>{label}</InputLabel>}
     <StyleInput
@@ -44,9 +43,9 @@ const TextInput = ({ type = "text", label, value, big,onChange,placeholder, wron
       placeholder = {placeholder}
       big = {true}
       size ={100}
+      isSearchInput ={isSearchInput}
       onChange={e => onChange && onChange(e.target.value)}
     />
-      {wrongText && <WrongText>{wrongText}</WrongText>}
   </InputDiv>
 );
 
