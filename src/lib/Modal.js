@@ -35,7 +35,7 @@ const ModalNodeContent = styled.div`
     }
     
     & > div:first-child > div:first-child {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 500;
         color:rgba(51,51,51,1);
         line-height:22px;

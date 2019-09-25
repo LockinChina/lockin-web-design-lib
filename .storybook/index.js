@@ -87,7 +87,7 @@ storiesOf('Modal', module).add('Modal1一个按钮', () => {
     return (
         <div>
             <Button type={1} onClick={action('btnclick')}>按钮</Button>
-            <Modal visible={true} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} onCancel={'取消'}/>
+            <Modal visible={true} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} cancelText={'取消'}/>
         </div>
     )
 }).add('Modal2按钮1', () => {
