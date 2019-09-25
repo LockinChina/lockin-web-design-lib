@@ -21,7 +21,7 @@ storiesOf('button样式', module).add('button样式1', () =>
 ).add('button样式4', () =>
     <Button type={4}>按钮</Button>
 ).add('button样式1 有icon', () =>
-    <Button type={1} hasIcon IconName={'iconguanzhu'}>有icon按钮</Button>
+    <Button type={1} hasIcon IconName={'icon'}>有icon按钮</Button>
 );
 
 storiesOf('H', module).add('H1', () =>
