@@ -55,7 +55,7 @@ const DeleteIcon = styled.span`
 
 const LEditableLabel = ({ text, removable, onClick }) => {
     if (removable) {
-        return (<EditSpan onClick={() => onClick()}><span>{text}</span><DeleteIcon>&times;</DeleteIcon></EditSpan>)
+        return (<EditSpan onClick={onClick}><span>{text}</span><DeleteIcon>&times;</DeleteIcon></EditSpan>)
 
     } else {
         return (

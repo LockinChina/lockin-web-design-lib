@@ -56,7 +56,7 @@ const LSearch = ({ type = "text", value, big = true, onChange, placeholder, btnT
             big={big}
             onChange={e => onChange && onChange(e.target.value)}
         />
-        <ButtonStyle big={big} onClick={() => onClick()}>{btnText}</ButtonStyle>
+        <ButtonStyle big={big} onClick={onClick}>{btnText}</ButtonStyle>
     </InputDiv>
 );
 
