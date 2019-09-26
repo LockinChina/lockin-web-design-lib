@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import InputContainer from './inputStyle';
 
-const Input = React.forwardRef(function(props, ref)  {
+import React, { useState, useEffect } from 'react';
+
+import TextAreaContainer from './textAreaStyle';
+import PropTypes from 'prop-types';
+
+const TextArea = React.forwardRef(function (props, ref){
   const [blurState, setBlurState] = useState(0);
   const { 
     value,
@@ -19,22 +22,22 @@ const Input = React.forwardRef(function(props, ref)  {
     defaultValue,
     wrongText,
     type,
+    rows,
     maxLength,
     width,
-    readOnly,
-    name
+    name,
+    readOnly
   } = props;
 
   return (
-    <InputContainer style={{width: `${width}px`}}>
+    <TextAreaContainer style={{width: `${width}px`}}>
       <p className="title" style={{display: titleName ? 'block' : 'none'}} >{titleName}</p>
       <div className={"inputBody fadeAnim "+(blurState ? "active " : "") + (wrongText ? "textWrong " : "") + (readOnly ? "readOnlyOpacity " : "")}>
         <span className={"iconfont " + (leftIconName ? leftIconName: "")} style={{color: `${leftIconColor}`, fontSize: `${leftIconSize}px `}} ></span>
-        <input 
-          ref={ref}
+        <textarea 
           name={name}
+          ref={ref}
           disabled = {readOnly ? "disabled" : ""}
-          type={type}
           defaultValue = {defaultValue}
           placeholder={placeholder} 
           className={"text "}
@@ -45,21 +48,38 @@ const Input = React.forwardRef(function(props, ref)  {
             onChange(val)
           }} 
           value={value}
+          rows = {rows}
           onBlur={()=> setBlurState(0) } 
           onFocus = {()=> setBlurState(1)}
-        />
+        > 
+        </textarea>
         <span title={rightIconTitle} onClick={()=> rightIconOnClick()} className={"iconfont " + (rightIconName ? rightIconName: "")} style={{color: `${rightIconColor}`, fontSize: `${rightIconSize}px`}} ></span>
       </div>
       <p className="wrongText" style={{display: wrongText ? "block" : "none"}}>{wrongText}</p>
-    </InputContainer>
+    </TextAreaContainer>
   )
-});
+})
 
-Input.defaultProps = {
+TextArea.defaultProps = {
   type: "text",
   placeholder: '请输入',
+  rows: 4,
   onChange: () => {},
   rightIconOnClick: ()=>{}
 }
 
-export default Input;
+TextArea.propTypes = {
+  name: PropTypes.node,
+  ref: PropTypes.node,
+  disabled: PropTypes.bool,
+  defaultValue: PropTypes.string,
+  placeholder: PropTypes.string,
+  maxLength: PropTypes.number,
+  readOnly: PropTypes.bool,
+  onChange: PropTypes.func, 
+  value: PropTypes.string,
+  rows: PropTypes.number,
+  wrongText: PropTypes.string
+}
+
+export default TextArea;

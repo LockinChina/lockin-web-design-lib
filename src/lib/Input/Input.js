@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
+import InputContainer from './inputStyle';
+import PropTypes from 'prop-types';
 
-import TextAreaContainer from './textAreaStyle';
-
-export default function TextArea (props) {
+const Input = React.forwardRef(function(props, ref)  {
   const [blurState, setBlurState] = useState(0);
   const { 
     value,
@@ -21,19 +20,25 @@ export default function TextArea (props) {
     defaultValue,
     wrongText,
     type,
-    rows,
     maxLength,
     width,
-    readOnly
+    readOnly,
+    name
   } = props;
 
+  useEffect(()=> {
+
+  }, [])
   return (
-    <TextAreaContainer style={{width: `${width}px`}}>
+    <InputContainer style={{width: `${width}px`}}>
       <p className="title" style={{display: titleName ? 'block' : 'none'}} >{titleName}</p>
       <div className={"inputBody fadeAnim "+(blurState ? "active " : "") + (wrongText ? "textWrong " : "") + (readOnly ? "readOnlyOpacity " : "")}>
         <span className={"iconfont " + (leftIconName ? leftIconName: "")} style={{color: `${leftIconColor}`, fontSize: `${leftIconSize}px `}} ></span>
-        <textarea 
+        <input 
+          ref={ref}
+          name={name}
           disabled = {readOnly ? "disabled" : ""}
+          type={type}
           defaultValue = {defaultValue}
           placeholder={placeholder} 
           className={"text "}
@@ -44,23 +49,43 @@ export default function TextArea (props) {
             onChange(val)
           }} 
           value={value}
-          rows = {rows}
           onBlur={()=> setBlurState(0) } 
           onFocus = {()=> setBlurState(1)}
-        > 
-        </textarea>
+        />
         <span title={rightIconTitle} onClick={()=> rightIconOnClick()} className={"iconfont " + (rightIconName ? rightIconName: "")} style={{color: `${rightIconColor}`, fontSize: `${rightIconSize}px`}} ></span>
       </div>
       <p className="wrongText" style={{display: wrongText ? "block" : "none"}}>{wrongText}</p>
-    </TextAreaContainer>
+    </InputContainer>
   )
-}
+});
 
-TextArea.defaultProps = {
+Input.defaultProps = {
   type: "text",
   placeholder: '请输入',
-  rows: 4,
   onChange: () => {},
   rightIconOnClick: ()=>{}
 }
 
+Input.propTypes = {
+  defaultValue: PropTypes.string,
+  value: PropTypes.node,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  leftIconName: PropTypes.string,
+  leftIconColor: PropTypes.string,
+  leftIconSize: PropTypes.number,
+  rightIconName: PropTypes.string,
+  rightIconColor: PropTypes.string,
+  rightIconSize: PropTypes.number,
+  rightIconTitle: PropTypes.string,
+  rightIconOnClick: PropTypes.func,
+  wrongText: PropTypes.string,
+  type: PropTypes.string,
+  maxLength: PropTypes.number,
+  width: PropTypes.number,
+  readOnly: PropTypes.bool,
+  name: PropTypes.node,
+  ref: PropTypes.node
+}
+
+export default Input;
