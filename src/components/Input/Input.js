@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
 import InputContainer from './inputStyle';
 
-export default function Input (props) {
+const Input = React.forwardRef(function(props, ref)  {
   const [blurState, setBlurState] = useState(0);
   const { 
     value,
@@ -23,7 +22,7 @@ export default function Input (props) {
     maxLength,
     width,
     readOnly,
-    ref
+    name
   } = props;
 
   return (
@@ -33,6 +32,7 @@ export default function Input (props) {
         <span className={"iconfont " + (leftIconName ? leftIconName: "")} style={{color: `${leftIconColor}`, fontSize: `${leftIconSize}px `}} ></span>
         <input 
           ref={ref}
+          name={name}
           disabled = {readOnly ? "disabled" : ""}
           type={type}
           defaultValue = {defaultValue}
@@ -53,7 +53,7 @@ export default function Input (props) {
       <p className="wrongText" style={{display: wrongText ? "block" : "none"}}>{wrongText}</p>
     </InputContainer>
   )
-}
+});
 
 Input.defaultProps = {
   type: "text",
@@ -62,3 +62,4 @@ Input.defaultProps = {
   rightIconOnClick: ()=>{}
 }
 
+export default Input;
