@@ -22,7 +22,7 @@ export default function InputDemo () {
           <Ptit>联级下拉菜单: </Ptit>
           <Space/>
           <CascadeSelect 
-            invalid = {true}
+            invalid = {false} // 是否禁用
             width="" // 整体宽度
             insideWidth = "" // 下拉菜单弹出宽度
             value={selectValue3} 
