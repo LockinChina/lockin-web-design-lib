@@ -22,6 +22,7 @@ export default function InputDemo () {
           <Ptit>联级下拉菜单: </Ptit>
           <Space/>
           <CascadeSelect 
+            invalid = {false} // 是否禁用
             width="" // 整体宽度
             insideWidth = "" // 下拉菜单弹出宽度
             value={selectValue3} 
@@ -81,6 +82,14 @@ export default function InputDemo () {
             api = {city}
             col={3}
           />
+
+          <Space/>
+          <CascadeSelect 
+            value="我现在不可以选择"
+            titleName="禁止选择"
+            placeholder="请选择"
+            invalid={true}
+          />
         </GrayBox>
         <Table className="w">
           <thead>
@@ -96,7 +105,8 @@ export default function InputDemo () {
               <tr><td>placeholder</td><td>占位提示语</td> <td>string</td> <td>请选择</td></tr>
               <tr><td>onChange</td><td>select onChange事件 传入两个参数: label, value  例:["中国", "江苏省", "徐州市"] [1] </td> <td>function</td> <td>/</td></tr>
               <tr><td>wrongText</td><td>错误提示语 不传入则不显示</td> <td>string</td> <td>/</td></tr>
-              <tr><td>api</td><td>要使用得数据源 (string为调用远程API接口地址获取数据, 目前还没写)</td> <td>object, string</td> <td>/</td></tr>
+              <tr><td>api</td><td>要使用得数据源 (string为调用远程API接口地址获取数据, object为本地数据)</td> <td>string, object</td> <td>/</td></tr>
+              <tr><td>invalid</td><td>禁止选择状态</td> <td>boolean</td> <td>false</td></tr>
             </tbody>
         </Table>
         <Space/>
