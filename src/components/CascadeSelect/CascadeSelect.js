@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CascadeSelectContainer from './cascadeSelectStyle';
 import axios from 'axios';
-// import http from '../../server';
-// import { degreeJson } from '../../data/degree';
-// import { city } from '../../data/city';
 
-// console.log(degreeJson);
 let labelObj = [];
 let valueObj = [];
 
@@ -24,13 +20,29 @@ export default function CascadeSelect(props) {
     col,
     insideWidth,
     ref,
+    invalid
   } = props;
   const [selectValue, setSelectVlue] = useState(value); // 
 
-  const [selectData, setSelectData] = useState(api); // 数据源
+  const [selectData, setSelectData] = useState([]); // 数据源
   const [indexOne, setIndexOne] = useState(-100); //第一级索引
   const [indexTwo, setIndexTwo] = useState(-100); // 第二级索引
   const [isShow, setIsShow] = useState(false); // 显示隐藏
+
+  useEffect ( function getSelectData() {
+    if(api){
+      if(typeof api === 'string'){
+        axios.get(api)
+          .then(res => {
+              let data = res.data;
+              setSelectData(data);
+          })
+          .catch(erro => {console.log(erro)})
+      }else{
+        setSelectData(api);
+      }
+    }
+  },[api]);
 
   useEffect(() => {
     document.body.addEventListener('click', e => {
@@ -41,6 +53,7 @@ export default function CascadeSelect(props) {
     })
     setSelectVlue(value);
   }, [value])
+
   const firstClick = (e, item, index) => {
     e.stopPropagation();
     labelObj[0] = item.label;
@@ -87,7 +100,8 @@ export default function CascadeSelect(props) {
       {/* <input type="hidden" value={col} /> */}
       <p className="title" style={{ display: titleName ? 'block' : 'none' }} >{titleName}</p>
       <div className="box" style={{ position: "relative" }}>
-        <div className={"inputBody fadeAnim " + (isShow ? "openActive" : "") + (wrongText ? "textWrong " : "")} onClick={(e) => {
+        <div className={"inputBody fadeAnim " + (isShow ? "openActive " : "") + (wrongText ? "textWrong " : "") + (invalid ?  "invalid " : "")} onClick={(e) => {
+          if(!invalid)
           setIsShow(!isShow);
           labelObj = [];
         }}>

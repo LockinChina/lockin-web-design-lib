@@ -39,6 +39,13 @@ const CascadeSelectContainer = styled.div`
     &.openActive{
       border: 1px solid rgb(0, 94, 212);
     }
+    &.invalid{
+      opacity: 0.4;
+      -webkit-filter: grayscale(100%);
+      filter: gray;
+      cursor: default;
+      .text, .arrow::before{cursor: default !important;}
+    }
     .arrow{
       position: relative;
       top: 1px;

@@ -40,6 +40,7 @@ export default function ButtonDemo (props) {
         </thead>
         <tbody>
             <tr><td>空</td> <td>什么都不传入是默认白色样式</td> <td>/</td> <td>/</td></tr>
+            <tr><td>titleName</td><td>按钮文字</td> <td>string</td> <td>/</td></tr>
             <tr><td>solid, hollow</td><td>solid: 蓝色实心 hollow: 空心</td> <td>string</td> <td>/</td></tr>
             <tr><td>iconName</td><td>iconfont图标名 不传值则不显示, 无iconName时 iconSize, iconColor无效  </td> <td>string</td> <td>/</td></tr>
             <tr><td>iconSize</td><td>iconfont图标大小设置 </td> <td>number</td> <td>14</td></tr>
