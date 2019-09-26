@@ -5,15 +5,18 @@
 import styled from 'styled-components';
 
 const LA = styled.a`
-  color: rgba(0,0,153,1);
+  color: #999;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     text-decoration: underline;
+    color: rgba(0, 0, 153, 1);
   }
-  
-  &:active{
-   text-decoration: underline;
+
+  &:active {
+    text-decoration: underline;
+    color: rgba(0, 0, 153, 1);
   }
 `;
 
