@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import DatePicker from '../../components/DatePicker/DatePicker';
+import DatePicker from '../../lib/DatePicker/DatePicker';
 import { GrayBox, Ptit, Space, BtnSpace, Table } from '../../globalDemoStyle';
 
 const Rowbox =styled.div`

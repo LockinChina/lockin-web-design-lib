@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import CascadeSelectContainer from '../../lib/CascadeSelect/cascadeSelectStyle';
+import CascadeSelectContainer from '../CascadeSelect/cascadeSelectStyle';
 
 const DatePickerContainer = styled(CascadeSelectContainer)`
   .select-box{
