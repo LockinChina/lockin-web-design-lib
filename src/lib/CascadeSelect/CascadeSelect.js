@@ -121,7 +121,7 @@ const CascadeSelect = React.forwardRef(function (props, ref) {
 
           <div className="select-box animated-fast fadeInDown" style={{ display: isShow ? 'block' : 'none' }}>
             <div className="rowbox" style={{ width: `${insideWidth}px` }}>
-              <ul className={`col${col}`}>
+              <ul className={ `scrollbar col${col}`}>
                 {selectData.map((item, index) => {
                   return (
                     <li
@@ -137,7 +137,7 @@ const CascadeSelect = React.forwardRef(function (props, ref) {
               </ul>
               {
                 indexOne !== -100 &&
-                <ul className={`col${col}`}>
+                <ul className={ `scrollbar col${col}`} style={{borderRight: col===3 ? "1px solid #E8E8E8": ""}}>
                   {indexOne >= 0 && selectData[Number(indexOne)].children.map((item, index) => {
                     return (
                       <li
@@ -155,7 +155,7 @@ const CascadeSelect = React.forwardRef(function (props, ref) {
 
               {
                 indexTwo !== -100 && indexOne !== -100 &&
-                <ul className={`col${col}`}>
+                <ul className={ `scrollbar col${col}`}>
                   {indexTwo >= 0 && indexOne >= 0 && selectData[Number(indexOne)].children[Number(indexTwo)].children.map((item, index) => {
                     return (
                       <li

@@ -42,10 +42,29 @@ const globalStyle = createGlobalStyle`
   .fadeAnim{transition:all 0.2s linear 0s;  -moz-transition:all 0.2s linear 0s;  -webkit-transition:all 0.2s linear 0s;}
   .animated-fast{-webkit-animation-duration:.2s;animation-duration:.2s;-webkit-animation-fill-mode:both;animation-fill-mode:both}
   @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translateY(-20px);-ms-transform:translateY(-20px);transform:translateY(-20px)}100%{opacity:1;-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0)}}.fadeInDown{-webkit-animation-name:fadeInDown;animation-name:fadeInDown}
-  .w{ max-width: 1000px; margin: 0 auto;}
+  .w{ width: 1000px; margin: 0 auto;}
   .m-t-20{ margin-top: 20px;}
   .color-75{ color: #777;}
   .f-size-12{ font-size: 12px;}
+  /*自定义滚动条*/
+  .scrollbar::-webkit-scrollbar-track{
+    /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+    box-shadow: none;
+    background-color: none;
+  }
+  .scrollbar::-webkit-scrollbar{
+    width: 2px;
+    /* background-color: #f8f8f8; */
+    background: none;
+  }
+  .scrollbar::-webkit-scrollbar-thumb{
+    background-color: rgb(0,94,212);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
 `;
 
 export default globalStyle;

@@ -1,7 +1,8 @@
 import React from "react";
 import styled, { css } from 'styled-components';
 import PropTypes from "prop-types";
-import Button from './Button';
+// import Button from './Button';
+import Button from './Button/Button'
 import './common.css';
 
 const ModalBg = styled.div`
@@ -65,7 +66,7 @@ const Modal = ({ visible, type = 1, okText = '确定', onOk, cancelText = '取�
             {type === 1 && (
                 <div className={'modal-content'}>
                     <div>{contentNode}</div>
-                    <Button onClick={() =>onOk()}>按钮</Button>
+                    <Button solid onClick={() =>onOk()}>{okText}</Button>
                 </div>
             )}
 
@@ -74,20 +75,20 @@ const Modal = ({ visible, type = 1, okText = '确定', onOk, cancelText = '取�
                     <div className={'modal-title-content'}>
                         <div>
                             <div>{title}</div>
-                            <div onClick={() => onCancel()}>&times;</div>
+                            <div solid onClick={() => onCancel()}>&times;</div>
                         </div>
 
                         <div>{contentNode}</div>
                         {
                             btnStyle === 1 ? (
                                 <div style={{ textAlign: 'right' }}>
-                                    <Button type={2} onClick={() => onCancel()}>{cancelText}</Button>
-                                    <Button style={{ marginLeft: 10 }} onClick={() =>onOk()}>{okText}</Button>
+                                    <Button hollow type={2} onClick={() => onCancel()}>{cancelText}</Button>
+                                    <Button solid style={{ marginLeft: 10 }} onClick={() =>onOk()}>{okText}</Button>
                                 </div>
                             ) : (
                                     <div style={{ textAlign: 'right' }}>
-                                        <Button type={4} onClick={() => onCancel()}>{cancelText}</Button>
-                                        <Button type={2} style={{ marginLeft: 10 }} onClick={() =>onOk()}>{okText}</Button>
+                                        <Button  type={4} onClick={() => onCancel()}>{cancelText}</Button>
+                                        <Button hollow type={2} style={{ marginLeft: 10 }} onClick={() =>onOk()}>{okText}</Button>
                                     </div>
                                 )
                         }
@@ -106,13 +107,13 @@ const Modal = ({ visible, type = 1, okText = '确定', onOk, cancelText = '取�
                     {
                         btnStyle === 1 ? (
                             <div style={{ textAlign: 'right', marginTop: 10 }}>
-                                <Button type={2} onClick={() => onCancel()}>{cancelText}</Button>
-                                <Button style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
+                                <Button  type={2} onClick={() => onCancel()}>{cancelText}</Button>
+                                <Button hollow style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
                             </div>
                         ) : (
                                 <div style={{ textAlign: 'right', marginTop: 10 }}>
-                                    <Button type={4} onClick={() => onCancel()}>{cancelText}</Button>
-                                    <Button type={2} style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
+                                    <Button hollow type={4} onClick={() => onCancel()}>{cancelText}</Button>
+                                    <Button solid type={2} style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
                                 </div>
                             )
                     }

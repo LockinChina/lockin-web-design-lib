@@ -2,8 +2,6 @@ import React from 'react';
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-
-import Button from '../src/lib/Button';
 import { H1, H2, H3, H4, H5, H6 } from "../src/lib/H";
 import Llabel from '../src/lib/LLable';
 import LSearch from '../src/lib/LSearch';
@@ -19,31 +17,19 @@ import ButtonDemo from '../src/containers/buttonDemo/ButtonDemo';
 import InputDemo from '../src/containers/inputDemo/InputDemo';
 import TextAreaDemo from '../src/containers/textAreaDemo/textAreaDemo';
 import CascadeSelectDemo from '../src/containers/cascadeSelectDemo/CascadeSelectDemo';
+import DatePickerDemo from '../src/containers/datePickerDemo/datePickerDemo';
 
-storiesOf('Button', module).add('Button', () =>
-    <div><ButtonDemo/><GlobelStyle /></div>
-);
-storiesOf('Input', module).add('Input', () =>
-    <div><InputDemo/><GlobelStyle /></div>
-);
-storiesOf('TextArea', module).add('TextArea', () =>
-    <div><TextAreaDemo/><GlobelStyle /></div>
-);
-storiesOf('CascadeSelect', module).add('CascadeSelect', () =>
-    <div><CascadeSelectDemo/><GlobelStyle /></div>
-);
-
-storiesOf('button样式', module).add('button样式1', () =>
-    <Button type={1} onClick={() => alert('1')}>按钮</Button>
-).add('button样式2', () =>
-    <Button type={2} width={200}>按钮</Button>
-).add('button样式3', () =>
-    <Button type={3}>按钮</Button>
-).add('button样式4', () =>
-    <Button type={4}>按钮</Button>
-).add('button样式1 有icon', () =>
-    <Button type={1} hasIcon IconName={'iconfenxiang'}>有icon按钮</Button>
-);
+// storiesOf('button样式', module).add('button样式1', () =>
+//     <Button type={1} onClick={() => alert('1')}>按钮</Button>
+// ).add('button样式2', () =>
+//     <Button type={2} width={200}>按钮</Button>
+// ).add('button样式3', () =>
+//     <Button type={3}>按钮</Button>
+// ).add('button样式4', () =>
+//     <Button type={4}>按钮</Button>
+// ).add('button样式1 有icon', () =>
+//     <Button type={1} hasIcon IconName={'iconfenxiang'}>有icon按钮</Button>
+// );
 
 storiesOf('H', module).add('H1', () =>
     <H1 style={{ color: '#f00' }}>H1</H1>
@@ -108,7 +94,7 @@ let show = true;
 storiesOf('Modal', module).add('Modal1一个按钮', () => {
     return (
         <div>
-            <Button type={1} onClick={action('btnclick')}>按钮</Button>
+            {/* <Button type={1} titleName="1" hollow onClick={action('btnclick')}>1</Button> */}
             <Modal visible={true} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} cancelText={'取消'} />
         </div>
     )
@@ -127,3 +113,20 @@ storiesOf('Modal', module).add('Modal1一个按钮', () => {
         </div>} okText={'确定'} cancelText={'取消'} />
     )
 });
+
+
+storiesOf('DatePicker', module).add('DatePicker', () =>
+    <div><DatePickerDemo/><GlobelStyle /></div>
+);
+storiesOf('Button', module).add('Button', () =>
+    <div><ButtonDemo/><GlobelStyle /></div>
+);
+storiesOf('Input', module).add('Input', () =>
+    <div><InputDemo/><GlobelStyle /></div>
+);
+storiesOf('TextArea', module).add('TextArea', () =>
+    <div><TextAreaDemo/><GlobelStyle /></div>
+);
+storiesOf('CascadeSelect', module).add('CascadeSelect', () =>
+    <div><CascadeSelectDemo/><GlobelStyle /></div>
+);

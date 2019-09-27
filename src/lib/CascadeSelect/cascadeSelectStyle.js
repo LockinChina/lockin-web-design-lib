@@ -89,6 +89,9 @@ const CascadeSelectContainer = styled.div`
         &.col2{ width: 50%}
         &.col3{ width: 33.333333%}
       }
+      ul:nth-child(1){
+        border-right: 1px solid #E8E8E8;
+      }
       li{
         font-size:12px;
         font-weight:400;
