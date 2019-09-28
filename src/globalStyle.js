@@ -35,7 +35,7 @@ const globalStyle = createGlobalStyle`
   .tr{ text-align: right;}
   .tc{text-align: center}
   .c{ width: 100%; min-width: 1200px;}
-  .w{ width: 1200px; margin: 0 auto; }
+  /* .w{ width: 1200px; margin: 0 auto; } */
   .mt-30{ margin-top:30px;}
   .m-t-10{ margin-top: 10px;}
   .m-t-30{ margin-top: 30px;}
@@ -46,6 +46,25 @@ const globalStyle = createGlobalStyle`
   .m-t-20{ margin-top: 20px;}
   .color-75{ color: #777;}
   .f-size-12{ font-size: 12px;}
+  /*自定义滚动条*/
+  .scrollbar::-webkit-scrollbar-track{
+    /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+    box-shadow: none;
+    background-color: none;
+  }
+  .scrollbar::-webkit-scrollbar{
+    width: 2px;
+    /* background-color: #f8f8f8; */
+    background: none;
+  }
+  .scrollbar::-webkit-scrollbar-thumb{
+    background-color: rgb(0,94,212);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
 `;
 
 export default globalStyle;

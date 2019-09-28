@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import CascadeSelectContainer from './cascadeSelectStyle';
 import axios from 'axios';
+import PropTypes, { node } from 'prop-types';
 
 let labelObj = [];
 let valueObj = [];
 
 
-export default function CascadeSelect(props) {
+const CascadeSelect = React.forwardRef(function (props, ref) {
   const {
     value,
     placeholder,
@@ -16,11 +17,11 @@ export default function CascadeSelect(props) {
     onChange,
     maxLength,
     width,
-    api,
+    dataApi,
     col,
     insideWidth,
-    ref,
-    invalid
+    invalid,
+    name
   } = props;
   const [selectValue, setSelectVlue] = useState(value); // 
 
@@ -30,19 +31,19 @@ export default function CascadeSelect(props) {
   const [isShow, setIsShow] = useState(false); // 显示隐藏
 
   useEffect ( function getSelectData() {
-    if(api){
-      if(typeof api === 'string'){
-        axios.get(api)
+    if(dataApi){
+      if(typeof dataApi === 'string'){
+        axios.get(dataApi)
           .then(res => {
               let data = res.data;
               setSelectData(data);
           })
           .catch(erro => {console.log(erro)})
       }else{
-        setSelectData(api);
+        setSelectData(dataApi);
       }
     }
-  },[api]);
+  },[dataApi]);
 
   useEffect(() => {
     document.body.addEventListener('click', e => {
@@ -114,12 +115,13 @@ export default function CascadeSelect(props) {
             readOnly="readOnly"
             value={selectValue}
             ref={ref}
+            name={name}
           />
           <span className={"iconfont arrow " + (isShow ? "iconshouhui" : "iconxiala1") } style={{color: isShow ? "#005ED4" : ""}} ></span>
 
           <div className="select-box animated-fast fadeInDown" style={{ display: isShow ? 'block' : 'none' }}>
             <div className="rowbox" style={{ width: `${insideWidth}px` }}>
-              <ul className={`col${col}`}>
+              <ul className={ `scrollbar col${col}`}>
                 {selectData.map((item, index) => {
                   return (
                     <li
@@ -135,7 +137,7 @@ export default function CascadeSelect(props) {
               </ul>
               {
                 indexOne !== -100 &&
-                <ul className={`col${col}`}>
+                <ul className={ `scrollbar col${col}`} style={{borderRight: col===3 ? "1px solid #E8E8E8": ""}}>
                   {indexOne >= 0 && selectData[Number(indexOne)].children.map((item, index) => {
                     return (
                       <li
@@ -153,7 +155,7 @@ export default function CascadeSelect(props) {
 
               {
                 indexTwo !== -100 && indexOne !== -100 &&
-                <ul className={`col${col}`}>
+                <ul className={ `scrollbar col${col}`}>
                   {indexTwo >= 0 && indexOne >= 0 && selectData[Number(indexOne)].children[Number(indexTwo)].children.map((item, index) => {
                     return (
                       <li
@@ -177,7 +179,7 @@ export default function CascadeSelect(props) {
 
     </CascadeSelectContainer>
   )
-}
+})
 
 
 CascadeSelect.defaultProps = {
@@ -187,5 +189,23 @@ CascadeSelect.defaultProps = {
   onChange: () => { },
   rightIconOnClick: () => { }
 }
+
+CascadeSelect.propTypes = {
+    // value: PropTypes.oneOfType([ PropTypes.string, PropTypes.object]),
+    placeholder: PropTypes.string,
+    titleName: PropTypes.string,
+    defaultValue: PropTypes.string,
+    wrongText: PropTypes.string,
+    onChange: PropTypes.func,
+    maxLength: PropTypes.number,
+    width: PropTypes.number,
+    // dataApi: PropTypes.oneOfType([ PropTypes.string, PropTypes.object]),
+    col: PropTypes.number,
+    insideWidth: PropTypes.number,
+    invalid:  PropTypes.bool,
+    name:  PropTypes.node
+}
+
+export default CascadeSelect;
 
 
