@@ -3,14 +3,14 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
-    "dist",
+    "src",
     "README.md"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/LockinChina/lockin-web-design-lib.git"
   },
-  "version": "0.1.6",
+  "version": "0.1.7",
   "dependencies": {
     "prop-types": "^15.7.2",
     "typescript": "^3.6.3"
