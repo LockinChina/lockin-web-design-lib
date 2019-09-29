@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
- const textAreaContainer = styled.div`
+const textAreaContainer = styled.div`
   .text {
     font-size: 14px;
   }

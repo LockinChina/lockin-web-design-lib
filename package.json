@@ -17,11 +17,12 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm start",
     "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 8011 -s public"
+    "test": "npm  test",
+    "eject": "npm eject",
+    "storybook": "start-storybook -p 8011 -s public",
+    "lint": "eslint src"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,6 +46,20 @@
     "@storybook/react": "^5.2.1",
     "axios": "^0.19.0",
     "babel-preset-react-app": "^9.0.0",
+    "cross-env": "^6.0.0",
+    "eslint": "5.16.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-config-prettier": "4.1.0",
+    "eslint-config-react-app": "^5.0.2",
+    "eslint-import-resolver-webpack": "0.11.1",
+    "eslint-plugin-import": "2.17.2",
+    "eslint-plugin-jsx-a11y": "6.2.1",
+    "eslint-plugin-prettier": "3.0.1",
+    "eslint-plugin-react": "7.12.4",
+    "eslint-plugin-react-hooks": "1.6.0",
+    "husky": "^3.0.7",
+    "lint-staged": "8.1.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-hook-form": "^3.23.12",
@@ -52,5 +67,11 @@
     "regenerator-runtime": "^0.13.3",
     "rimraf": "^2.6.3",
     "styled-components": "^4.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
   }
 }

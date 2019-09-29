@@ -1,7 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
 import PropTypes from "prop-types";
-import LLable from "./LLable";
 
 const TextError = styled.div`
   font-size: 12px;
@@ -12,11 +11,11 @@ const TextError = styled.div`
 `;
 
 const LError = ({ text }) => (
-    <TextError>{text}</TextError>
+  <TextError>{text}</TextError>
 );
 
 LError.propTypes = {
-    text: PropTypes.string,
+  text: PropTypes.string,
 };
 
 

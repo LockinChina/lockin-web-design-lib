@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CascadeSelectContainer from './cascadeSelectStyle';
 import axios from 'axios';
-import PropTypes, { node } from 'prop-types';
+import PropTypes from 'prop-types';
 
 let labelObj = [];
 let valueObj = [];
@@ -30,20 +30,20 @@ const CascadeSelect = React.forwardRef(function (props, ref) {
   const [indexTwo, setIndexTwo] = useState(-100); // 第二级索引
   const [isShow, setIsShow] = useState(false); // 显示隐藏
 
-  useEffect ( function getSelectData() {
-    if(dataApi){
-      if(typeof dataApi === 'string'){
+  useEffect(function getSelectData() {
+    if (dataApi) {
+      if (typeof dataApi === 'string') {
         axios.get(dataApi)
           .then(res => {
-              let data = res.data;
-              setSelectData(data);
+            let data = res.data;
+            setSelectData(data);
           })
-          .catch(erro => {console.log(erro)})
-      }else{
+          .catch(erro => { console.log(erro) })
+      } else {
         setSelectData(dataApi);
       }
     }
-  },[dataApi]);
+  }, [dataApi]);
 
   useEffect(() => {
     document.body.addEventListener('click', e => {
@@ -101,9 +101,9 @@ const CascadeSelect = React.forwardRef(function (props, ref) {
       {/* <input type="hidden" value={col} /> */}
       <p className="title" style={{ display: titleName ? 'block' : 'none' }} >{titleName}</p>
       <div className="box" style={{ position: "relative" }}>
-        <div className={"inputBody fadeAnim " + (isShow ? "openActive " : "") + (wrongText ? "textWrong " : "") + (invalid ?  "invalid " : "")} onClick={(e) => {
-          if(!invalid)
-          setIsShow(!isShow);
+        <div className={"inputBody fadeAnim " + (isShow ? "openActive " : "") + (wrongText ? "textWrong " : "") + (invalid ? "invalid " : "")} onClick={(e) => {
+          if (!invalid)
+            setIsShow(!isShow);
           labelObj = [];
         }}>
           <input
@@ -117,11 +117,11 @@ const CascadeSelect = React.forwardRef(function (props, ref) {
             ref={ref}
             name={name}
           />
-          <span className={"iconfont arrow " + (isShow ? "iconshouhui" : "iconxiala1") } style={{color: isShow ? "#005ED4" : ""}} ></span>
+          <span className={"iconfont arrow " + (isShow ? "iconshouhui" : "iconxiala1")} style={{ color: isShow ? "#005ED4" : "" }} ></span>
 
           <div className="select-box animated-fast fadeInDown" style={{ display: isShow ? 'block' : 'none' }}>
             <div className="rowbox" style={{ width: `${insideWidth}px` }}>
-              <ul className={ `scrollbar col${col}`}>
+              <ul className={`scrollbar col${col}`}>
                 {selectData.map((item, index) => {
                   return (
                     <li
@@ -137,7 +137,7 @@ const CascadeSelect = React.forwardRef(function (props, ref) {
               </ul>
               {
                 indexOne !== -100 &&
-                <ul className={ `scrollbar col${col}`} style={{borderRight: col===3 ? "1px solid #E8E8E8": ""}}>
+                <ul className={`scrollbar col${col}`} style={{ borderRight: col === 3 ? "1px solid #E8E8E8" : "" }}>
                   {indexOne >= 0 && selectData[Number(indexOne)].children.map((item, index) => {
                     return (
                       <li
@@ -155,7 +155,7 @@ const CascadeSelect = React.forwardRef(function (props, ref) {
 
               {
                 indexTwo !== -100 && indexOne !== -100 &&
-                <ul className={ `scrollbar col${col}`}>
+                <ul className={`scrollbar col${col}`}>
                   {indexTwo >= 0 && indexOne >= 0 && selectData[Number(indexOne)].children[Number(indexTwo)].children.map((item, index) => {
                     return (
                       <li
@@ -191,19 +191,19 @@ CascadeSelect.defaultProps = {
 }
 
 CascadeSelect.propTypes = {
-    // value: PropTypes.oneOfType([ PropTypes.string, PropTypes.object]),
-    placeholder: PropTypes.string,
-    titleName: PropTypes.string,
-    defaultValue: PropTypes.string,
-    wrongText: PropTypes.string,
-    onChange: PropTypes.func,
-    maxLength: PropTypes.number,
-    width: PropTypes.number,
-    // dataApi: PropTypes.oneOfType([ PropTypes.string, PropTypes.object]),
-    col: PropTypes.number,
-    insideWidth: PropTypes.number,
-    invalid:  PropTypes.bool,
-    name:  PropTypes.node
+  // value: PropTypes.oneOfType([ PropTypes.string, PropTypes.object]),
+  placeholder: PropTypes.string,
+  titleName: PropTypes.string,
+  defaultValue: PropTypes.string,
+  wrongText: PropTypes.string,
+  onChange: PropTypes.func,
+  maxLength: PropTypes.number,
+  width: PropTypes.number,
+  // dataApi: PropTypes.oneOfType([ PropTypes.string, PropTypes.object]),
+  col: PropTypes.number,
+  insideWidth: PropTypes.number,
+  invalid: PropTypes.bool,
+  name: PropTypes.node
 }
 
 export default CascadeSelect;

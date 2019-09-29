@@ -3,10 +3,10 @@ import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import '../iconfont/iconfont.css';
 
-function ButtonStyle (props){
-    // type 按钮样式4种 hasIcon 是否有Icon
-    const { type, onClick, hasIcon, style, className, IconName, width } = props;
-    const ButtonBasic = css`
+function ButtonStyle(props) {
+  // type 按钮样式4种 hasIcon 是否有Icon
+  const { type, onClick, hasIcon, style, className, IconName, width } = props;
+  const ButtonBasic = css`
         font-size: 16px;
         padding: 0 30px;
         height: 40px;
@@ -20,7 +20,7 @@ function ButtonStyle (props){
         `}
     `;
 
-    let ButtonStyle = styled.button`
+  let ButtonStyle = styled.button`
         ${ButtonBasic};
         ${type === 1 && css`
             color: #fff;
@@ -70,7 +70,7 @@ function ButtonStyle (props){
         `};
     `;
 
-    let IconDiv = styled.div`
+  let IconDiv = styled.div`
       font-family: "lockinu" !important;
       font-size: 16px;
       font-style: normal;
@@ -89,32 +89,32 @@ function ButtonStyle (props){
       `};
     `;
 
-    return (
-        <ButtonStyle type={type} className={className} style={style} hasIcon={hasIcon} onClick={() => onClick()}>
-            <IconDiv className={`${hasIcon ? `${IconName}` : ''}`}>
-                {Children.toArray(props.children)}
-            </IconDiv>
-        </ButtonStyle>
-    );
+  return (
+    <ButtonStyle type={type} className={className} style={style} hasIcon={hasIcon} onClick={() => onClick()}>
+      <IconDiv className={`${hasIcon ? `${IconName}` : ''}`}>
+        {Children.toArray(props.children)}
+      </IconDiv>
+    </ButtonStyle>
+  );
 }
 
 ButtonStyle.propTypes = {
-    type: PropTypes.number,
-    onClick: PropTypes.func,
-    hasIcon: PropTypes.bool,
-    style: PropTypes.object,
-    className: PropTypes.string,
-    IconName: PropTypes.string,
-    width: PropTypes.number,
+  type: PropTypes.number,
+  onClick: PropTypes.func,
+  hasIcon: PropTypes.bool,
+  style: PropTypes.object,
+  className: PropTypes.string,
+  IconName: PropTypes.string,
+  width: PropTypes.number,
 };
 
 ButtonStyle.defaultProps = {
-    type: 1,
-    onClick: () => {},
-    hasIcon: false,
-    style: {},
-    className: '',
-    IconName: '',
+  type: 1,
+  onClick: () => { },
+  hasIcon: false,
+  style: {},
+  className: '',
+  IconName: '',
 };
 
 export default ButtonStyle;

@@ -1,5 +1,4 @@
-import React from "react";
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const BasicStyle = css`
   margin: 0;
@@ -44,4 +43,4 @@ const H6 = styled.h6`
   line-height: 22px;
 `;
 
-export {H1, H2, H3, H4, H5, H6};
+export { H1, H2, H3, H4, H5, H6 };

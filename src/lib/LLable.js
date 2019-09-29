@@ -1,6 +1,5 @@
 import React from "react";
 import styled from 'styled-components';
-import Modal from "./Modal";
 import PropTypes from "prop-types";
 
 const InputLabel = styled.label`
@@ -12,12 +11,12 @@ const InputLabel = styled.label`
 `;
 
 const LLable = ({ text, htmlFor }) => (
-    <InputLabel for={htmlFor}>{text}</InputLabel>
+  <InputLabel for={htmlFor}>{text}</InputLabel>
 );
 
 LLable.propTypes = {
-    text: PropTypes.string,
-    htmlFor: PropTypes.string,
+  text: PropTypes.string,
+  htmlFor: PropTypes.string,
 };
 
 export default LLable;

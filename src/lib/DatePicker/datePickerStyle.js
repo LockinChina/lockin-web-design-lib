@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import CascadeSelectContainer from '../CascadeSelect/cascadeSelectStyle';
 
 const DatePickerContainer = styled(CascadeSelectContainer)`

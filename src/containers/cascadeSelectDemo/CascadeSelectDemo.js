@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GrayBox, Ptit, Space, BtnSpace, Table } from '../../globalDemoStyle';
+import { GrayBox, Ptit, Space, Table } from '../../globalDemoStyle';
 
 import CascadeSelect from '../../lib/CascadeSelect/CascadeSelect';
 

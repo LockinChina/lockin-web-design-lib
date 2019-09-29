@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 export const GrayBox = styled.div`
   background: #f9f9f9;
@@ -24,7 +24,7 @@ export const Space = styled.div`
   height: 20px;
 `
 
-export const Table  = styled.table`
+export const Table = styled.table`
   thead{
     background: #f7f7f7;
     td{

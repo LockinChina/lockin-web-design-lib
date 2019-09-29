@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import DatePicker from '../../lib/DatePicker/DatePicker';
-import { GrayBox, Ptit, Space, BtnSpace, Table } from '../../globalDemoStyle';
+import { GrayBox, Ptit, Space, Table } from '../../globalDemoStyle';
 
-const Rowbox =styled.div`
+const Rowbox = styled.div`
   display: flex;
   flex-direction: row;
-` 
+`
 
-export default function DatePickerDemo () {
+export default function DatePickerDemo() {
   const [dateV1, setDateV1] = useState('2019-08');
   const [dateV2, setDateV2] = useState('');
   const [dateV3, setDateV3] = useState('');
@@ -24,69 +24,69 @@ export default function DatePickerDemo () {
         <Space />
 
         <Rowbox>
-          <DatePicker 
+          <DatePicker
             titleName="选择年月"
             width={280}
             value={dateV1}
-            onChange={(e)=> {
+            onChange={(e) => {
               setDateV1(e.join('-'))
             }}
           />
-          <div style={{ width: '20px'}}></div>
-          <DatePicker 
+          <div style={{ width: '20px' }}></div>
+          <DatePicker
             titleName="选择年月日"
             hasDay
             placeholder="请选择"
             width={280}
             value={dateV2}
-            onChange={(e)=> {
+            onChange={(e) => {
               setDateV2(e.join('-'))
             }}
           />
-          <div style={{ width: '20px'}}></div>
-          <DatePicker 
+          <div style={{ width: '20px' }}></div>
+          <DatePicker
             titleName="至今"
             type="至今"
             placeholder="请选择"
             width={280}
             value={dateV3}
             wrongText="请选择"
-            onChange={(e)=> {
+            onChange={(e) => {
               setDateV3(e.join('-'))
             }}
           />
         </Rowbox>
         <Space />
         <Rowbox>
-          <DatePicker 
+          <DatePicker
             titleName="无经验"
             placeholder="请选择"
             width={280}
             type="无经验"
             value={dateV4}
-            onChange={(e)=> {
+            onChange={(e) => {
               setDateV4(e.join('-'))
             }}
           />
-          <div style={{ width: '20px'}}></div>
-          <DatePicker 
+          <div style={{ width: '20px' }}></div>
+          <DatePicker
             titleName="+5年"
             placeholder="请选择"
             width={280}
             type="gTime"
             value={dateV5}
-            onChange={(e)=> {
+            onChange={(e) => {
               setDateV5(e.join('-'))
             }}
           />
-          <div style={{ width: '20px'}}></div>
-          <DatePicker 
+          <div style={{ width: '20px' }}></div>
+          <DatePicker
             titleName="失效"
             placeholder="请选择"
             width={280}
             value={dateV6}
             invalid
-            onChange={(e)=> {
+            onChange={(e) => {
               setDateV6(e.join('-'))
             }}
           />
@@ -110,7 +110,7 @@ export default function DatePickerDemo () {
           <tr><td>wrongText</td><td>错误提示语 不传入则不显示</td><td>string</td><td>/</td></tr>
           <tr><td>invalid</td><td>失效状态</td><td>boolean</td><td>false</td></tr>
           <tr><td>hasDay</td><td>显示'日'选项</td><td>boolean</td><td>false</td></tr>
-          
+
         </tbody>
       </Table>
       <Space />

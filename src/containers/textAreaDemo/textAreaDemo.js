@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { GrayBox, Ptit, Space, BtnSpace, Table } from '../../globalDemoStyle';
+import React from 'react';
+import { GrayBox, Ptit, Space, Table } from '../../globalDemoStyle';
 
 import TextArea from '../../lib/TextArea/TextArea';
 
@@ -27,7 +27,7 @@ export default function InputDemo() {
           rightIconColor="" //右侧图标颜色
           rightIconOnClick={() => { }} //右侧图标点击事件
           rightIconTitle="" // 右侧图标title (鼠标移入悬浮提示)
-          // rows="4" //设置行数
+        // rows="4" //设置行数
         />
         <Space />
         <TextArea

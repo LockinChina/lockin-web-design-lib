@@ -1,7 +1,6 @@
 import React from "react";
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from "prop-types";
-import Modal from "./Modal";
 
 
 const StyleInput = styled.input`
@@ -48,26 +47,26 @@ const InputDiv = styled.div`
 `;
 
 const LSearch = ({ type = "text", value, big = true, onChange, placeholder, btnText, onClick }) => (
-    <InputDiv>
-        <StyleInput
-            type={type}
-            value={value}
-            placeholder = {placeholder}
-            big={big}
-            onChange={e => onChange && onChange(e.target.value)}
-        />
-        <ButtonStyle big={big} onClick={() => onClick()}>{btnText}</ButtonStyle>
-    </InputDiv>
+  <InputDiv>
+    <StyleInput
+      type={type}
+      value={value}
+      placeholder={placeholder}
+      big={big}
+      onChange={e => onChange && onChange(e.target.value)}
+    />
+    <ButtonStyle big={big} onClick={() => onClick()}>{btnText}</ButtonStyle>
+  </InputDiv>
 );
 
 LSearch.propTypes = {
-    type: PropTypes.string,
-    value: PropTypes.string,
-    big: PropTypes.bool,
-    onChange: PropTypes.func,
-    placeholder: PropTypes.string,
-    btnText: PropTypes.string,
-    onClick: PropTypes.func,
+  type: PropTypes.string,
+  value: PropTypes.string,
+  big: PropTypes.bool,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  btnText: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default LSearch;
