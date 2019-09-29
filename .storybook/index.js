@@ -149,7 +149,7 @@ storiesOf('Empty', module).add('Empty', () =>
     <div><EmptyDemo /><GlobelStyle /></div>
 );
 storiesOf('BackTop', module).add('BackTop', () =>
-    <div><BackTopDemo/><GlobelStyle /></div>
+    <div><BackTopDemo /><GlobelStyle /></div>
 );
 
 
