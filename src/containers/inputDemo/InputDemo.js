@@ -39,7 +39,7 @@ export default function InputDemo() {
         <Space />
 
         <Input
-          titleName="带左侧图标 并自定义长度"
+          titleName="带左侧图标 并自定义长度和边框颜色"
           defaultValue=""
           width={400}
           placeholder="请输入微信号"
@@ -113,7 +113,6 @@ export default function InputDemo() {
           <tr><td>rightIconOnClick</td><td>右侧icon图标点击事件 </td><td>function</td><td>/</td></tr>
           <tr><td>rightIconTitle</td><td>右侧icon图标title(鼠标浮入显示title文字) </td><td>string</td><td>/</td></tr>
           <tr><td>inputBorderColor</td><td>设置文本框边框颜色 </td><td>string</td><td>#a0a0a0</td></tr>
-          
         </tbody>
       </Table>
       <Space />

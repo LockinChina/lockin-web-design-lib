@@ -30,10 +30,22 @@ const Input = React.forwardRef(function(props, ref)  {
   useEffect(()=> {
 
   }, [])
+  const setBorder = () => {
+    if (wrongText || (wrongText && inputBorderColor)){
+      return 'red'
+    }
+    else if(inputBorderColor){
+      return inputBorderColor
+    }
+  }
   return (
     <InputContainer style={{width: `${width}px`}}>
       <p className="title" style={{display: titleName ? 'block' : 'none'}} >{titleName}</p>
-      <div className={"inputBody fadeAnim "+(blurState ? "active " : "") + (wrongText ? "textWrong " : "") + (readOnly ? "readOnlyOpacity " : "")} style={{borderColor: inputBorderColor ? inputBorderColor : '#a0a0a0'}}>
+      <div className={"inputBody fadeAnim "+(blurState ? "active " : "") + (readOnly ? "readOnlyOpacity " : "")} 
+        style={{
+          borderColor: setBorder()
+        }}
+      >
         <span className={"iconfont " + (leftIconName ? leftIconName: "")} style={{color: `${leftIconColor}`, fontSize: `${leftIconSize}px `}} ></span>
         <input 
           ref={ref}
