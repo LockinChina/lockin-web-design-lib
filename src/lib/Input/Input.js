@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import InputContainer from './inputStyle';
 import PropTypes from 'prop-types';
+import { background } from '@storybook/theming';
 
 const Input = React.forwardRef(function(props, ref)  {
   const [blurState, setBlurState] = useState(0);
@@ -24,9 +25,10 @@ const Input = React.forwardRef(function(props, ref)  {
     width,
     readOnly,
     name,
-    inputBorderColor
+    inputBorderColor,
+    inputBackgroundColor
   } = props;
-
+  
   useEffect(()=> {
 
   }, [])
@@ -38,12 +40,14 @@ const Input = React.forwardRef(function(props, ref)  {
       return inputBorderColor
     }
   }
+  
   return (
     <InputContainer style={{width: `${width}px`}}>
       <p className="title" style={{display: titleName ? 'block' : 'none'}} >{titleName}</p>
       <div className={"inputBody fadeAnim "+(blurState ? "active " : "") + (readOnly ? "readOnlyOpacity " : "")} 
         style={{
-          borderColor: setBorder()
+          borderColor: setBorder(),
+          background: inputBackgroundColor ? inputBackgroundColor  : '#fff'
         }}
       >
         <span className={"iconfont " + (leftIconName ? leftIconName: "")} style={{color: `${leftIconColor}`, fontSize: `${leftIconSize}px `}} ></span>

@@ -22,6 +22,8 @@ import SkillSliderDemo from '../src/containers/SkillSliderDemo/SkillSliderDemo';
 import Image from '../src/containers/ImageDemo/ImageDemo';
 import Loading from '../src/containers/loadingDemo/LoadingDemo';
 import EmptyDemo from '../src/containers/emptyDemo/EmptyDemo'
+import BackTopDemo from '../src/containers/backTopDemo/BackTopDemo'
+
 
 // storiesOf('button样式', module).add('button样式1', () =>
 //     <Button type={1} onClick={() => alert('1')}>按钮</Button>
@@ -145,6 +147,9 @@ storiesOf('Loading', module).add('Loading', () =>
 );
 storiesOf('Empty', module).add('Empty', () =>
     <div><EmptyDemo /><GlobelStyle /></div>
+);
+storiesOf('BackTop', module).add('BackTop', () =>
+    <div><BackTopDemo/><GlobelStyle /></div>
 );
 
 

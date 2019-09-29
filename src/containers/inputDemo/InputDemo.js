@@ -26,7 +26,7 @@ export default function InputDemo() {
           rightIconName="" // 右侧图标名称
           // rightIconSize={} //右侧图标大小
           rightIconColor="" // 右侧图标颜色
-          rightIconOnClick={() => { }} // 右侧图标点击事件
+          rightIconOnClick={() => {}} // 右侧图标点击事件
           rightIconTitle="" // 右侧图标title (鼠标移入悬浮提示)
         />
         <Space />
@@ -72,6 +72,7 @@ export default function InputDemo() {
           leftIconColor="#005ED4"
           leftIconSize={15}
           wrongText="我是错误提示！"
+          // inputBackgroundColor="red"
         />
 
         <Space />
@@ -207,6 +208,12 @@ export default function InputDemo() {
             <td>设置文本框边框颜色 </td>
             <td>string</td>
             <td>#a0a0a0</td>
+          </tr>
+          <tr>
+            <td>inputBackgroundColor</td>
+            <td>设置文本框边框背景色 </td>
+            <td>string</td>
+            <td>#fff</td>
           </tr>
         </tbody>
       </Table>
