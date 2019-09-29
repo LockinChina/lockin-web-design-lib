@@ -17,11 +17,14 @@ function Button(props) {
       style={style}
       className={className}
     >
-      <span 
-        className={"iconfont " + (props.iconName ? props.iconName : "")}
-        style={{fontSize: `${iconSize}px`, color: `${iconColor}` }}
-      >
-      </span>
+      {
+        props.iconName &&
+        <span 
+          className={"iconfont " + (props.iconName ? props.iconName : "")}
+          style={{fontSize: `${iconSize}px`, color: `${iconColor}` }}
+        >
+        </span>
+      }
       {Children.toArray(children)}
       {titleName}
     </ButtonStyle>

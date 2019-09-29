@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import loading from '../../static/images/loading.png'
 
@@ -66,6 +67,12 @@ function Loading (props) {
       
     </LoadingContainer>
   )
+}
+
+Loading.propTypes = {
+  transparent: PropTypes.bool,
+  message: PropTypes.string,
+  opacity: PropTypes.number
 }
 
 export default Loading;

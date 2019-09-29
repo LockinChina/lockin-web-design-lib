@@ -18,9 +18,10 @@ import InputDemo from '../src/containers/inputDemo/InputDemo';
 import TextAreaDemo from '../src/containers/textAreaDemo/textAreaDemo';
 import CascadeSelectDemo from '../src/containers/cascadeSelectDemo/CascadeSelectDemo';
 import DatePickerDemo from '../src/containers/datePickerDemo/datePickerDemo';
-import SkillSliderDemo from '../src/containers/SkillSliderDemo/SkillSliderDemo';
-import Image from '../src/containers/ImageDemo/ImageDemo';
+import SkillSliderDemo from '../src/containers/skillSliderDemo/SkillSliderDemo';
+import Image from '../src/containers/imageDemo/ImageDemo';
 import Loading from '../src/containers/loadingDemo/LoadingDemo';
+import EmptyDemo from '../src/containers/emptyDemo/EmptyDemo'
 
 // storiesOf('button样式', module).add('button样式1', () =>
 //     <Button type={1} onClick={() => alert('1')}>按钮</Button>
@@ -142,3 +143,8 @@ storiesOf('Image', module).add('Image', () =>
 storiesOf('Loading', module).add('Loading', () =>
     <div><Loading/><GlobelStyle /></div>
 );
+storiesOf('Empty', module).add('Empty', () =>
+    <div><EmptyDemo/><GlobelStyle /></div>
+);
+
+

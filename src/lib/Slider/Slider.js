@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Tooltip from 'rc-tooltip';
+import PropTypes from 'prop-types';
 
 import SliderContainer from './sliderStyle';
 
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
+// const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Handle = Slider.Handle;
 
 const skillArr = [
@@ -105,6 +106,18 @@ Sliders.defaultProps = {
   initValue: 0,
   disabled: false,
   onChange: ()=> {}
+}
+
+Sliders.propTypes = {
+  min: PropTypes.number,
+  max: PropTypes.number,
+  initValue: PropTypes.number,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
+  name: PropTypes.node,
+  width: PropTypes.number,
+  value: PropTypes.number,
+  titleName: PropTypes.string
 }
 
 export default Sliders;

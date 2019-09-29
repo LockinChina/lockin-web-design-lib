@@ -191,7 +191,7 @@ CascadeSelect.defaultProps = {
 }
 
 CascadeSelect.propTypes = {
-    // value: PropTypes.oneOfType([ PropTypes.string, PropTypes.object]),
+    value: PropTypes.node,
     placeholder: PropTypes.string,
     titleName: PropTypes.string,
     defaultValue: PropTypes.string,
@@ -199,7 +199,7 @@ CascadeSelect.propTypes = {
     onChange: PropTypes.func,
     maxLength: PropTypes.number,
     width: PropTypes.number,
-    // dataApi: PropTypes.oneOfType([ PropTypes.string, PropTypes.object]),
+    dataApi: PropTypes.node,
     col: PropTypes.number,
     insideWidth: PropTypes.number,
     invalid:  PropTypes.bool,

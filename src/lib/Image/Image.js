@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import ImageContainer from './imageStyle';
 import GlobelStyle from '../../globalStyle';
 import '../../iconfont/iconfont.css';
@@ -48,4 +48,19 @@ Image.defaultProps = {
   link: '#',
   backgroundIm: baseHeaderBg,
   fileOnChange: ()=>{}
+}
+
+Image.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
+  imAlt: PropTypes.string,
+  radius: PropTypes.number,
+  upload: PropTypes.bool,
+  backgroundIm: PropTypes.string,
+  imUrl: PropTypes.string,
+  blank: PropTypes.bool,
+  link: PropTypes.string,
+  fileOnChange: PropTypes.func,
+  borderColor: PropTypes.string,
+  backgroundColor: PropTypes.string
 }
