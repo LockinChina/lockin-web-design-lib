@@ -18,8 +18,8 @@ import InputDemo from '../src/containers/inputDemo/InputDemo';
 import TextAreaDemo from '../src/containers/textAreaDemo/textAreaDemo';
 import CascadeSelectDemo from '../src/containers/cascadeSelectDemo/CascadeSelectDemo';
 import DatePickerDemo from '../src/containers/datePickerDemo/datePickerDemo';
-import SkillSliderDemo from '../src/containers/skillSliderDemo/SkillSliderDemo';
-import Image from '../src/containers/imageDemo/ImageDemo';
+import SkillSliderDemo from '../src/containers/SkillSliderDemo/SkillSliderDemo';
+import Image from '../src/containers/ImageDemo/ImageDemo';
 import Loading from '../src/containers/loadingDemo/LoadingDemo';
 import EmptyDemo from '../src/containers/emptyDemo/EmptyDemo'
 
@@ -120,31 +120,31 @@ storiesOf('Modal', module).add('Modal1一个按钮', () => {
 
 
 storiesOf('DatePicker', module).add('DatePicker', () =>
-    <div><DatePickerDemo/><GlobelStyle /></div>
+    <div><DatePickerDemo /><GlobelStyle /></div>
 );
 storiesOf('Button', module).add('Button', () =>
-    <div><ButtonDemo/><GlobelStyle /></div>
+    <div><ButtonDemo /><GlobelStyle /></div>
 );
 storiesOf('Input', module).add('Input', () =>
-    <div><InputDemo/><GlobelStyle /></div>
+    <div><InputDemo /><GlobelStyle /></div>
 );
 storiesOf('TextArea', module).add('TextArea', () =>
-    <div><TextAreaDemo/><GlobelStyle /></div>
+    <div><TextAreaDemo /><GlobelStyle /></div>
 );
 storiesOf('CascadeSelect', module).add('CascadeSelect', () =>
-    <div><CascadeSelectDemo/><GlobelStyle /></div>
+    <div><CascadeSelectDemo /><GlobelStyle /></div>
 );
 storiesOf('Slider', module).add('Slider', () =>
-    <div><SkillSliderDemo/><GlobelStyle /></div>
+    <div><SkillSliderDemo /><GlobelStyle /></div>
 );
 storiesOf('Image', module).add('Image', () =>
-    <div><Image/><GlobelStyle /></div>
+    <div><Image /><GlobelStyle /></div>
 );
 storiesOf('Loading', module).add('Loading', () =>
-    <div><Loading/><GlobelStyle /></div>
+    <div><Loading /><GlobelStyle /></div>
 );
 storiesOf('Empty', module).add('Empty', () =>
-    <div><EmptyDemo/><GlobelStyle /></div>
+    <div><EmptyDemo /><GlobelStyle /></div>
 );
 
 

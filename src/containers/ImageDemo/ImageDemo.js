@@ -14,7 +14,7 @@ const Rowbox = styled.div`
 `
 
 
-export default function DatePickerDemo() {
+export default function ImageDemo() {
   return (
     <div>
       <GrayBox>

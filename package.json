@@ -65,16 +65,11 @@
     "lint-staged": "8.1.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "prettier": "1.17.0",
     "react-hook-form": "^3.23.12",
     "react-scripts": "^3.0.1",
     "regenerator-runtime": "^0.13.3",
     "rimraf": "^2.6.3",
     "styled-components": "^4.2.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run lint"
-    }
   }
 }
