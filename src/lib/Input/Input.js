@@ -23,16 +23,29 @@ const Input = React.forwardRef(function(props, ref)  {
     maxLength,
     width,
     readOnly,
-    name
+    name,
+    inputBorderColor
   } = props;
 
   useEffect(()=> {
 
   }, [])
+  const setBorder = () => {
+    if (wrongText || (wrongText && inputBorderColor)){
+      return 'red'
+    }
+    else if(inputBorderColor){
+      return inputBorderColor
+    }
+  }
   return (
     <InputContainer style={{width: `${width}px`}}>
       <p className="title" style={{display: titleName ? 'block' : 'none'}} >{titleName}</p>
-      <div className={"inputBody fadeAnim "+(blurState ? "active " : "") + (wrongText ? "textWrong " : "") + (readOnly ? "readOnlyOpacity " : "")}>
+      <div className={"inputBody fadeAnim "+(blurState ? "active " : "") + (readOnly ? "readOnlyOpacity " : "")} 
+        style={{
+          borderColor: setBorder()
+        }}
+      >
         <span className={"iconfont " + (leftIconName ? leftIconName: "")} style={{color: `${leftIconColor}`, fontSize: `${leftIconSize}px `}} ></span>
         <input 
           ref={ref}
@@ -85,7 +98,8 @@ Input.propTypes = {
   width: PropTypes.number,
   readOnly: PropTypes.bool,
   name: PropTypes.node,
-  ref: PropTypes.node
+  ref: PropTypes.node,
+  inputBorderColor: PropTypes.string
 }
 
 export default Input;

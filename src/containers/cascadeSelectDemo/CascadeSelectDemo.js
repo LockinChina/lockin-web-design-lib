@@ -2,14 +2,9 @@ import React, { useState } from 'react';
 import { GrayBox, Ptit, Space, Table } from '../../globalDemoStyle';
 
 import CascadeSelect from '../../lib/CascadeSelect/CascadeSelect';
-
-import { city } from '../../data/city'
 import { degreeJson } from '../../data/degree';
 import { jobCategoryJson } from '../../data/jobCategory';
 
-console.log(city[0])
-console.log(city[0].children[1])
-console.log(city[0].children[1].children)
 
 export default function InputDemo() {
   const [selectValue0, setSelectValue0] = useState('');
@@ -79,7 +74,7 @@ export default function InputDemo() {
             setSelectValue2(label.length > 1 ? label.join(' ') : label);
             console.log(`id: ${value}`);
           }}
-          dataApi={city}
+          dataApi={"https://resource.lockinchina.com/json/jsonCitys.js?version=20190726"}
           col={3}
         />
 

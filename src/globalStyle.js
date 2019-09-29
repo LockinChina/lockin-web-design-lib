@@ -64,7 +64,7 @@ const globalStyle = createGlobalStyle`
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-}
+  }
 `;
 
 export default globalStyle;
