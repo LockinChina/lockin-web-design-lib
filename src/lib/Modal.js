@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 // import Button from './Button';
 import Button from './Button/Button';
-import './common.css';
 
 const ModalBg = styled.div`
   position: fixed;

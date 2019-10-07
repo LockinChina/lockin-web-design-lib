@@ -1,5 +1,4 @@
 import React from 'react';
-import './common.css';
 import PropTypes from 'prop-types';
 const LCheckBox = ({ type = 'checkbox', checked, text, onChange }) => (
   <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
