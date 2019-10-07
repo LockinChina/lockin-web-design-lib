@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable func-names */
+import React, { useState, useEffect, Children } from 'react';
 import PropTypes from 'prop-types';
-import { background } from '@storybook/theming';
 import InputContainer from './inputStyle';
 
 const Input = React.forwardRef(function(props, ref) {
@@ -27,9 +28,13 @@ const Input = React.forwardRef(function(props, ref) {
     name,
     inputBorderColor,
     inputBackgroundColor,
+    onBlur,
+    onFocus,
+    children,
   } = props;
 
   useEffect(() => {}, []);
+  // eslint-disable-next-line consistent-return
   const setBorder = () => {
     if (wrongText || (wrongText && inputBorderColor)) {
       return 'red';
@@ -72,15 +77,24 @@ const Input = React.forwardRef(function(props, ref) {
             onChange(val);
           }}
           value={value}
-          onBlur={() => setBlurState(0)}
-          onFocus={() => setBlurState(1)}
+          onBlur={() => {
+            onBlur();
+            setBlurState(0);
+          }}
+          onFocus={() => {
+            onFocus();
+            setBlurState(1);
+          }}
         />
         <span
+          // role="button"
+          // tabIndex="0"
           title={rightIconTitle}
           onClick={() => rightIconOnClick()}
           className={`iconfont ${rightIconName || ''}`}
           style={{ color: `${rightIconColor}`, fontSize: `${rightIconSize}px` }}
         />
+        {Children.toArray(children)}
       </div>
       <p
         className="wrongText"
@@ -97,6 +111,8 @@ Input.defaultProps = {
   placeholder: '请输入',
   onChange: () => {},
   rightIconOnClick: () => {},
+  onBlur: () => {},
+  onFocus: () => {},
 };
 
 Input.propTypes = {
@@ -112,6 +128,8 @@ Input.propTypes = {
   rightIconSize: PropTypes.number,
   rightIconTitle: PropTypes.string,
   rightIconOnClick: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
   wrongText: PropTypes.string,
   type: PropTypes.string,
   maxLength: PropTypes.number,
@@ -119,6 +137,9 @@ Input.propTypes = {
   readOnly: PropTypes.bool,
   name: PropTypes.node,
   inputBorderColor: PropTypes.string,
+  titleName: PropTypes.string,
+  inputBackgroundColor: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default Input;
