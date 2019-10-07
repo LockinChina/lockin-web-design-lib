@@ -1,7 +1,7 @@
 import React from 'react';
 
 import BackTop from '../../lib/BackTop/BackTop';
-import { GrayBox, Ptit, Space, Table } from '../../globalDemoStyle';
+import { GrayBox, Ptit, Space } from '../../globalDemoStyle';
 
 function BackTopDemo (props) {
   return (

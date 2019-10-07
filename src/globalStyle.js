@@ -9,7 +9,7 @@ const globalStyle = createGlobalStyle`
   body{font:14px/18px PingFang SC,"Hiragino Sans GB","Microsoft Yahei",SimSun,Arial,"Helvetica Neue",Helvetica,Lantinghei SC;color:#333; -webkit-font-smoothing: antialiased;background: #fff; }
   a{color:#333; text-decoration:none; cursor:pointer; outline: 0 none;}
   /* a:hover{ text-decoration:none;color:#ff4f20;} */
-  a:focus{-moz-outline-style:none; border:0px;blr:expression(this.onFocus=this.blur());}
+  /* a:focus{ border:0px;blur:expression(this.onFocus=this.blur());} */
   body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,p,blockquote,th,td{margin:0; padding:0;}
   header,footer,article,aside,section,nav,menu,hgroup,details,dialog,figure,figcaption{display:block}
   ol,li,ul,dl,dt,dd{list-style:none;}
@@ -68,4 +68,3 @@ const globalStyle = createGlobalStyle`
 `;
 
 export default globalStyle;
-

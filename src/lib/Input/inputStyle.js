@@ -13,6 +13,7 @@ const Input = styled.div`
     margin-bottom: 5px;
   }
   .inputBody {
+    position: relative;
     display: flex;
     flex-direction: row;
     border: 1px solid #a0a0a0;
@@ -44,6 +45,9 @@ const Input = styled.div`
         margin: 0 10px 0 0;
         cursor: pointer;
       }
+    }
+    button:active {
+      outline: none;
     }
 
     .text {
