@@ -8,7 +8,9 @@ const defaultBtn = css`
   border-radius: 4px;
   border: 1px solid #fff;
   padding: 0 30px;
-  transition: all 0.2s linear 0s; -moz-transition: all 0.2s linear 0s; -webkit-transition: all 0.2s linear 0s;
+  transition: all 0.2s linear 0s;
+  -moz-transition: all 0.2s linear 0s;
+  -webkit-transition: all 0.2s linear 0s;
   color: #000099;
   :hover {
     background: #fff;

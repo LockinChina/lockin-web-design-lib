@@ -1,27 +1,21 @@
 {
   "name": "lockin-web-components",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "files": [
-    "src",
-    "README.md"
-  ],
+  "main": "dist/lockinwecmpnt.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/LockinChina/lockin-web-design-lib.git"
   },
-  "version": "0.1.9",
+  "version": "0.1.26",
   "dependencies": {
     "prop-types": "^15.7.2",
     "rc-slider": "^8.7.1",
     "react-hook-form": "^3.23.12",
-    "typescript": "^3.6.3",
-    "user": "0.0.0"
+    "typescript": "^3.6.3"
   },
   "license": "MIT",
   "scripts": {
     "start": "npm start",
-    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
+    "build": "webpack --mode production",
     "test": "npm  test",
     "eject": "npm eject",
     "storybook": "start-storybook -p 8011 -s public",
@@ -50,6 +44,7 @@
     "axios": "^0.19.0",
     "babel-preset-react-app": "^9.0.0",
     "cross-env": "^6.0.0",
+    "css-loader": "^1.0.0",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-airbnb-base": "13.1.0",
@@ -60,16 +55,20 @@
     "eslint-plugin-jsx-a11y": "6.2.1",
     "eslint-plugin-prettier": "3.0.1",
     "eslint-plugin-react": "7.12.4",
-    "eslint-plugin-react-hooks": "1.6.0",
+    "eslint-plugin-react-hooks": "^1.6.0",
+    "file-loader": "^4.2.0",
     "husky": "^3.0.7",
     "lint-staged": "8.1.5",
+    "prettier": "1.17.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "prettier": "1.17.0",
-    "react-hook-form": "^3.23.12",
     "react-scripts": "^3.0.1",
     "regenerator-runtime": "^0.13.3",
     "rimraf": "^2.6.3",
-    "styled-components": "^4.2.0"
+    "style-loader": "^0.23.1",
+    "styled-components": "^4.2.0",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.0"
   }
 }

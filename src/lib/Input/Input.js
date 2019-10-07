@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import InputContainer from './inputStyle';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { background } from '@storybook/theming';
+import InputContainer from './inputStyle';
 
-const Input = React.forwardRef(function(props, ref)  {
+const Input = React.forwardRef((props, ref) => {
   const [blurState, setBlurState] = useState(0);
-  const { 
+  const {
     value,
-    placeholder, 
+    placeholder,
     titleName,
-    onChange, 
-    leftIconName, 
-    leftIconColor, 
+    onChange,
+    leftIconName,
+    leftIconColor,
     leftIconSize,
-    rightIconName, 
-    rightIconColor, 
+    rightIconName,
+    rightIconColor,
     rightIconSize,
     rightIconTitle,
     rightIconOnClick,
@@ -26,62 +27,78 @@ const Input = React.forwardRef(function(props, ref)  {
     readOnly,
     name,
     inputBorderColor,
-    inputBackgroundColor
+    inputBackgroundColor,
   } = props;
-  
-  useEffect(()=> {
 
-  }, [])
   const setBorder = () => {
-    if (wrongText || (wrongText && inputBorderColor)){
-      return 'red'
+    if (wrongText || (wrongText && inputBorderColor)) {
+      return 'red';
     }
-    else if(inputBorderColor){
-      return inputBorderColor
+    if (inputBorderColor) {
+      return inputBorderColor;
     }
-  }
-  
+    return '';
+  };
+
   return (
-    <InputContainer style={{width: `${width}px`}}>
-      <p className="title" style={{display: titleName ? 'block' : 'none'}} >{titleName}</p>
-      <div className={"inputBody fadeAnim "+(blurState ? "active " : "") + (readOnly ? "readOnlyOpacity " : "")} 
+    <InputContainer style={{ width: `${width}px` }}>
+      <p className="title" style={{ display: titleName ? 'block' : 'none' }}>
+        {titleName}
+      </p>
+      <div
+        className={`inputBody fadeAnim ${blurState ? 'active ' : ''}${
+          readOnly ? 'readOnlyOpacity ' : ''
+        }`}
         style={{
           borderColor: setBorder(),
-          background: inputBackgroundColor ? inputBackgroundColor  : '#fff'
+          background: inputBackgroundColor || '#fff',
         }}
       >
-        <span className={"iconfont " + (leftIconName ? leftIconName: "")} style={{color: `${leftIconColor}`, fontSize: `${leftIconSize}px `}} ></span>
-        <input 
+        <span
+          className={`iconfont ${leftIconName || ''}`}
+          style={{ color: `${leftIconColor}`, fontSize: `${leftIconSize}px ` }}
+        />
+        <input
           ref={ref}
           name={name}
-          disabled = {readOnly ? "disabled" : ""}
+          disabled={readOnly ? 'disabled' : ''}
           type={type}
-          defaultValue = {defaultValue}
-          placeholder={placeholder} 
-          className={"text "}
+          defaultValue={defaultValue}
+          placeholder={placeholder}
+          className="text "
           maxLength={maxLength}
-          readOnly = {readOnly}
-          onChange = {(e)=> {
-            let val = e.target.value;
-            onChange(val)
-          }} 
+          readOnly={readOnly}
+          onChange={e => {
+            const val = e.target.value;
+            onChange(val);
+          }}
           value={value}
-          onBlur={()=> setBlurState(0) } 
-          onFocus = {()=> setBlurState(1)}
+          onBlur={() => setBlurState(0)}
+          onFocus={() => setBlurState(1)}
         />
-        <span title={rightIconTitle} onClick={()=> rightIconOnClick()} className={"iconfont " + (rightIconName ? rightIconName: "")} style={{color: `${rightIconColor}`, fontSize: `${rightIconSize}px`}} ></span>
+        <span
+          title={rightIconTitle}
+          onClick={() => rightIconOnClick()}
+          className={`iconfont ${rightIconName || ''}`}
+          style={{ color: `${rightIconColor}`, fontSize: `${rightIconSize}px` }}
+        />
       </div>
-      <p className="wrongText" style={{display: wrongText ? "block" : "none"}}>{wrongText}</p>
+      <p
+        className="wrongText"
+        style={{ display: wrongText ? 'block' : 'none' }}
+      >
+        {wrongText}
+      </p>
     </InputContainer>
-  )
+  );
 });
 
 Input.defaultProps = {
-  type: "text",
+  type: 'text',
   placeholder: '请输入',
   onChange: () => {},
-  rightIconOnClick: ()=>{}
-}
+  rightIconOnClick: () => {},
+};
 
 Input.propTypes = {
   defaultValue: PropTypes.string,
@@ -102,8 +119,9 @@ Input.propTypes = {
   width: PropTypes.number,
   readOnly: PropTypes.bool,
   name: PropTypes.node,
-  ref: PropTypes.node,
-  inputBorderColor: PropTypes.string
-}
+  inputBorderColor: PropTypes.string,
+  titleName: PropTypes.string,
+  inputBackgroundColor: PropTypes.string,
+};
 
 export default Input;

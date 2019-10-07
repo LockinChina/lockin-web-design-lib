@@ -1,67 +1,77 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 // import Button from './Button';
-import Button from './Button/Button'
+import Button from './Button/Button';
 import './common.css';
 
 const ModalBg = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
 `;
 
 const ModalNodeContent = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width:470px;
-    margin-left: -235px;
-    max-height: ${Number(getWindowHeight() * 0.8).toFixed()}px;
-    overflow-y: auto;
-    margin-top: -${Number(getWindowHeight() * 0.8).toFixed() / 2}px;
-    background:rgba(255,255,255,1);
-    box-shadow:0px 2px 6px 0px rgba(0,0,0,0.2);
-    border-radius:3px;
-    padding: 20px 20px 10px;
-    & > div:first-child {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-    
-    & > div:first-child > div:first-child {
-        font-size: 18px;
-        font-weight: 500;
-        color:rgba(51,51,51,1);
-        line-height:22px;
-    }
-    
-    & > div:first-child > div:last-child {
-        font-size: 18px;
-        color: rgba(102,102,102,1);
-        cursor: pointer;
-    }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 470px;
+  margin-left: -235px;
+  max-height: ${Number(getWindowHeight() * 0.8).toFixed()}px;
+  overflow-y: auto;
+  margin-top: -${Number(getWindowHeight() * 0.8).toFixed() / 2}px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  padding: 20px 20px 10px;
+  & > div:first-child {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  & > div:first-child > div:first-child {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 22px;
+  }
+
+  & > div:first-child > div:last-child {
+    font-size: 18px;
+    color: rgba(102, 102, 102, 1);
+    cursor: pointer;
+  }
 `;
 
-
 function getWindowHeight() {
-    let windowHeight = 0;
-    if (document.compatMode === "CSS1Compat") {
-        windowHeight = document.documentElement.clientHeight;
-    } else {
-        windowHeight = document.body.clientHeight;
-    }
-    return windowHeight;
+  let windowHeight = 0;
+  if (document.compatMode === "CSS1Compat") {
+    windowHeight = document.documentElement.clientHeight;
+  } else {
+    windowHeight = document.body.clientHeight;
+  }
+  return windowHeight;
 }
 
-const Modal = ({ visible, type = 1, okText = '确定', onOk, cancelText = '取消', onCancel, title, detail, contentText, contentNode, btnStyle = 1 }) => {
-    return (
+const Modal = ({
+  visible,
+  type = 1,
+  okText = '确定',
+  onOk,
+  cancelText = '取消',
+  onCancel,
+  title,
+  detail,
+  contentText,
+  contentNode,
+  btnStyle = 1,
+}) => (
         <ModalBg style={{ display: visible ? 'block' : 'none' }}>
             {type === 1 && (
                 <div className={'modal-content'}>
@@ -119,21 +129,19 @@ const Modal = ({ visible, type = 1, okText = '确定', onOk, cancelText = '取�
                     }
                 </ModalNodeContent>)}
         </ModalBg>);
-};
 
 Modal.propTypes = {
-    visible: PropTypes.bool,
-    type: PropTypes.number,
-    okText: PropTypes.string,
-    onOk: PropTypes.func,
-    onCancel: PropTypes.func,
-    cancelText: PropTypes.string,
-    title: PropTypes.string,
-    detail: PropTypes.string,
-    contentText: PropTypes.string,
-    contentNode: PropTypes.node,
-    btnStyle: PropTypes.number,
+  visible: PropTypes.bool,
+  type: PropTypes.number,
+  okText: PropTypes.string,
+  onOk: PropTypes.func,
+  onCancel: PropTypes.func,
+  cancelText: PropTypes.string,
+  title: PropTypes.string,
+  detail: PropTypes.string,
+  contentText: PropTypes.string,
+  contentNode: PropTypes.node,
+  btnStyle: PropTypes.number,
 };
-
 
 export default Modal;
