@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-// import Button from './Button';
 import Button from './Button/Button';
 
 const ModalBg = styled.div`
@@ -11,6 +10,7 @@ const ModalBg = styled.div`
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.3);
+  z-index: 200;
 `;
 
 const ModalNodeContent = styled.div`
@@ -50,7 +50,7 @@ const ModalNodeContent = styled.div`
 
 function getWindowHeight() {
   let windowHeight = 0;
-  if (document.compatMode === "CSS1Compat") {
+  if (document.compatMode === 'CSS1Compat') {
     windowHeight = document.documentElement.clientHeight;
   } else {
     windowHeight = document.body.clientHeight;
@@ -66,68 +66,105 @@ const Modal = ({
   cancelText = '取消',
   onCancel,
   title,
-  detail,
-  contentText,
   contentNode,
   btnStyle = 1,
+  isHaveButton = true,
 }) => (
-        <ModalBg style={{ display: visible ? 'block' : 'none' }}>
-            {type === 1 && (
-                <div className={'modal-content'}>
-                    <div>{contentNode}</div>
-                    <Button solid onClick={() => onOk()}>{okText}</Button>
-                </div>
+  <ModalBg style={{ display: visible ? 'block' : 'none' }}>
+    {type === 1 && (
+      <div className="modal-content">
+        <div>{contentNode}</div>
+        <Button solid onClick={() => onOk()}>
+          {okText}
+        </Button>
+      </div>
+    )}
+    {type === 2 && (
+      <div className="modal-title-content">
+        <div>
+          <div>{title}</div>
+          <div role="button" tabIndex="0" onClick={() => onCancel()}>
+            &times;
+          </div>
+        </div>
+
+        <div>{contentNode}</div>
+        {isHaveButton && (
+          <div>
+            {btnStyle === 1 ? (
+              <div style={{ textAlign: 'right' }}>
+                <Button hollow type={2} onClick={() => onCancel()}>
+                  {cancelText}
+                </Button>
+                <Button solid style={{ marginLeft: 10 }} onClick={() => onOk()}>
+                  {okText}
+                </Button>
+              </div>
+            ) : (
+              <div style={{ textAlign: 'right' }}>
+                <Button type={4} onClick={() => onCancel()}>
+                  {cancelText}
+                </Button>
+                <Button
+                  hollow
+                  type={2}
+                  style={{ marginLeft: 10 }}
+                  onClick={() => onOk()}
+                >
+                  {okText}
+                </Button>
+              </div>
             )}
+          </div>
+        )}
+      </div>
+    )}
+    {type === 3 && (
+      <ModalNodeContent>
+        <div>
+          <div>{title}</div>
+          <div role="button" tabIndex="0" onClick={onCancel}>
+            &times;
+          </div>
+        </div>
 
-            {
-                type === 2 && (
-                    <div className={'modal-title-content'}>
-                        <div>
-                            <div>{title}</div>
-                            <div solid onClick={() => onCancel()}>&times;</div>
-                        </div>
-
-                        <div>{contentNode}</div>
-                        {
-                            btnStyle === 1 ? (
-                                <div style={{ textAlign: 'right' }}>
-                                    <Button hollow type={2} onClick={() => onCancel()}>{cancelText}</Button>
-                                    <Button solid style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
-                                </div>
-                            ) : (
-                                    <div style={{ textAlign: 'right' }}>
-                                        <Button type={4} onClick={() => onCancel()}>{cancelText}</Button>
-                                        <Button hollow type={2} style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
-                                    </div>
-                                )
-                        }
-                    </div>
-                )
-            }
-
-            {type === 3 && (
-                <ModalNodeContent>
-                    <div>
-                        <div>{title}</div>
-                        <div onClick={onCancel}>&times;</div>
-                    </div>
-
-                    <div>{contentNode}</div>
-                    {
-                        btnStyle === 1 ? (
-                            <div style={{ textAlign: 'right', marginTop: 10 }}>
-                                <Button type={2} onClick={() => onCancel()}>{cancelText}</Button>
-                                <Button hollow style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
-                            </div>
-                        ) : (
-                                <div style={{ textAlign: 'right', marginTop: 10 }}>
-                                    <Button hollow type={4} onClick={() => onCancel()}>{cancelText}</Button>
-                                    <Button solid type={2} style={{ marginLeft: 10 }} onClick={() => onOk()}>{okText}</Button>
-                                </div>
-                            )
-                    }
-                </ModalNodeContent>)}
-        </ModalBg>);
+        <div>{contentNode}</div>
+        {isHaveButton && (
+          <div>
+            {btnStyle === 1 ? (
+              <div style={{ textAlign: 'right', marginTop: 10 }}>
+                <Button type={2} onClick={() => onCancel()}>
+                  {cancelText}
+                </Button>
+                <Button
+                  hollow
+                  style={{ marginLeft: 10 }}
+                  onClick={() => onOk()}
+                >
+                  {okText}
+                </Button>
+              </div>
+            ) : (
+              <div style={{ textAlign: 'right', marginTop: 10 }}>
+                <Button hollow type={4} onClick={() => onCancel()}>
+                  {cancelText}
+                </Button>
+                <Button
+                  solid
+                  type={2}
+                  style={{ marginLeft: 10 }}
+                  onClick={() => onOk()}
+                >
+                  {okText}
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
+      </ModalNodeContent>
+    )}
+  </ModalBg>
+);
 
 Modal.propTypes = {
   visible: PropTypes.bool,
@@ -137,10 +174,9 @@ Modal.propTypes = {
   onCancel: PropTypes.func,
   cancelText: PropTypes.string,
   title: PropTypes.string,
-  detail: PropTypes.string,
-  contentText: PropTypes.string,
   contentNode: PropTypes.node,
   btnStyle: PropTypes.number,
+  isHaveButton: PropTypes.bool,
 };
 
 export default Modal;
