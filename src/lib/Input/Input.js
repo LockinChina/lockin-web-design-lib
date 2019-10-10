@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useState, Children } from 'react';
 import PropTypes from 'prop-types';
 import InputContainer from './inputStyle';
 
@@ -28,6 +28,7 @@ const Input = React.forwardRef((props, ref) => {
     name,
     inputBorderColor,
     inputBackgroundColor,
+    children
   } = props;
 
   const setBorder = () => {
@@ -48,7 +49,7 @@ const Input = React.forwardRef((props, ref) => {
       <div
         className={`inputBody fadeAnim ${blurState ? 'active ' : ''}${
           readOnly ? 'readOnlyOpacity ' : ''
-        }`}
+          }`}
         style={{
           borderColor: setBorder(),
           background: inputBackgroundColor || '#fff',
@@ -82,7 +83,9 @@ const Input = React.forwardRef((props, ref) => {
           className={`iconfont ${rightIconName || ''}`}
           style={{ color: `${rightIconColor}`, fontSize: `${rightIconSize}px` }}
         />
+        {Children.toArray(children)}
       </div>
+
       <p
         className="wrongText"
         style={{ display: wrongText ? 'block' : 'none' }}
@@ -96,8 +99,8 @@ const Input = React.forwardRef((props, ref) => {
 Input.defaultProps = {
   type: 'text',
   placeholder: '请输入',
-  onChange: () => {},
-  rightIconOnClick: () => {},
+  onChange: () => { },
+  rightIconOnClick: () => { },
 };
 
 Input.propTypes = {

@@ -2,46 +2,48 @@ import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import ButtonStyle from './buttonStyle';
 
-const Button = ({
-  titleName,
-  children,
-  invalid,
-  onClick,
-  style,
-  className,
-  iconSize,
-  iconColor,
-  solid,
-  hollow,
-  iconName,
-}) => (
-  <ButtonStyle
-    solid={solid}
-    hollow={hollow}
-    invalid={invalid}
-    onClick={() => {
-      if (!invalid) {
-        onClick(titleName);
-      }
-    }}
-    style={style}
-    className={className}
-  >
-    {iconName && (
-      <span
-        className={`iconfont ${iconName || ''}`}
-        style={{ fontSize: `${iconSize}px`, color: `${iconColor}` }}
-      />
-    )}
-    {Children ? Children.toArray(children) : null}
-    {titleName}
-  </ButtonStyle>
-);
-
+function Button(props) {
+  const {
+    titleName,
+    children,
+    invalid,
+    onClick,
+    style,
+    className,
+    iconSize,
+    iconColor,
+    type
+  } = props;
+  return (
+    <ButtonStyle
+      type={type}
+      solid={props.solid}
+      hollow={props.hollow}
+      invalid={invalid}
+      onClick={() => {
+        if (!props.invalid) {
+          onClick(titleName);
+        }
+      }}
+      style={style}
+      className={className}
+    >
+      {props.iconName && (
+        <span
+          className={`iconfont ${props.iconName ? props.iconName : ''}`}
+          style={{ fontSize: `${iconSize}px`, color: `${iconColor}` }}
+        />
+      )}
+      {Children.toArray(children)}
+      {titleName}
+    </ButtonStyle>
+  );
+}
 Button.defaultProps = {
   titleName: '',
   children: '',
-  onClick: () => {},
+  type: 'button',
+  onClick: () => { },
 };
 
 Button.propTypes = {
