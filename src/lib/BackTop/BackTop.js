@@ -1,4 +1,8 @@
-import React, {useState, useEffect} from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable func-names */
+/* eslint-disable prefer-const */
+/* eslint-disable prettier/prettier */
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const BackTopContainer = styled.button`
@@ -30,43 +34,44 @@ const BackTopContainer = styled.button`
   }
 `
 
-function BackTop (props) {
+function BackTop(props) {
   const [isShow, setIsShow] = useState(false);
   const handelScroll = () => {
     let scroll = document.documentElement.scrollTop;
-    if(scroll > 200){
+    if (scroll > 200) {
       setIsShow(true)
     }
-    else{
+    else {
       setIsShow(false)
     }
   }
-  function goTo () {
-    let scrollToTop = window.setInterval(function() {
+  function goTo() {
+    let scrollToTop = window.setInterval(function () {
       let pos = window.pageYOffset;
-      if ( pos > 0 ) {
-          window.scrollTo( 0, pos - 20 );
+      if (pos > 0) {
+        window.scrollTo(0, pos - 20);
       } else {
-          window.clearInterval( scrollToTop );
+        window.clearInterval(scrollToTop);
       }
-  }, 2);
+    }, 2);
   }
-  useEffect (()=> {
-    window.addEventListener('scroll', ()=>{
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
       handelScroll();
     })
-  }, [isShow]) 
+  }, [isShow])
 
   return (
-    isShow 
-    ?
-    <BackTopContainer className="fadeAnim" onClick={()=> {
-      goTo();
-    }}>
-      <span className="icon icontop"></span>
-    </BackTopContainer>
-    :
-    null
+    isShow
+      ?
+      <BackTopContainer
+        className="fadeAnim" onClick={() => {
+          goTo();
+        }}>
+        <span className="icon icontop"></span>
+      </BackTopContainer>
+      :
+      null
   )
 
 }

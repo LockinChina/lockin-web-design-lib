@@ -3,9 +3,11 @@ import styled from 'styled-components';
 const ImageContainer = styled.div`
   display: inline-block;
   position: relative;
-  .im{
+  .im {
     cursor: pointer;
-    &:hover .uploadbox{ display: flex;}
+    &:hover .uploadbox {
+      display: flex;
+    }
     position: relative;
     background: white;
     display: flex;
@@ -16,38 +18,39 @@ const ImageContainer = styled.div`
     background-size: cover !important;
     background-position: center center;
     background-color: #f8f8f8;
-    >img{
+    > img {
       display: block;
       max-height: 100%;
       max-width: 100%;
     }
-    .uploadbox{
+    .uploadbox {
       display: none;
       position: absolute;
       justify-content: center;
       align-items: center;
-      top:0;
+      top: 0;
       right: 0;
       bottom: 0;
-      left:0;
+      left: 0;
       z-index: 1;
-      &::before{
+      &::before {
         position: absolute;
-        top: 0%; left: 0;
+        top: 0%;
+        left: 0;
         content: '';
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, .2);
-        z-index:0;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 0;
       }
-      .iconfont{
+      .iconfont {
         position: relative;
-        font-family: 'lockinu'!important;
+        font-family: 'lockinu' !important;
         color: #fff;
         font-size: 24px;
-        z-index:1;
+        z-index: 1;
       }
-      .fileBtn{
+      .fileBtn {
         position: absolute;
         cursor: pointer;
         z-index: 2;
@@ -58,7 +61,6 @@ const ImageContainer = styled.div`
       }
     }
   }
-  
-`
+`;
 
 export default ImageContainer;

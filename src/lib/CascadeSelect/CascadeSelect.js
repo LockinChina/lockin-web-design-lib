@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -150,7 +151,7 @@ const CascadeSelect = React.forwardRef(function(props, ref) {
                 {selectData.map((item, index) => (
                   <li
                     className={indexOne === index ? 'actived' : ''}
-                    key={item.value}
+                    key={`${index}${item.value}`}
                     onClick={e => {
                       firstClick(e, item, index);
                     }}
@@ -168,7 +169,7 @@ const CascadeSelect = React.forwardRef(function(props, ref) {
                     selectData[Number(indexOne)].children.map((item, index) => (
                       <li
                         className={indexTwo === index ? 'actived' : ''}
-                        key={item.value}
+                        key={`${index}${item.value}`}
                         onClick={e => {
                           secondClick(e, item, index);
                         }}
@@ -187,7 +188,7 @@ const CascadeSelect = React.forwardRef(function(props, ref) {
                       Number(indexTwo)
                     ].children.map((item, index) => (
                       <li
-                        key={item.value}
+                        key={`${index}${item.value}`}
                         onClick={e => {
                           thirdClick(e, item, index);
                         }}

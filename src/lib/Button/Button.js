@@ -1,3 +1,5 @@
+/* eslint-disable react/default-props-match-prop-types */
+/* eslint-disable react/prop-types */
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import ButtonStyle from './buttonStyle';
@@ -12,7 +14,7 @@ function Button(props) {
     className,
     iconSize,
     iconColor,
-    type
+    type,
   } = props;
   return (
     <ButtonStyle
@@ -43,11 +45,11 @@ Button.defaultProps = {
   titleName: '',
   children: '',
   type: 'button',
-  onClick: () => { },
+  onClick: () => {},
 };
 
 Button.propTypes = {
-  titleName: PropTypes.string,
+  titleName: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   solid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   hollow: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   iconName: PropTypes.string,

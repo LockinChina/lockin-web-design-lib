@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -7,7 +9,7 @@ import PropTypes from 'prop-types';
 import SliderContainer from './sliderStyle';
 
 // const createSliderWithTooltip = Slider.createSliderWithTooltip;
-const Handle = Slider.Handle;
+const { Handle } = Slider;
 
 const skillArr = [
   { name: '知道', text: '知道该技能，但是没有详细了解过' },
@@ -20,15 +22,18 @@ const skillArr = [
 function setSkillText(value) {
   if (value >= 0 && value <= 20) {
     return [skillArr[0].name, skillArr[0].text];
-  } else if (value > 20 && value <= 40) {
-    return [skillArr[1].name, skillArr[1].text];
-  } else if (value > 40 && value <= 60) {
-    return [skillArr[2].name, skillArr[2].text];
-  } else if (value > 60 && value <= 80) {
-    return [skillArr[3].name, skillArr[3].text];
-  } else {
-    return [skillArr[4].name, skillArr[4].text];
   }
+  if (value > 20 && value <= 40) {
+    return [skillArr[1].name, skillArr[1].text];
+  }
+  if (value > 40 && value <= 60) {
+    return [skillArr[2].name, skillArr[2].text];
+  }
+  if (value > 60 && value <= 80) {
+    return [skillArr[3].name, skillArr[3].text];
+  }
+
+  return [skillArr[4].name, skillArr[4].text];
 }
 
 const handle = props => {
@@ -46,7 +51,7 @@ const handle = props => {
   );
 };
 
-const Sliders = React.forwardRef(function(props, ref) {
+const Sliders = React.forwardRef((props, ref) => {
   const {
     min,
     max,
@@ -77,7 +82,7 @@ const Sliders = React.forwardRef(function(props, ref) {
       </p>
       <input type="hidden" defaultValue={initValue} name={name} ref={ref} />
       <div className={disabled ? 'row' : ''}>
-        <div className="skillslider" style={{ width: width }}>
+        <div className="skillslider" style={{ width }}>
           <Slider
             min={min}
             max={max}

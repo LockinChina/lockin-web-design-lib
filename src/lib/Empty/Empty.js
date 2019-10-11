@@ -18,44 +18,42 @@ const EmptyContainer = styled.div`
     background-size: contain;
     margin-bottom: 20px;
   }
-  p{
+  p {
     color: #999;
   }
-  a{
-    color: #2B2DAD;
-    &:hover{
+  a {
+    color: #2b2dad;
+    &:hover {
       text-decoration: underline;
     }
   }
-`
-function Empty (props) {
-  const {
-    link, message, blank
-  } = props;
+`;
+function Empty(props) {
+  const { link, message, blank } = props;
   return (
     <EmptyContainer>
-      <div className="emptyicon"></div>
-      {
-        link 
-        ?
-        <a target={blank ? "_blank" : "_self"} href={link}>{message}</a>
-        :
+      <div className="emptyicon" />
+      {link ? (
+        <a target={blank ? '_blank' : '_self'} href={link}>
+          {message}
+        </a>
+      ) : (
         <p>{message}</p>
-      }
+      )}
     </EmptyContainer>
-  )
+  );
 }
 
 Empty.defaultProps = {
   message: '111',
   link: 'http://www.baidu.com',
-  blank: !true
-}
+  blank: !true,
+};
 
 Empty.propTypes = {
   link: PropTypes.string,
   message: PropTypes.string,
-  blank: PropTypes.bool
-}
+  blank: PropTypes.bool,
+};
 
-export default Empty; 
+export default Empty;

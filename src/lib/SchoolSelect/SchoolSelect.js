@@ -7,7 +7,7 @@ import SchoolSelectContainer from './SchoolSelectStyle';
 let timer = null;
 
 // eslint-disable-next-line func-names
-const SchoolSelect = React.forwardRef(function (props, ref) {
+const SchoolSelect = React.forwardRef(function(props, ref) {
   const {
     value,
     placeholder,
@@ -31,7 +31,7 @@ const SchoolSelect = React.forwardRef(function (props, ref) {
 
   useEffect(() => {
     // eslint-disable-next-line func-names
-    document.onclick = function () {
+    document.onclick = function() {
       setIsShow(false);
     };
     clearTimeout(timer);
@@ -123,8 +123,8 @@ SchoolSelect.defaultProps = {
   titleName: '',
   wrongText: '',
   invalid: false,
-  onChange: () => { },
-  inputChange: () => { },
+  onChange: () => {},
+  inputChange: () => {},
   api: 'http://192.168.1.30:8080/schoolSearch?s=',
   emptyMessage: '暂无搜索结果，请更换搜索关键词。或直接在输入框中添加大学',
 };

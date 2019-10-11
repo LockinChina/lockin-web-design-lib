@@ -4,46 +4,47 @@ const textAreaContainer = styled.div`
   .text {
     font-size: 14px;
   }
-  .title{
-    height:20px;
-    font-size:14px;
-    font-weight:500;
-    color:rgba(51,51,51,1);
-    line-height:20px;
+  .title {
+    height: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 20px;
     margin-bottom: 5px;
   }
   .inputBody {
     display: flex;
     flex-direction: row;
-    border: 1px solid #A0A0A0;
+    border: 1px solid #a0a0a0;
     background: #fff;
-    border-radius:2px;
+    border-radius: 2px;
     width: 100%;
     align-items: center;
-    &.active{
-      border:1px solid #005ED4;
+    &.active {
+      border: 1px solid #005ed4;
     }
-    &.textWrong{
-      border: 1px solid #FF5252;
+    &.textWrong {
+      border: 1px solid #ff5252;
     }
-    &.readOnlyOpacity{
+    &.readOnlyOpacity {
       opacity: 0.6;
     }
-    span:nth-child(1),span:last-child{
-      font-family: 'iconfont','lockinu' !important;
+    span:nth-child(1),
+    span:last-child {
+      font-family: 'iconfont', 'lockinu' !important;
     }
-    span:nth-child(1){
-      ::before{
+    span:nth-child(1) {
+      ::before {
         margin: 0 0px 0 10px;
       }
     }
-    span:last-child{
-      ::before{
+    span:last-child {
+      ::before {
         margin: 0 10px 0 0;
         cursor: pointer;
       }
     }
-    .text{
+    .text {
       flex: 1;
       box-sizing: border-box;
       padding: 8px 10px;
@@ -51,16 +52,15 @@ const textAreaContainer = styled.div`
       padding: 8px 10px;
       background: none;
       border: none;
-      resize:none
+      resize: none;
     }
   }
-  .wrongText{
+  .wrongText {
     margin-top: 5px;
-    color: #FF5252;
-    font-size:12px;
+    color: #ff5252;
+    font-size: 12px;
     line-height: 17px;
   }
 `;
 
 export default textAreaContainer;
-

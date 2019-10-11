@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, Children } from 'react';
@@ -27,8 +28,10 @@ const Input = React.forwardRef((props, ref) => {
     readOnly,
     name,
     inputBorderColor,
+    rightIconMouseDownCapture,
+    rightIconMouseUpCapture,
     inputBackgroundColor,
-    children
+    children,
   } = props;
 
   const setBorder = () => {
@@ -49,7 +52,7 @@ const Input = React.forwardRef((props, ref) => {
       <div
         className={`inputBody fadeAnim ${blurState ? 'active ' : ''}${
           readOnly ? 'readOnlyOpacity ' : ''
-          }`}
+        }`}
         style={{
           borderColor: setBorder(),
           background: inputBackgroundColor || '#fff',
@@ -80,6 +83,8 @@ const Input = React.forwardRef((props, ref) => {
         <span
           title={rightIconTitle}
           onClick={() => rightIconOnClick()}
+          onMouseDownCapture={() => rightIconMouseDownCapture()}
+          onMouseUpCapture={() => rightIconMouseUpCapture()}
           className={`iconfont ${rightIconName || ''}`}
           style={{ color: `${rightIconColor}`, fontSize: `${rightIconSize}px` }}
         />
@@ -99,8 +104,8 @@ const Input = React.forwardRef((props, ref) => {
 Input.defaultProps = {
   type: 'text',
   placeholder: '请输入',
-  onChange: () => { },
-  rightIconOnClick: () => { },
+  onChange: () => {},
+  rightIconOnClick: () => {},
 };
 
 Input.propTypes = {
@@ -116,6 +121,8 @@ Input.propTypes = {
   rightIconSize: PropTypes.number,
   rightIconTitle: PropTypes.string,
   rightIconOnClick: PropTypes.func,
+  rightIconMouseDownCapture: PropTypes.func,
+  rightIconMouseUpCapture: PropTypes.func,
   wrongText: PropTypes.string,
   type: PropTypes.string,
   maxLength: PropTypes.number,
