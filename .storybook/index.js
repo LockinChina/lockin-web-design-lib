@@ -23,7 +23,7 @@ import Image from '../src/containers/imageDemo/ImageDemo';
 import Loading from '../src/containers/loadingDemo/LoadingDemo';
 import EmptyDemo from '../src/containers/emptyDemo/EmptyDemo'
 import BackTopDemo from '../src/containers/backTopDemo/BackTopDemo'
-// import SchoolSelectDemo from '../src/containers/schoolSelectDemo/SchoolSelectDemo';
+import SchoolSelectDemo from '../src/containers/schoolSelectDemo/SchoolSelectDemo';
 
 
 // storiesOf('button样式', module).add('button样式1', () =>
@@ -153,7 +153,7 @@ storiesOf('BackTop', module).add('BackTop', () =>
     <div><BackTopDemo /><GlobelStyle /></div>
 );
 storiesOf('SchoolSelect', module).add('SchoolSelect', () =>
-    <div><SchoolSelectDemo/><GlobelStyle /></div>
+    <div><SchoolSelectDemo /><GlobelStyle /></div>
 );
 
 

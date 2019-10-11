@@ -82,7 +82,7 @@ const DatePicker = React.forwardRef((props, ref) => {
             className={index === yearIndex ? 'actived' : ''}
             onClick={e => {
               e.stopPropagation();
-              onChange([item]);
+              // onChange([item]);
               // setIsShow(false);
               setYearIndex(index);
               setYear = String(item);
