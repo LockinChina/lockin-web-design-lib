@@ -13,6 +13,7 @@ import LTab from '../src/lib/LTab';
 import Modal from '../src/lib/Modal';
 
 import GlobelStyle from '../src/globalStyle';
+import '../src/static/iconfont/iconfont.css';
 import ButtonDemo from '../src/containers/buttonDemo/ButtonDemo';
 import InputDemo from '../src/containers/inputDemo/InputDemo';
 import TextAreaDemo from '../src/containers/textAreaDemo/textAreaDemo';

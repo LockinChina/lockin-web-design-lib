@@ -69,11 +69,16 @@ const CascadeSelectContainer = styled.div`
       cursor: pointer;
     }
     .select-box {
+      background: #fff;
       position: absolute;
       z-index: 9;
       top: 38px;
       left: 0;
       width: 100%;
+      border: 1px solid rgba(213, 213, 213, 1);
+      .maxSelectBox {
+        padding: 20px;
+      }
       .rowbox {
         display: flex;
         min-width: 100%;
@@ -81,7 +86,6 @@ const CascadeSelectContainer = styled.div`
         background: rgba(255, 255, 255, 1);
         box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.2);
         border-radius: 0px 0px 3px 3px;
-        border: 1px solid rgba(213, 213, 213, 1);
       }
       ul {
         max-height: 296px;

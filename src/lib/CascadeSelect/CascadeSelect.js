@@ -28,6 +28,7 @@ const CascadeSelect = React.forwardRef(function(props, ref) {
     invalid,
     name,
     type,
+    max,
   } = props;
 
   const [selectValue, setSelectVlue] = useState(value); //
@@ -146,6 +147,7 @@ const CascadeSelect = React.forwardRef(function(props, ref) {
             className="select-box animated-fast fadeInDown"
             style={{ display: isShow ? 'block' : 'none' }}
           >
+            <div className="maxSelectBox">最多选{max}项</div>
             <div className="rowbox" style={{ width: `${insideWidth}px` }}>
               <ul className={`scrollbar col${col}`}>
                 {selectData.map((item, index) => (
@@ -234,6 +236,7 @@ CascadeSelect.propTypes = {
   insideWidth: PropTypes.number,
   invalid: PropTypes.bool,
   name: PropTypes.node,
+  max: PropTypes.number,
 };
 
 export default CascadeSelect;
