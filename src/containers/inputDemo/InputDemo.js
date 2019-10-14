@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { GrayBox, Ptit, Space, Table } from '../../globalDemoStyle';
 

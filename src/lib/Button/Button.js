@@ -22,9 +22,9 @@ function Button(props) {
       solid={props.solid}
       hollow={props.hollow}
       invalid={invalid}
-      onClick={() => {
+      onClick={e => {
         if (!props.invalid) {
-          onClick(titleName);
+          onClick(e);
         }
       }}
       style={style}

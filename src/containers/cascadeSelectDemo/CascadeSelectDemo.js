@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from 'react';
 import { GrayBox, Ptit, Space, Table } from '../../globalDemoStyle';
 
@@ -36,6 +38,7 @@ export default function InputDemo() {
 
         <CascadeSelect
           width={300}
+          max={2}
           value={selectValue0}
           titleName="1级下拉菜单 自定义宽度"
           placeholder="请选择"
@@ -53,13 +56,16 @@ export default function InputDemo() {
           // insideWidth = {500}
           value={selectValue1}
           col={2}
-          titleName="2级下拉菜单 + 错误提示"
+          max={3}
+          titleName="2级下拉菜单(选三项)"
           placeholder="请选择"
+          // eslint-disable-next-line no-unused-vars
           onChange={(label, value) => {
-            setSelectValue1(label.length > 1 ? label.join(' ') : label);
-            console.log(`id: ${value}`);
+            setSelectValue1(label.length > 1 ? label.join(' | ') : label);
+            // console.log(`id: ${value}`);
+            // console.log(label);
           }}
-          wrongText="请选择！"
+          // wrongText="请选择！"
           dataApi={jobCategoryJson}
         />
 
@@ -77,7 +83,8 @@ export default function InputDemo() {
           dataApi="https://resource.lockinchina.com/json/jsonCitys.js?version=20190726"
           col={3}
         />
-
+        <Space />
+        <CascadeSelect titleName="错误提示" wrongText="错误提示语" />
         <Space />
         <CascadeSelect
           value="我现在不可以选择"
@@ -107,6 +114,12 @@ export default function InputDemo() {
             <td>显示几列</td>
             <td>number</td>
             <td>1</td>
+          </tr>
+          <tr>
+            <td>max</td>
+            <td>设置为多选 多选的最大数量取决于传递的参数</td>
+            <td>number</td>
+            <td>/</td>
           </tr>
           <tr>
             <td>value</td>

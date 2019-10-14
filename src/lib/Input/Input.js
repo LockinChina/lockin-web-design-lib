@@ -32,6 +32,8 @@ const Input = React.forwardRef((props, ref) => {
     rightIconMouseUpCapture,
     inputBackgroundColor,
     children,
+    onBlur,
+    onFocus,
   } = props;
 
   const setBorder = () => {
@@ -77,8 +79,14 @@ const Input = React.forwardRef((props, ref) => {
             onChange(val);
           }}
           value={value}
-          onBlur={() => setBlurState(0)}
-          onFocus={() => setBlurState(1)}
+          onBlur={e => {
+            setBlurState(0);
+            onBlur(e.target.value);
+          }}
+          onFocus={e => {
+            setBlurState(1);
+            onFocus(e.target.value);
+          }}
         />
         <span
           title={rightIconTitle}
@@ -106,6 +114,8 @@ Input.defaultProps = {
   placeholder: '请输入',
   onChange: () => {},
   rightIconOnClick: () => {},
+  onFocus: () => {},
+  onBlur: () => {},
 };
 
 Input.propTypes = {
@@ -132,6 +142,8 @@ Input.propTypes = {
   inputBorderColor: PropTypes.string,
   titleName: PropTypes.string,
   inputBackgroundColor: PropTypes.string,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 export default Input;
