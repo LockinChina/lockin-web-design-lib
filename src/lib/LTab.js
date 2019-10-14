@@ -11,6 +11,9 @@ const TabDiv = styled.div`
   cursor: pointer;
   height: 51px;
   line-height: 51px;
+  &:hover {
+    color: rgba(0, 0, 153, 1);
+  }
   ${props =>
     props.isHaveHover &&
     css`
