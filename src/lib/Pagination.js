@@ -108,74 +108,76 @@ const Pagination = ({ pageSize, total, paginate, currentPage, lang }) => {
 
   return (
     <nav>
-      <PageList>
-        {/* 首页显示逻辑 */}
-        {hasFirst ? (
-          <PageItem key="firstpg">
-            <PageLink onClick={() => paginate(1)} href="javascript:void(0)">
-              {lang === 'en' ? 'First' : '首页'}
-            </PageLink>
-          </PageItem>
-        ) : null}
+      {total !== 0 && (
+        <PageList>
+          {/* 首页显示逻辑 */}
+          {hasFirst ? (
+            <PageItem key="firstpg">
+              <PageLink onClick={() => paginate(1)} href="javascript:void(0)">
+                {lang === 'en' ? 'First' : '首页'}
+              </PageLink>
+            </PageItem>
+          ) : null}
 
-        {/* 上一页显示逻辑 */}
-        {hasPrevious ? (
-          <PageItem key="prevpg">
-            <PageLink
-              onClick={() => paginate(currentPage - 1)}
-              href="javascript:void(0)"
-            >
-              {lang === 'en' ? 'Previous' : '上一页'}
-            </PageLink>
-          </PageItem>
-        ) : null}
-        {/* 显示更多 */}
-        {currentPage > 3 && pageNumbers.length > 5 ? (
-          <PageItem key="morepgm">
-            <PageLink href="javascript:void(0)">...</PageLink>
-          </PageItem>
-        ) : null}
-        {/* ==========================================> */}
-        {showPageArray.map(number => (
-          <PageItem key={number}>
-            <PageLink
-              selected={number === currentPage}
-              onClick={() => paginate(number)}
-              href="javascript:void(0)"
-            >
-              {number}
-            </PageLink>
-          </PageItem>
-        ))}
-        {/* =====================显示更多...=====================> */}
-        {showPageArray[4] < pageNumbers[pageNumbers.length - 1] ? (
-          <PageItem key="morepgp">
-            <PageLink href="javascript:void(0)">...</PageLink>
-          </PageItem>
-        ) : null}
-        {/* 下一页显示逻辑 */}
-        {hasNext ? (
-          <PageItem key="nextpg">
-            <PageLink
-              onClick={() => paginate(currentPage + 1)}
-              href="javascript:void(0)"
-            >
-              {lang === 'en' ? 'Next' : '下一页'}
-            </PageLink>
-          </PageItem>
-        ) : null}
-        {/* 尾页显示逻辑 */}
-        {hasLast ? (
-          <PageItem key="endpg">
-            <PageLink
-              onClick={() => paginate(pageNumbers.length)}
-              href="javascript:void(0)"
-            >
-              {lang === 'en' ? 'End' : '尾页'}
-            </PageLink>
-          </PageItem>
-        ) : null}
-      </PageList>
+          {/* 上一页显示逻辑 */}
+          {hasPrevious ? (
+            <PageItem key="prevpg">
+              <PageLink
+                onClick={() => paginate(currentPage - 1)}
+                href="javascript:void(0)"
+              >
+                {lang === 'en' ? 'Previous' : '上一页'}
+              </PageLink>
+            </PageItem>
+          ) : null}
+          {/* 显示更多 */}
+          {currentPage > 3 && pageNumbers.length > 5 ? (
+            <PageItem key="morepgm">
+              <PageLink href="javascript:void(0)">...</PageLink>
+            </PageItem>
+          ) : null}
+          {/* ==========================================> */}
+          {showPageArray.map(number => (
+            <PageItem key={number}>
+              <PageLink
+                selected={number === currentPage}
+                onClick={() => paginate(number)}
+                href="javascript:void(0)"
+              >
+                {number}
+              </PageLink>
+            </PageItem>
+          ))}
+          {/* =====================显示更多...=====================> */}
+          {showPageArray[4] < pageNumbers[pageNumbers.length - 1] ? (
+            <PageItem key="morepgp">
+              <PageLink href="javascript:void(0)">...</PageLink>
+            </PageItem>
+          ) : null}
+          {/* 下一页显示逻辑 */}
+          {hasNext ? (
+            <PageItem key="nextpg">
+              <PageLink
+                onClick={() => paginate(currentPage + 1)}
+                href="javascript:void(0)"
+              >
+                {lang === 'en' ? 'Next' : '下一页'}
+              </PageLink>
+            </PageItem>
+          ) : null}
+          {/* 尾页显示逻辑 */}
+          {hasLast ? (
+            <PageItem key="endpg">
+              <PageLink
+                onClick={() => paginate(pageNumbers.length)}
+                href="javascript:void(0)"
+              >
+                {lang === 'en' ? 'End' : '尾页'}
+              </PageLink>
+            </PageItem>
+          ) : null}
+        </PageList>
+      )}
     </nav>
   );
 };
