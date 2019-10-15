@@ -28,6 +28,15 @@ const EditSpan = styled.span`
     background: rgba(0, 0, 153, 1);
   }
 `;
+const NormalSpan = styled.span`
+  height: 26px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 14px;
+  font-size: 14px;
+  border: 1px solid rgba(0, 0, 153, 1);
+  padding: 4px 15px;
+  color: rgba(0, 0, 153, 1);
+`;
 
 const DeleteIcon = styled.span`
   width: 16px;
