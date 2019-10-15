@@ -7,6 +7,8 @@
   },
   "version": "0.1.26",
   "dependencies": {
+    "install": "^0.13.0",
+    "npm": "^6.12.0",
     "prop-types": "^15.7.2",
     "rc-slider": "^8.7.1",
     "react-hook-form": "^3.23.12",

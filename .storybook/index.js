@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -18,14 +18,14 @@ import InputDemo from '../src/containers/inputDemo/InputDemo';
 import TextAreaDemo from '../src/containers/textAreaDemo/textAreaDemo';
 import CascadeSelectDemo from '../src/containers/cascadeSelectDemo/CascadeSelectDemo';
 import DatePickerDemo from '../src/containers/datePickerDemo/datePickerDemo';
-import SkillSliderDemo from '../src/containers/skillSliderDemo/SkillSliderDemo';
-import Image from '../src/containers/imageDemo/ImageDemo';
+//import SkillSliderDemo from '../src/containers/skillSliderDemo/SkillSliderDemo';
+//import Image from '../src/containers/imageDemo/ImageDemo';
 import Loading from '../src/containers/loadingDemo/LoadingDemo';
 import EmptyDemo from '../src/containers/emptyDemo/EmptyDemo'
 import BackTopDemo from '../src/containers/backTopDemo/BackTopDemo'
 import SchoolSelectDemo from '../src/containers/schoolSelectDemo/SchoolSelectDemo';
-
-
+import Pagination from '../src/containers/pagination';
+import './bootstrap.css'
 // storiesOf('button样式', module).add('button样式1', () =>
 //     <Button type={1} onClick={() => alert('1')}>按钮</Button>
 // ).add('button样式2', () =>
@@ -137,12 +137,10 @@ storiesOf('TextArea', module).add('TextArea', () =>
 storiesOf('CascadeSelect', module).add('CascadeSelect', () =>
     <div><CascadeSelectDemo /><GlobelStyle /></div>
 );
-storiesOf('Slider', module).add('Slider', () =>
-    <div><SkillSliderDemo /><GlobelStyle /></div>
-);
-storiesOf('Image', module).add('Image', () =>
-    <div><Image /><GlobelStyle /></div>
-);
+
+// storiesOf('Image', module).add('Image', () =>
+//     <div><Image /><GlobelStyle /></div>
+// );
 storiesOf('Loading', module).add('Loading', () =>
     <div><Loading /><GlobelStyle /></div>
 );
@@ -153,7 +151,11 @@ storiesOf('BackTop', module).add('BackTop', () =>
     <div><BackTopDemo /><GlobelStyle /></div>
 );
 storiesOf('SchoolSelect', module).add('SchoolSelect', () =>
-    <div><SchoolSelectDemo/><GlobelStyle /></div>
+    <div><SchoolSelectDemo /><GlobelStyle /></div>
 );
+storiesOf('分页组件', module).add('paginatoin', () =>
+    <div><Pagination /><GlobelStyle /></div>
+);
+
 
 

@@ -2,16 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const NormalSpan = styled.span`
-  height: 26px;
-  background: rgba(255, 255, 255, 1);
-  border-radius: 14px;
-  font-size: 14px;
-  border: 1px solid rgba(0, 0, 153, 1);
-  padding: 4px 15px;
-  color: rgba(0, 0, 153, 1);
-`;
-
 const EditSpan = styled.span`
   height: 28px;
   line-height: 28px;
@@ -60,11 +50,8 @@ const LEditableLabel = ({ text, removable, onClick }) => {
         <DeleteIcon>&times;</DeleteIcon>
       </EditSpan>
     );
-    return (
-      <NormalSpan>{text}</NormalSpan>
-    )
   }
-}
+};
 
 LEditableLabel.propTypes = {
   text: PropTypes.string,
