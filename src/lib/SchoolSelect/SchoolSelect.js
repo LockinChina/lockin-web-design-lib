@@ -54,7 +54,7 @@ const SchoolSelect = React.forwardRef(function(props, ref) {
         }
       });
     }, 300);
-  }, [sValue]);
+  }, [sValue, api]);
 
   return (
     <SchoolSelectContainer>
