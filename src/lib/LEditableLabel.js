@@ -41,8 +41,8 @@ const DeleteIcon = styled.span`
   display: inline-block;
   margin-left: 15px;
 `;
-
-const LEditableLabel = ({ text, removable, onClick }) => {
+function LEditableLabel(props) {
+  const { text, removable, onClick } = props;
   if (removable) {
     return (
       <EditSpan onClick={() => onClick()}>
@@ -51,7 +51,8 @@ const LEditableLabel = ({ text, removable, onClick }) => {
       </EditSpan>
     );
   }
-};
+  return <NormalSpan>{text}</NormalSpan>;
+}
 
 LEditableLabel.propTypes = {
   text: PropTypes.string,

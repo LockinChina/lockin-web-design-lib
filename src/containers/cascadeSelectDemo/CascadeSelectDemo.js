@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
+/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from 'react';
 import { GrayBox, Ptit, Space, Table } from '../../globalDemoStyle';
 
 import CascadeSelect from '../../lib/CascadeSelect/CascadeSelect';
-import { degreeJson } from '../../data/degree';
-import { jobCategoryJson } from '../../data/jobCategory';
-
+import { degreeJson } from '../../static/data/degree';
+import { jobCategoryJson } from '../../static/data/jobCategory';
 
 export default function InputDemo() {
   const [selectValue0, setSelectValue0] = useState('');
@@ -21,14 +22,15 @@ export default function InputDemo() {
           // width={} // 整体宽度
           // insideWidth={} // 下拉菜单弹出宽度
           value={selectValue3}
-          titleName="" //标题
-          col={1} // 有几列 默认1 
+          titleName="" // 标题
+          col={1} // 有几列 默认1
           placeholder="常规无标题"
-          onChange={(label, value) => { // 两个参数: 数组类型  第一个参数 label集合  第二个参数 value集合
+          onChange={(label, value) => {
+            // 两个参数: 数组类型  第一个参数 label集合  第二个参数 value集合
             setSelectValue3(label.length > 1 ? label.join(' ') : label);
             console.log(`id: ${value}`);
           }}
-          wrongText="" //错误提示
+          wrongText="" // 错误提示
           dataApi={degreeJson} // 数据
         />
 
@@ -36,6 +38,7 @@ export default function InputDemo() {
 
         <CascadeSelect
           width={300}
+          max={2}
           value={selectValue0}
           titleName="1级下拉菜单 自定义宽度"
           placeholder="请选择"
@@ -53,13 +56,16 @@ export default function InputDemo() {
           // insideWidth = {500}
           value={selectValue1}
           col={2}
-          titleName="2级下拉菜单 + 错误提示"
+          max={3}
+          titleName="2级下拉菜单(选三项)"
           placeholder="请选择"
+          // eslint-disable-next-line no-unused-vars
           onChange={(label, value) => {
-            setSelectValue1(label.length > 1 ? label.join(' ') : label);
-            console.log(`id: ${value}`);
+            setSelectValue1(label.length > 1 ? label.join(' | ') : label);
+            // console.log(`id: ${value}`);
+            // console.log(label);
           }}
-          wrongText="请选择！"
+          // wrongText="请选择！"
           dataApi={jobCategoryJson}
         />
 
@@ -74,34 +80,98 @@ export default function InputDemo() {
             setSelectValue2(label.length > 1 ? label.join(' ') : label);
             console.log(`id: ${value}`);
           }}
-          dataApi={"https://resource.lockinchina.com/json/jsonCitys.js?version=20190726"}
+          dataApi="https://resource.lockinchina.com/json/jsonCitys.js?version=20190726"
           col={3}
         />
-
+        <Space />
+        <CascadeSelect titleName="错误提示" wrongText="错误提示语" />
         <Space />
         <CascadeSelect
           value="我现在不可以选择"
           titleName="禁止选择"
           placeholder="请选择"
-          invalid={true}
+          invalid
         />
       </GrayBox>
       <Table className="w">
         <thead>
-          <tr><td>属性</td><td>说明</td><td>类型</td><td>默认值</td></tr></thead>
+          <tr>
+            <td>属性</td>
+            <td>说明</td>
+            <td>类型</td>
+            <td>默认值</td>
+          </tr>
+        </thead>
         <tbody>
-          <tr><td>titleName</td><td>标题 不传入则不显示</td><td>string</td><td>/</td></tr>
-          <tr><td>col</td><td>显示几列</td><td>number</td><td>1</td></tr>
-          <tr><td>value</td><td>select value</td><td>string</td><td>/</td></tr>
-          <tr><td>width</td><td>自定义宽度</td><td>number</td><td>/</td></tr>
-          <tr><td>placeholder</td><td>占位提示语</td><td>string</td><td>请选择</td></tr>
-          <tr><td>onChange</td><td>select onChange事件 传入两个参数: label, value  例:["中国", "江苏省", "徐州市"] [1] </td><td>function</td><td>/</td></tr>
-          <tr><td>wrongText</td><td>错误提示语 不传入则不显示</td><td>string</td><td>/</td></tr>
-          <tr><td>dataApi</td><td>要使用得数据源 (string为调用远程API接口地址获取数据, object为本地数据)</td><td>string, object</td><td>/</td></tr>
-          <tr><td>invalid</td><td>禁止选择状态</td><td>boolean</td><td>false</td></tr>
+          <tr>
+            <td>titleName</td>
+            <td>标题 不传入则不显示</td>
+            <td>string</td>
+            <td>/</td>
+          </tr>
+          <tr>
+            <td>col</td>
+            <td>显示几列</td>
+            <td>number</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>max</td>
+            <td>设置为多选 多选的最大数量取决于传递的参数</td>
+            <td>number</td>
+            <td>/</td>
+          </tr>
+          <tr>
+            <td>value</td>
+            <td>select value</td>
+            <td>string</td>
+            <td>/</td>
+          </tr>
+          <tr>
+            <td>width</td>
+            <td>自定义宽度</td>
+            <td>number</td>
+            <td>/</td>
+          </tr>
+          <tr>
+            <td>placeholder</td>
+            <td>占位提示语</td>
+            <td>string</td>
+            <td>请选择</td>
+          </tr>
+          <tr>
+            <td>onChange</td>
+            <td>
+              select onChange事件 传入两个参数: label, value 例:["中国",
+              "江苏省", "徐州市"] [1]{' '}
+            </td>
+            <td>function</td>
+            <td>/</td>
+          </tr>
+          <tr>
+            <td>wrongText</td>
+            <td>错误提示语 不传入则不显示</td>
+            <td>string</td>
+            <td>/</td>
+          </tr>
+          <tr>
+            <td>dataApi</td>
+            <td>
+              要使用得数据源 (string为调用远程API接口地址获取数据,
+              object为本地数据)
+            </td>
+            <td>string, object</td>
+            <td>/</td>
+          </tr>
+          <tr>
+            <td>invalid</td>
+            <td>禁止选择状态</td>
+            <td>boolean</td>
+            <td>false</td>
+          </tr>
         </tbody>
       </Table>
       <Space />
     </div>
-  )
+  );
 }

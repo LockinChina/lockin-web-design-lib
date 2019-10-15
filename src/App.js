@@ -1,6 +1,6 @@
 import React from 'react';
 import GlobalStyle from './globalStyle';
-import './iconfont/iconfont.css'
+import './static/iconfont/iconfont.css';
 
 import ButtonDemo from './containers/buttonDemo/ButtonDemo';
 import InputnDemo from './containers/inputDemo/InputDemo';
@@ -15,7 +15,7 @@ function App() {
       <TextAreaDemo />
       <GlobalStyle />
       <CascadeSelectDemo />
-      <div style={{height: '200px'}}></div>
+      <div style={{ height: '200px' }} />
     </div>
   );
 }

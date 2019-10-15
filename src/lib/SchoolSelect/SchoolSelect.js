@@ -68,6 +68,7 @@ const SchoolSelect = React.forwardRef(function(props, ref) {
         ref={ref}
         value={sValue}
         onChange={val => {
+          props.inputChange(val);
           setVlaue(val);
           setIsShow(true);
         }}
@@ -123,6 +124,7 @@ SchoolSelect.defaultProps = {
   wrongText: '',
   invalid: false,
   onChange: () => {},
+  inputChange: () => {},
   api: 'http://192.168.1.30:8080/schoolSearch?s=',
   emptyMessage: '暂无搜索结果，请更换搜索关键词。或直接在输入框中添加大学',
 };
@@ -137,6 +139,7 @@ SchoolSelect.propTypes = {
   invalid: PropTypes.bool,
   name: PropTypes.node,
   api: PropTypes.node,
+  inputChange: PropTypes.func,
   emptyMessage: PropTypes.string,
 };
 

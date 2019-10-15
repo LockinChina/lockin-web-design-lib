@@ -17,8 +17,8 @@ const ModalNodeContent = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 470px;
-  margin-left: -235px;
+  width: ${props => (props.width ? `${props.width}px` : '470px')};
+  margin-left: ${props => (props.width ? `${-(props.width / 2)}px` : '-235px')};
   max-height: ${Number(getWindowHeight() * 0.8).toFixed()}px;
   overflow-y: auto;
   margin-top: -${Number(getWindowHeight() * 0.8).toFixed() / 2}px;
@@ -59,6 +59,7 @@ function getWindowHeight() {
 }
 
 const Modal = ({
+  width,
   visible,
   type = 1,
   okText = '确定',
@@ -120,7 +121,7 @@ const Modal = ({
       </div>
     )}
     {type === 3 && (
-      <ModalNodeContent>
+      <ModalNodeContent width={width}>
         <div>
           <div>{title}</div>
           <div role="button" tabIndex="0" onClick={onCancel}>
@@ -167,6 +168,7 @@ const Modal = ({
 );
 
 Modal.propTypes = {
+  width: PropTypes.number,
   visible: PropTypes.bool,
   type: PropTypes.number,
   okText: PropTypes.string,

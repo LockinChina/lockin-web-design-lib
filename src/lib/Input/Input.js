@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useState, Children } from 'react';
 import PropTypes from 'prop-types';
 import InputContainer from './inputStyle';
 
@@ -27,7 +28,12 @@ const Input = React.forwardRef((props, ref) => {
     readOnly,
     name,
     inputBorderColor,
+    rightIconMouseDownCapture,
+    rightIconMouseUpCapture,
     inputBackgroundColor,
+    children,
+    onBlur,
+    onFocus,
   } = props;
 
   const setBorder = () => {
@@ -73,16 +79,26 @@ const Input = React.forwardRef((props, ref) => {
             onChange(val);
           }}
           value={value}
-          onBlur={() => setBlurState(0)}
-          onFocus={() => setBlurState(1)}
+          onBlur={e => {
+            setBlurState(0);
+            onBlur(e.target.value);
+          }}
+          onFocus={e => {
+            setBlurState(1);
+            onFocus(e.target.value);
+          }}
         />
         <span
           title={rightIconTitle}
           onClick={() => rightIconOnClick()}
+          onMouseDownCapture={() => rightIconMouseDownCapture()}
+          onMouseUpCapture={() => rightIconMouseUpCapture()}
           className={`iconfont ${rightIconName || ''}`}
           style={{ color: `${rightIconColor}`, fontSize: `${rightIconSize}px` }}
         />
+        {Children.toArray(children)}
       </div>
+
       <p
         className="wrongText"
         style={{ display: wrongText ? 'block' : 'none' }}
@@ -98,6 +114,8 @@ Input.defaultProps = {
   placeholder: '请输入',
   onChange: () => {},
   rightIconOnClick: () => {},
+  onFocus: () => {},
+  onBlur: () => {},
 };
 
 Input.propTypes = {
@@ -113,6 +131,8 @@ Input.propTypes = {
   rightIconSize: PropTypes.number,
   rightIconTitle: PropTypes.string,
   rightIconOnClick: PropTypes.func,
+  rightIconMouseDownCapture: PropTypes.func,
+  rightIconMouseUpCapture: PropTypes.func,
   wrongText: PropTypes.string,
   type: PropTypes.string,
   maxLength: PropTypes.number,
@@ -122,6 +142,8 @@ Input.propTypes = {
   inputBorderColor: PropTypes.string,
   titleName: PropTypes.string,
   inputBackgroundColor: PropTypes.string,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 export default Input;

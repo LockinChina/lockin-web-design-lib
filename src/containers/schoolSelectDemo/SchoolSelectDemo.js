@@ -13,6 +13,7 @@ export default function SchoolSelectDemo() {
         <Ptit>学校选择:</Ptit>
         <Space />
         <SchoolSelect
+          titleName="xxx"
           // defaultValue={value}
           value={value}
           onChange={(name, id) => {

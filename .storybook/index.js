@@ -13,6 +13,7 @@ import LTab from '../src/lib/LTab';
 import Modal from '../src/lib/Modal';
 
 import GlobelStyle from '../src/globalStyle';
+import '../src/static/iconfont/iconfont.css';
 import ButtonDemo from '../src/containers/buttonDemo/ButtonDemo';
 import InputDemo from '../src/containers/inputDemo/InputDemo';
 import TextAreaDemo from '../src/containers/textAreaDemo/textAreaDemo';
@@ -49,9 +50,15 @@ storiesOf('H', module).add('H1', () =>
 );
 
 storiesOf('搜索框', module).add('大搜索框', () =>
-    <LSearch placeholder={'search'} btnText={'btn'} onClick={() => alert('123')} onChange={(e) => alert(e)} />
+    <div>
+        <LSearch placeholder={'search'} btnText={'btn'} onClick={() => alert('123')} onChange={(e) => alert(e)} />
+        <GlobelStyle />
+    </div>
 ).add('小搜索框', () =>
-    <LSearch big={false} placeholder={'search'} btnText={'btn'} onClick={() => alert('123')} onChange={(e) => alert(e)} />
+    <div>
+        <LSearch big={false} placeholder={'search'} btnText={'btn'} onClick={() => alert('123')} onChange={(e) => alert(e)} />
+        <GlobelStyle />
+    </div>
 );
 
 storiesOf('表单label', module).add('label', () =>
@@ -71,7 +78,7 @@ storiesOf('标签', module).add('不可编辑', () =>
 storiesOf('复选框', module).add('checkbox', () => {
     return (
         <div>
-            <LCheckBox text={'复选框'} checked={true} onChange={() => { }} />
+            <LCheckBox checked={true} onChange={() => { }} />
             <LCheckBox text={'复选框'} checked={false} onChange={() => { }} />
         </div>
     )
@@ -103,15 +110,22 @@ storiesOf('Modal', module).add('Modal1一个按钮', () => {
         <div>
             {/* <Button type={1} titleName="1" hollow onClick={action('btnclick')}>1</Button> */}
             <Modal visible={true} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} cancelText={'取消'} />
+            <GlobelStyle />
         </div>
     )
 }).add('Modal2按钮1', () => {
     return (
-        <Modal visible={true} type={2} btnStyle={1} title={'title'} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} cancelText={'取消'} />
+        <div>
+            <Modal visible={true} type={2} btnStyle={1} title={'title'} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} okText={'确定'} cancelText={'取消'} />
+            <GlobelStyle />
+        </div>
     )
 }).add('Modal3按钮2', () => {
     return (
+        <div>
         <Modal visible={show} onCancel={() => show = false} type={2} btnStyle={2} contentNode={(<div><p>恭喜你</p><p>完成了</p></div>)} title={'tip'} okText={'确定'} cancelText={'取消'} />
+            <GlobelStyle />
+        </div>
     )
 }).add('Modal4最高高度到屏幕80%', () => {
     return (

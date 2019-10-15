@@ -1,21 +1,27 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-plusplus */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import DatePickerContainer from './datePickerStyle';
 
 let setYear = '';
 let setMonth = '';
 let setDay = '';
-let today = new Date();
+const today = new Date();
 
 function tbb(n) {
-  return n < 10 ? `0${  n}` : `${  n}`;
+  return n < 10 ? `0${n}` : `${n}`;
 }
 
 function monthDays(date) {
   // 获取月份的总天数
-  let curDate = date ? new Date(date) : new Date();
-  let year = curDate.getFullYear();
-  let month = curDate.getMonth() + 1;
-  let d = new Date(year, month, 0);
+  const curDate = date ? new Date(date) : new Date();
+  const year = curDate.getFullYear();
+  const month = curDate.getMonth() + 1;
+  const d = new Date(year, month, 0);
   //  console.log(typeof d.getDate());
   return d.getDate();
 }
@@ -71,21 +77,20 @@ const DatePicker = React.forwardRef((props, ref) => {
           <li onClick={() => onChange([props.type])}>{props.type}</li>
         )}
         {arr.map((item, index) => (
-              <li
-                key={index}
-                className={index === yearIndex ? "actived" : ""}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onChange([item]);
-                  // setIsShow(false);
-                  setYearIndex(index);
-                  setYear = String(item);
-                }}
-              >
-                {item}
-              </li>
-            ))
-        }
+          <li
+            key={index}
+            className={index === yearIndex ? 'actived' : ''}
+            onClick={e => {
+              e.stopPropagation();
+              // onChange([item]);
+              // setIsShow(false);
+              setYearIndex(index);
+              setYear = String(item);
+            }}
+          >
+            {item}
+          </li>
+        ))}
       </ul>
     );
   };
@@ -104,26 +109,27 @@ const DatePicker = React.forwardRef((props, ref) => {
     return (
       <ul className="scrollbar">
         {arr.map((item, index) => (
-              <li
-                key={index}
-                className={(monthIndex === index && yearIndex !== -100) ? "actived" : ""}
-                style={{ color: yearIndex === -100 ? "#ccc" : "" }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (yearIndex !== -100) {
-                    setMonth = String(item);
-                    setMonthIndex(index);
-                    if (!hasDay) {
-                      onChange([setYear, setMonth]);
-                      setIsShow(false);
-                    }
-                  }
-                }}
-              >
-                {item}
-              </li>
-            ))
-        }
+          <li
+            key={index}
+            className={
+              monthIndex === index && yearIndex !== -100 ? 'actived' : ''
+            }
+            style={{ color: yearIndex === -100 ? '#ccc' : '' }}
+            onClick={e => {
+              e.stopPropagation();
+              if (yearIndex !== -100) {
+                setMonth = String(item);
+                setMonthIndex(index);
+                if (!hasDay) {
+                  onChange([setYear, setMonth]);
+                  setIsShow(false);
+                }
+              }
+            }}
+          >
+            {item}
+          </li>
+        ))}
       </ul>
     );
   };
@@ -141,22 +147,21 @@ const DatePicker = React.forwardRef((props, ref) => {
     return (
       <ul className="scrollbar">
         {arr.map((item, index) => (
-              <li
-                key={item}
-                style={{ color: monthIndex === -100 ? "#ccc" : "" }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (yearIndex !== -100 && monthIndex !== -100) {
-                    setDay = String(item);
-                    onChange([setYear, setMonth, setDay])
-                    setIsShow(false);
-                  }
-                }}
-              >
-                {item}
-              </li>
-            ))
-        }
+          <li
+            key={item}
+            style={{ color: monthIndex === -100 ? '#ccc' : '' }}
+            onClick={e => {
+              e.stopPropagation();
+              if (yearIndex !== -100 && monthIndex !== -100) {
+                setDay = String(item);
+                onChange([setYear, setMonth, setDay]);
+                setIsShow(false);
+              }
+            }}
+          >
+            {item}
+          </li>
+        ))}
       </ul>
     );
   };
@@ -168,7 +173,10 @@ const DatePicker = React.forwardRef((props, ref) => {
       </p>
       <div className="box" style={{ position: 'relative' }}>
         <div
-className={`inputBody fadeAnim ${  isShow ? "openActive " : ""  }${wrongText ? "textWrong " : ""  }${invalid ? "invalid " : ""}`} onClick={(e) => {
+          className={`inputBody fadeAnim ${isShow ? 'openActive ' : ''}${
+            wrongText ? 'textWrong ' : ''
+          }${invalid ? 'invalid ' : ''}`}
+          onClick={e => {
             if (!invalid) {
               setIsShow(!isShow);
               setYear = [];
@@ -191,9 +199,9 @@ className={`inputBody fadeAnim ${  isShow ? "openActive " : ""  }${wrongText ? "
             name={name}
           />
           <span
-            className={
-              'iconfont arrow ' + (isShow ? 'iconshouhui' : 'iconxiala1')
-            }
+            className={`iconfont arrow ${
+              isShow ? 'iconshouhui' : 'iconxiala1'
+            }`}
             style={{ color: isShow ? '#005ED4' : '' }}
           />
           <div
