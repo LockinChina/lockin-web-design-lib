@@ -4,13 +4,14 @@ import styled from 'styled-components';
 
 const CheckboxDiv = styled.div`
   input[type='checkbox'] {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
-    line-height: 15px;
+    line-height: 20px;
     position: relative;
+    cursor: pointer;
   }
   input[type='checkbox']::before {
     content: '';
@@ -20,19 +21,16 @@ const CheckboxDiv = styled.div`
     background: #fff;
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(0, 0, 153, 1);
+    background: url('${require('../static/images/icons_checkbox.png')}');
   }
   input[type='checkbox']:checked::before {
-    content: '\\2713';
-    background-color: #fff;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    border: 1px solid rgba(0, 0, 153, 1);
-    color: rgba(0, 0, 153, 1);
-    font-size: 16px;
-    font-weight: bold;
+    height: 100%;
+    background: url('${require('../static/images/icons_checkbox.png')}');
+    background-position: 0 -20px;
   }
 
   input[type='radio'] {
@@ -58,7 +56,7 @@ const CheckboxDiv = styled.div`
     bottom: 0;
     width: 8px;
     height: 8px;
-    background-color: rgba(0, 0, 153, 1);
+    background-color: rgba(0, 0, 153, 1) !important;
     border-radius: 50%;
   }
 `;
@@ -72,7 +70,10 @@ const LCheckBox = ({ type = 'checkbox', checked, text, onChange }) => (
       checked={checked}
       onChange={() => onChange()}
     />
-    <label htmlFor="checkLab" style={{ marginLeft: 10, cursor: 'pointer' }}>
+    <label
+      htmlFor="checkLab"
+      style={{ marginLeft: text ? 10 : '', cursor: 'pointer' }}
+    >
       {text}
     </label>
   </CheckboxDiv>
