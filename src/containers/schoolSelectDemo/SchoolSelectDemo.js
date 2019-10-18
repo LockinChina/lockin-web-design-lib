@@ -5,7 +5,7 @@ import { GrayBox, Ptit, Space } from '../../globalDemoStyle';
 export default function SchoolSelectDemo() {
   const [value, setVlaue] = useState('');
   useEffect(() => {
-    setVlaue('北京大学');
+    setVlaue([['北京大学'], [1]]);
   }, []);
   return (
     <div>
@@ -15,11 +15,11 @@ export default function SchoolSelectDemo() {
         <SchoolSelect
           titleName="xxx"
           // defaultValue={value}
-          value={value}
-          onChange={(name, id) => {
-            setVlaue(name, id);
-            // console.log(id);
-          }}
+          defaultValue={value}
+          // onChange={(name, id) => {
+          //   setVlaue(name, id);
+          //   // console.log(id);
+          // }}
           worngText="xx1"
         />
       </GrayBox>

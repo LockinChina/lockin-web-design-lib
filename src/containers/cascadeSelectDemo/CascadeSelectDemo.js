@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from 'react';
+import React from 'react';
+import useForm from 'react-hook-form';
 import { GrayBox, Ptit, Space, Table } from '../../globalDemoStyle';
 
 import CascadeSelect from '../../lib/CascadeSelect/CascadeSelect';
@@ -8,10 +9,14 @@ import { degreeJson } from '../../static/data/degree';
 import { jobCategoryJson } from '../../static/data/jobCategory';
 
 export default function InputDemo() {
-  const [selectValue0, setSelectValue0] = useState('');
-  const [selectValue1, setSelectValue1] = useState('');
-  const [selectValue2, setSelectValue2] = useState('中国 江苏省 徐州市');
-  const [selectValue3, setSelectValue3] = useState('');
+  const { register, errors, handleSubmit } = useForm();
+  const onSubmit = values => {
+    console.log(values);
+  };
+  // const [selectValue0, setSelectValue0] = useState('');
+  // const [selectValue1, setSelectValue1] = useState('');
+  // const [selectValue2, setSelectValue2] = useState('中国 江苏省 徐州市');
+  // const [selectValue3, setSelectValue3] = useState('');
   return (
     <div>
       <GrayBox>
@@ -21,50 +26,57 @@ export default function InputDemo() {
           invalid={false} // 是否禁用
           // width={} // 整体宽度
           // insideWidth={} // 下拉菜单弹出宽度
-          value={selectValue3}
+          // value={selectValue3}
+          defaultValue={[['北京'], [9]]}
           titleName="" // 标题
           col={1} // 有几列 默认1
           placeholder="常规无标题"
-          onChange={(label, value) => {
-            // 两个参数: 数组类型  第一个参数 label集合  第二个参数 value集合
-            setSelectValue3(label.length > 1 ? label.join(' ') : label);
-            console.log(`id: ${value}`);
-          }}
+          // onChange={(label, value) => {
+          //   // 两个参数: 数组类型  第一个参数 label集合  第二个参数 value集合
+          //   setSelectValue3(label.length > 1 ? label.join(' ') : label);
+          //   console.log(`id: ${value}`);
+          // }}
           wrongText="" // 错误提示
           dataApi={degreeJson} // 数据
         />
 
         <Space />
-
-        <CascadeSelect
-          width={300}
-          max={2}
-          value={selectValue0}
-          titleName="1级下拉菜单 自定义宽度"
-          placeholder="请选择"
-          onChange={(label, value) => {
-            setSelectValue0(label.length > 1 ? label.join(' ') : label);
-            console.log(`id: ${value}`);
-          }}
-          dataApi={degreeJson}
-        />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <CascadeSelect
+            width={300}
+            // max={2}
+            // value={selectValue0}
+            titleName="1级下拉菜单 自定义宽度"
+            placeholder="请选择"
+            // defaultValue={[['北京', '上海', '广州'], [1, 2, 4]]}
+            // onChange={(label, value) => {
+            //   setSelectValue0(label.length > 1 ? label.join(' ') : label);
+            //   console.log(`id: ${value}`);
+            // }}
+            name="city"
+            ref={register({ required: true })}
+            wrongText={errors.city && '111'}
+            dataApi={degreeJson}
+          />
+          <button type="submit">提交</button>
+        </form>
 
         <Space />
 
         <CascadeSelect
           width={600}
           // insideWidth = {500}
-          value={selectValue1}
+          // value={selectValue1}
           col={2}
-          max={3}
+          // max={3}
           titleName="2级下拉菜单(选三项)"
           placeholder="请选择"
           // eslint-disable-next-line no-unused-vars
-          onChange={(label, value) => {
-            setSelectValue1(label.length > 1 ? label.join(' | ') : label);
-            // console.log(`id: ${value}`);
-            // console.log(label);
-          }}
+          // onChange={(label, value) => {
+          //   setSelectValue1(label.length > 1 ? label.join(' | ') : label);
+          //   // console.log(`id: ${value}`);
+          //   // console.log(label);
+          // }}
           // wrongText="请选择！"
           dataApi={jobCategoryJson}
         />
@@ -73,13 +85,14 @@ export default function InputDemo() {
         <CascadeSelect
           // width={200}
           // insideWidth = {500}
-          value={selectValue2}
+          // value={selectValue2}
           titleName="3级下拉菜单"
           placeholder="请选择"
-          onChange={(label, value) => {
-            setSelectValue2(label.length > 1 ? label.join(' ') : label);
-            console.log(`id: ${value}`);
-          }}
+          defaultValue={[['中国', '江苏', '南京市'], [2]]}
+          // onChange={(label, value) => {
+          //   setSelectValue2(label.length > 1 ? label.join(' ') : label);
+          //   console.log(`id: ${value}`);
+          // }}
           dataApi="https://resource.lockinchina.com/json/jsonCitys.js?version=20190726"
           col={3}
         />

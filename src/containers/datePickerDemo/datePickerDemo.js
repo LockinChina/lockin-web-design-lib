@@ -10,12 +10,12 @@ const Rowbox = styled.div`
 `;
 
 export default function DatePickerDemo() {
-  const [dateV1, setDateV1] = useState('2019-08');
-  const [dateV2, setDateV2] = useState('');
-  const [dateV3, setDateV3] = useState('');
-  const [dateV4, setDateV4] = useState('');
-  const [dateV5, setDateV5] = useState('');
-  const [dateV6, setDateV6] = useState('');
+  // const [dateV1, setDateV1] = useState('2019-11');
+  // const [dateV2, setDateV2] = useState('');
+  // const [dateV3, setDateV3] = useState('');
+  // const [dateV4, setDateV4] = useState('');
+  // const [dateV5, setDateV5] = useState('');
+  // const [dateV6, setDateV6] = useState('');
   return (
     <div>
       <GrayBox>
@@ -27,10 +27,10 @@ export default function DatePickerDemo() {
           <DatePicker
             titleName="选择年月"
             width={280}
-            value={dateV1}
-            onChange={e => {
-              setDateV1(e.join('-'));
-            }}
+            defaultValue="2019-10"
+            // onChange={e => {
+            //   setDateV1(e.join('-'));
+            // }}
           />
           <div style={{ width: '20px' }} />
           <DatePicker
@@ -38,10 +38,6 @@ export default function DatePickerDemo() {
             hasDay
             placeholder="请选择"
             width={280}
-            value={dateV2}
-            onChange={e => {
-              setDateV2(e.join('-'));
-            }}
           />
           <div style={{ width: '20px' }} />
           <DatePicker
@@ -49,11 +45,7 @@ export default function DatePickerDemo() {
             type="至今"
             placeholder="请选择"
             width={280}
-            value={dateV3}
             wrongText="请选择"
-            onChange={e => {
-              setDateV3(e.join('-'));
-            }}
           />
         </Rowbox>
         <Space />
@@ -63,10 +55,6 @@ export default function DatePickerDemo() {
             placeholder="请选择"
             width={280}
             type="无经验"
-            value={dateV4}
-            onChange={e => {
-              setDateV4(e.join('-'));
-            }}
           />
           <div style={{ width: '20px' }} />
           <DatePicker
@@ -74,21 +62,13 @@ export default function DatePickerDemo() {
             placeholder="请选择"
             width={280}
             type="gTime"
-            value={dateV5}
-            onChange={e => {
-              setDateV5(e.join('-'));
-            }}
           />
           <div style={{ width: '20px' }} />
           <DatePicker
             titleName="失效"
             placeholder="请选择"
             width={280}
-            value={dateV6}
             invalid
-            onChange={e => {
-              setDateV6(e.join('-'));
-            }}
           />
         </Rowbox>
       </GrayBox>

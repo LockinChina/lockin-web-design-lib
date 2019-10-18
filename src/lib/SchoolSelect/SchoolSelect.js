@@ -7,14 +7,14 @@ import SchoolSelectContainer from './SchoolSelectStyle';
 let timer = null;
 
 // eslint-disable-next-line func-names
-const SchoolSelect = React.forwardRef(function(props, ref) {
+const SchoolSelect = React.forwardRef((props, ref) => {
   const {
-    value,
+    // value,
     placeholder,
     titleName,
     defaultValue,
     wrongText,
-    onChange,
+    // onChange,
     invalid,
     name,
     api,
@@ -22,16 +22,22 @@ const SchoolSelect = React.forwardRef(function(props, ref) {
   } = props;
   const [schoolData, setSchoolData] = useState([]); // 获取到的学校数据
   const [sValue, setVlaue] = useState('');
+  const [sValueId, setSValueId] = useState('');
   // const [se, setSe] = useState(false);
   const [isShow, setIsShow] = useState(false);
 
   useEffect(() => {
-    setVlaue(value);
-  }, [value]);
+    if (defaultValue && defaultValue.length === 2) {
+      setVlaue(defaultValue[0].join(' | '));
+      setSValueId(defaultValue[1]);
+    } else {
+      setVlaue(defaultValue);
+    }
+  }, [defaultValue]);
 
   useEffect(() => {
     // eslint-disable-next-line func-names
-    document.onclick = function() {
+    document.onclick = () => {
       setIsShow(false);
     };
     clearTimeout(timer);
@@ -58,6 +64,7 @@ const SchoolSelect = React.forwardRef(function(props, ref) {
 
   return (
     <SchoolSelectContainer>
+      <input type="hidden" value={sValueId} />
       <Input
         titleName={titleName}
         defaultValue={defaultValue}
@@ -68,8 +75,9 @@ const SchoolSelect = React.forwardRef(function(props, ref) {
         ref={ref}
         value={sValue}
         onChange={val => {
-          props.inputChange(val);
+          // props.inputChange(val);
           setVlaue(val);
+          setSValueId(val);
           setIsShow(true);
         }}
         // eslint-disable-next-line react/no-children-prop
@@ -100,7 +108,9 @@ const SchoolSelect = React.forwardRef(function(props, ref) {
                           href="javascirpt:;"
                           onClick={() => {
                             setIsShow(false);
-                            onChange(item.schoolName, item.id);
+                            // onChange(item.schoolName, item.id);
+                            setVlaue(item.schoolName);
+                            setSValueId(item.id);
                           }}
                         >
                           {item.schoolName}
@@ -123,23 +133,23 @@ SchoolSelect.defaultProps = {
   titleName: '',
   wrongText: '',
   invalid: false,
-  onChange: () => {},
-  inputChange: () => {},
-  api: 'http://192.168.1.30:8080/schoolSearch?s=',
+  // onChange: () => { },
+  // inputChange: () => { },
+  api: 'http://192.168.1.10:8080/schoolSearch?s=',
   emptyMessage: '暂无搜索结果，请更换搜索关键词。或直接在输入框中添加大学',
 };
 
 SchoolSelect.propTypes = {
-  value: PropTypes.string,
+  // value: PropTypes.string,
   placeholder: PropTypes.string,
   titleName: PropTypes.string,
   defaultValue: PropTypes.string,
   wrongText: PropTypes.string,
-  onChange: PropTypes.func,
+  // onChange: PropTypes.func,
   invalid: PropTypes.bool,
   name: PropTypes.node,
   api: PropTypes.node,
-  inputChange: PropTypes.func,
+  // inputChange: PropTypes.func,
   emptyMessage: PropTypes.string,
 };
 
