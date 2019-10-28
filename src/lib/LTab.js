@@ -28,9 +28,9 @@ const TabDiv = styled.div`
       &:after {
         position: absolute;
         content: '';
-        left: 50%;
+        left: ${props.isSelectAllBorder ? '10%' : '50%'};
         bottom: 0;
-        width: 30px;
+        width: ${props.isSelectAllBorder ? '80%' : '30px'};
         height: 2px;
         border-radius: 2px;
         background-color: rgba(0, 0, 153, 1);
@@ -46,12 +46,12 @@ const TabDiv = styled.div`
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       position: relative;
-      padding-left: 20px;
+      padding-left: 25px;
       &:before {
         position: absolute;
         top: 0;
         left: 0;
-        font-size: 14px;
+        font-size: ${props.IconSize ? `${props.IconSize}px` : '14px'};
       }
     `}
 `;
@@ -62,6 +62,7 @@ const LTab = ({
   onClick,
   isHaveHover = false,
   isHomeWidth = false,
+  isSelectAllBorder = false,
 }) => (
   <div style={{ display: 'flex', flexDirection: 'row' }}>
     {data.map((item, index) => (
@@ -70,9 +71,11 @@ const LTab = ({
         select={Number(index) === Number(selectIndex)}
         onClick={() => onClick(index)}
         IconName={item.IconName || ''}
+        IconSize={item.IconSize || ''}
         className={`${item.IconName ? `${item.IconName}` : ''}`}
         isHaveHover={isHaveHover}
         isHomeWidth={isHomeWidth}
+        isSelectAllBorder={isSelectAllBorder}
       >
         {item.name}
       </TabDiv>
@@ -86,6 +89,7 @@ LTab.propTypes = {
   onClick: PropTypes.func,
   isHaveHover: PropTypes.bool,
   isHomeWidth: PropTypes.bool,
+  isSelectAllBorder: PropTypes.bool,
 };
 
 export default LTab;
