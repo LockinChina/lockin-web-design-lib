@@ -37,6 +37,7 @@ const App = () => {
         total={posts.length}
         paginate={paginate}
         currentPage={currentPage}
+        lang="zh"
       />
     </div>
   );
