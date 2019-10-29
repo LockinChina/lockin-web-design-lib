@@ -88,7 +88,7 @@ export default function InputDemo() {
           // value={selectValue2}
           titleName="3级下拉菜单"
           placeholder="请选择"
-          defaultValue={[['中国', '江苏', '南京市'], [2]]}
+          defaultValue={[['南京市'], [4]]}
           // onChange={(label, value) => {
           //   setSelectValue2(label.length > 1 ? label.join(' ') : label);
           //   console.log(`id: ${value}`);

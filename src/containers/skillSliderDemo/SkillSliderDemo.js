@@ -8,8 +8,14 @@ export default function SkillSliderDemo() {
       <GrayBox style={{ background: 'white' }}>
         <Ptit>Slider: </Ptit>
         <Space />
-        <Slider titleName="掌握技能" value={n} onChange={val => setN(val)} />
-        <Slider disabled value={n} />
+        <Slider
+          titleName="掌握技能"
+          // value={n}
+          lang="zh"
+          defaultValue={30}
+          // onChange={val => setN(val)}
+        />
+        <Slider disabled defaultValue={10} />
       </GrayBox>
       <Table className="w">
         <thead>

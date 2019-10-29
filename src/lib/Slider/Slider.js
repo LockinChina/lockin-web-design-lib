@@ -18,8 +18,18 @@ const skillArr = [
   { name: '精通', text: '可以使用该技能，完成高级／复杂的工作' },
   { name: '神通', text: '可以培训其他人该技能' },
 ];
+// const skillArrEn = [
+//   {
+//     name: 'Understand',
+//     text: 'Know the skill in detail, but can not apply it on your own',
+//   },
+//   { name: 'Know', text: 'Know the skill, but did not learn it in detail' },
+//   { name: 'Familiar', text: 'can apply the skill to work independently' },
+//   { name: 'Proficient', text: 'can apply the skill to finish complex works' },
+//   { name: 'Master', text: 'can train other people the skill' },
+// ];
 
-function setSkillText(value) {
+const setSkillText = value => {
   if (value >= 0 && value <= 20) {
     return [skillArr[0].name, skillArr[0].text];
   }
@@ -34,7 +44,7 @@ function setSkillText(value) {
   }
 
   return [skillArr[4].name, skillArr[4].text];
-}
+};
 
 const handle = props => {
   const { value, dragging, index, ...restProps } = props;
@@ -55,10 +65,10 @@ const Sliders = React.forwardRef((props, ref) => {
   const {
     min,
     max,
-    initValue,
     onChange,
     disabled,
     name,
+    defaultValue,
     width,
     value,
     titleName,
@@ -66,8 +76,8 @@ const Sliders = React.forwardRef((props, ref) => {
   const [skillNumber, setSkillNumber] = useState(value);
 
   useEffect(() => {
-    setSkillNumber(value);
-  }, [value]);
+    setSkillNumber(defaultValue);
+  }, [defaultValue]);
 
   return (
     <SliderContainer>
@@ -80,14 +90,13 @@ const Sliders = React.forwardRef((props, ref) => {
       >
         {titleName}
       </p>
-      <input type="hidden" defaultValue={initValue} name={name} ref={ref} />
+      <input type="hidden" defaultValue={skillNumber} name={name} ref={ref} />
       <div className={disabled ? 'row' : ''}>
         <div className="skillslider" style={{ width }}>
           <Slider
             min={min}
             max={max}
-            defaultValue={initValue}
-            value={value}
+            value={skillNumber}
             handle={handle}
             railStyle={{ backgroundColor: '#f4f4f4', height: 10 }}
             trackStyle={{ backgroundColor: '#013370', height: 10 }}
@@ -123,7 +132,7 @@ Sliders.defaultProps = {
   min: 0,
   max: 100,
   width: 500,
-  initValue: 0,
+  // initValue: 0,
   disabled: false,
   onChange: () => {},
 };
@@ -131,7 +140,7 @@ Sliders.defaultProps = {
 Sliders.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
-  initValue: PropTypes.number,
+  // initValue: PropTypes.number,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
   name: PropTypes.node,

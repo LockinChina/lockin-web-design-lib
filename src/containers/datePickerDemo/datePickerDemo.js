@@ -42,7 +42,7 @@ export default function DatePickerDemo() {
           <div style={{ width: '20px' }} />
           <DatePicker
             titleName="至今"
-            type="至今"
+            type={!true ? '至今' : 'now'}
             placeholder="请选择"
             width={280}
             wrongText="请选择"
