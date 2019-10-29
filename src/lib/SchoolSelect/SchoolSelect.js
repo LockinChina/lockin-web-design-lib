@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import Input from '../Input/Input';
+import InputV from '../Input/InputV';
 import SchoolSelectContainer from './SchoolSelectStyle';
 
 let timer = null;
 
-// eslint-disable-next-line func-names
+// eslint-disable-next-line no-unused-vars
 const SchoolSelect = React.forwardRef((props, ref) => {
   const {
     // value,
@@ -16,8 +16,9 @@ const SchoolSelect = React.forwardRef((props, ref) => {
     wrongText,
     // onChange,
     invalid,
-    name,
+    // name,
     api,
+    isUpload,
     emptyMessage,
   } = props;
   const [schoolData, setSchoolData] = useState([]); // 获取到的学校数据
@@ -33,7 +34,7 @@ const SchoolSelect = React.forwardRef((props, ref) => {
     } else {
       setVlaue(defaultValue);
     }
-  }, [defaultValue]);
+  }, [isUpload]);
 
   useEffect(() => {
     // eslint-disable-next-line func-names
@@ -64,20 +65,29 @@ const SchoolSelect = React.forwardRef((props, ref) => {
 
   return (
     <SchoolSelectContainer>
-      <input type="hidden" value={sValueId} />
-      <Input
+      <input
+        type="hidden"
+        name={props.nameId}
+        ref={props.refId}
+        value={sValueId}
+      />
+      <input
+        type="hidden"
+        name={props.nameValue}
+        ref={props.refValue}
+        value={sValue}
+      />
+      <InputV
         titleName={titleName}
         defaultValue={defaultValue}
         placeholder={placeholder}
         wrongText={wrongText}
         invalid={invalid}
-        name={name}
-        ref={ref}
         value={sValue}
         onChange={val => {
           // props.inputChange(val);
           setVlaue(val);
-          setSValueId(val);
+          setSValueId('');
           setIsShow(true);
         }}
         // eslint-disable-next-line react/no-children-prop
@@ -135,7 +145,7 @@ SchoolSelect.defaultProps = {
   invalid: false,
   // onChange: () => { },
   // inputChange: () => { },
-  api: 'http://192.168.1.10:8080/schoolSearch?s=',
+  api: `${process.env.API}/schoolSearch?s=`,
   emptyMessage: '暂无搜索结果，请更换搜索关键词。或直接在输入框中添加大学',
 };
 
@@ -147,8 +157,13 @@ SchoolSelect.propTypes = {
   wrongText: PropTypes.string,
   // onChange: PropTypes.func,
   invalid: PropTypes.bool,
-  name: PropTypes.node,
+  // name: PropTypes.node,
   api: PropTypes.node,
+  nameId: PropTypes.string,
+  refId: PropTypes.object,
+  nameValue: PropTypes.string,
+  refValue: PropTypes.object,
+  isUpload: PropTypes.node,
   // inputChange: PropTypes.func,
   emptyMessage: PropTypes.string,
 };

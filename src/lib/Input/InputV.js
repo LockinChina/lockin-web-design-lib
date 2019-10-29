@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useEffect, Children } from 'react';
+import React, { useState, Children } from 'react';
 import PropTypes from 'prop-types';
 import InputContainer from './inputStyle';
 
 const Input = React.forwardRef((props, ref) => {
   const [blurState, setBlurState] = useState(0);
   const {
-    // value,
+    value,
     placeholder,
     titleName,
     onChange,
@@ -45,10 +45,7 @@ const Input = React.forwardRef((props, ref) => {
     }
     return '';
   };
-  const [vall, setVal] = useState('');
-  useEffect(() => {
-    setVal(defaultValue);
-  }, [defaultValue]);
+
   return (
     <InputContainer style={{ width: `${width}px` }}>
       <p className="title" style={{ display: titleName ? 'block' : 'none' }}>
@@ -72,7 +69,7 @@ const Input = React.forwardRef((props, ref) => {
           name={name}
           disabled={readOnly ? 'disabled' : ''}
           type={type}
-          defaultValue={vall}
+          defaultValue={defaultValue}
           placeholder={placeholder}
           className="text "
           maxLength={maxLength}
@@ -81,7 +78,7 @@ const Input = React.forwardRef((props, ref) => {
             const val = e.target.value;
             onChange(val);
           }}
-          // value={value}
+          value={value}
           onBlur={e => {
             setBlurState(0);
             onBlur(e.target.value);
@@ -123,7 +120,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
   defaultValue: PropTypes.string,
-  // value: PropTypes.node,
+  value: PropTypes.node,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   leftIconName: PropTypes.string,

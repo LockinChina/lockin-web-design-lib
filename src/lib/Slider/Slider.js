@@ -81,15 +81,17 @@ const Sliders = React.forwardRef((props, ref) => {
 
   return (
     <SliderContainer>
-      <p
-        style={{
-          display: titleName ? 'block' : 'none',
-          marginBottom: disabled ? '0px' : '10px',
-        }}
-        className="titleName"
-      >
-        {titleName}
-      </p>
+      {disabled !== false && (
+        <p
+          style={{
+            display: titleName ? 'block' : 'none',
+            marginBottom: disabled ? '0px' : '10px',
+          }}
+          className="titleName"
+        >
+          {titleName}
+        </p>
+      )}
       <input type="hidden" defaultValue={skillNumber} name={name} ref={ref} />
       <div className={disabled ? 'row' : ''}>
         <div className="skillslider" style={{ width }}>
@@ -120,6 +122,16 @@ const Sliders = React.forwardRef((props, ref) => {
             }}
           />
         </div>
+        <p
+          style={{
+            marginTop: '5px',
+            color: '#ff5252',
+            fontSize: '12px',
+            lineHeight: '17px',
+          }}
+        >
+          {props.wrongText}
+        </p>
         <p className="skellP">
           {setSkillText(skillNumber)[0]}: {setSkillText(skillNumber)[1]}
         </p>
