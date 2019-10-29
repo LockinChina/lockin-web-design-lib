@@ -22,7 +22,8 @@ module.exports = {
         // The ? in the regex just means "optional"
         test: /\.js$/,
         // Don't bother spending time transpiling your installed packages
-        // exclude: /node_modules/,
+        exclude: [/src\/containers/, /node_modules/],
+
         // This is where we tell webpack to use babel to transpile our JS.
         // The configuration can go here, but in this case it's in ./babelrc.js
         use: {

@@ -1,11 +1,14 @@
 {
   "name": "lockin-web-components",
   "main": "dist/lockinwecmpnt.js",
+  "files": [
+    "/dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/LockinChina/lockin-web-design-lib.git"
   },
-  "version": "0.1.27",
+  "version": "0.1.29",
   "dependencies": {
     "install": "^0.13.0",
     "npm": "^6.12.0",
