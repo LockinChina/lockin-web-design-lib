@@ -11,6 +11,59 @@ const ModalBg = styled.div`
   right: 0;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 200;
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    margin-left: -160px;
+    height: 180px;
+    margin-top: -90px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    text-align: center;
+    padding: 20px 25px 0;
+  }
+  .modal-title-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    margin-left: -160px;
+    height: 215px;
+    margin-top: -108px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    padding: 20px 20px 10px;
+  }
+  .modal-title-content > div:first-child,
+  .modal-content > div:first-child {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .modal-title-content > div:first-child > div:first-child,
+  .modal-content > div:first-child > div:first-child {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 22px;
+  }
+  .modal-title-content div:first-child > div:last-child,
+  .modal-content div:first-child > div:last-child {
+    font-size: 18px;
+    color: rgba(102, 102, 102, 1);
+    cursor: pointer;
+  }
+  .modal-title-content > div.btn-item {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+  }
 `;
 
 const ModalNodeContent = styled.div`
@@ -74,6 +127,12 @@ const Modal = ({
   <ModalBg style={{ display: visible ? 'block' : 'none' }}>
     {type === 1 && (
       <div className="modal-content">
+        <div>
+          <div>{title}</div>
+          <div role="button" tabIndex="0" onClick={() => onCancel()}>
+            &times;
+          </div>
+        </div>
         <div>{contentNode}</div>
         <Button solid onClick={() => onOk()}>
           {okText}
@@ -91,7 +150,7 @@ const Modal = ({
 
         <div>{contentNode}</div>
         {isHaveButton && (
-          <div>
+          <div className="btn-item">
             {btnStyle === 1 ? (
               <div style={{ textAlign: 'right' }}>
                 <Button hollow type={2} onClick={() => onCancel()}>

@@ -1,29 +1,21 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-alert */
-/* eslint-disable no-console */
-/* eslint-disable react/default-props-match-prop-types */
-/* eslint-disable no-shadow */
-/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import CascadeSelectContainer from './cascadeSelectStyle';
 import Label from '../Label/Label';
 import Button from '../Button/Button';
+import Toast from '../Toast/Toast';
 
 let labelObj = [];
 let valueObj = [];
 
 const CascadeSelect = React.forwardRef((props, ref) => {
   const {
-    value,
     placeholder,
     titleName,
     defaultValue,
     wrongText,
-    onChange,
     maxLength,
     width,
     dataApi,
@@ -35,7 +27,8 @@ const CascadeSelect = React.forwardRef((props, ref) => {
     max,
   } = props;
 
-  const [selectValue, setSelectVlue] = useState(value); //
+  const [selectValue, setSelectVlue] = useState(''); // label
+  const [selectValueId, setSelectVlueId] = useState(''); // value
 
   const [selectData, setSelectData] = useState([]); // 数据源
   const [indexOne, setIndexOne] = useState(-100); // 第一级索引
@@ -47,16 +40,10 @@ const CascadeSelect = React.forwardRef((props, ref) => {
     function getSelectData() {
       if (dataApi) {
         if (typeof dataApi === 'string') {
-          axios
-            .get(dataApi)
-            .then(res => {
-              const { data } = res;
-              setSelectData(data);
-            })
-            .catch(erro => {
-              // eslint-disable-next-line no-console
-              console.error(erro);
-            });
+          axios.get(dataApi).then(res => {
+            const { data } = res;
+            setSelectData(data);
+          });
         } else {
           setSelectData(dataApi);
         }
@@ -66,18 +53,20 @@ const CascadeSelect = React.forwardRef((props, ref) => {
   );
 
   useEffect(() => {
-    console.log(selectArr);
-  }, [selectArr]);
-
-  useEffect(() => {
     document.body.addEventListener('click', e => {
       if (e.target && e.target.matches('li, button')) {
         return;
       }
       setIsShow(false);
     });
-    setSelectVlue(value);
-  }, [value]);
+    if (defaultValue && defaultValue.length === 2) {
+      setSelectVlue(defaultValue[0].join(' | '));
+      setSelectVlueId(defaultValue[1]);
+    } else {
+      setSelectVlue(defaultValue);
+    }
+  }, defaultValue);
+
   function maxFun(item) {
     const arr = [...selectArr];
     if (arr[0].length < max) {
@@ -86,10 +75,10 @@ const CascadeSelect = React.forwardRef((props, ref) => {
         arr[1].push(item.value);
         setSelectArr(arr);
       } else {
-        alert('已添加');
+        Toast.info('已添加');
       }
     } else {
-      alert(`最多选${max}项`);
+      Toast.info(`最多选${max}项`);
     }
   }
   const firstClick = (e, item, index) => {
@@ -104,7 +93,9 @@ const CascadeSelect = React.forwardRef((props, ref) => {
     } else {
       valueObj = item.value;
       setIsShow(false);
-      onChange(labelObj, valueObj);
+      // onChange(labelObj, valueObj);
+      setSelectVlue(labelObj);
+      setSelectVlueId(valueObj);
     }
   };
   const secondClick = (e, item, index) => {
@@ -118,7 +109,9 @@ const CascadeSelect = React.forwardRef((props, ref) => {
     } else {
       setIsShow(false);
       valueObj = item.value;
-      onChange(labelObj, valueObj);
+      // onChange(labelObj, valueObj);
+      setSelectVlue(labelObj[labelObj.length - 1]);
+      setSelectVlueId(valueObj);
       setIndexOne(-100);
     }
   };
@@ -130,7 +123,10 @@ const CascadeSelect = React.forwardRef((props, ref) => {
     if (max) {
       maxFun(item);
     } else {
-      onChange(labelObj, valueObj);
+      // onChange(labelObj, valueObj);
+      setSelectVlue(labelObj.join(' | '));
+      setSelectVlueId(valueObj);
+      // console.log(typeof valueObj);
       setIsShow(false);
       setIndexTwo(-100);
       setIndexOne(-100);
@@ -142,6 +138,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
       {/* <span onClick={() => setIsShow(false)}>111</span> */}
       {/* <Label titleName="选择的名字" deleteBtnClick={() => alert(1)} hasDelete={1} /> */}
       {/* <input type="hidden" value={col} /> */}
+      {/* {selectValue} - {selectValueId} - {selectArr} */}
       <p className="title" style={{ display: titleName ? 'block' : 'none' }}>
         {titleName}
       </p>
@@ -155,6 +152,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
             labelObj = [];
           }}
         >
+          <input type="hidden" value={selectValueId} name={name} ref={ref} />
           <input
             disabled="disabled"
             defaultValue={defaultValue}
@@ -164,8 +162,6 @@ const CascadeSelect = React.forwardRef((props, ref) => {
             maxLength={maxLength}
             readOnly="readOnly"
             value={selectValue}
-            ref={ref}
-            name={name}
           />
           <span
             className={`iconfont arrow ${
@@ -197,7 +193,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
                           const i = data[0].indexOf(item);
                           data[0].splice(i, 1);
                           data[1].splice(i, 1);
-                          setSelectArr([...data]);
+                          selectArr(data);
                         }}
                         hasDelete
                       />
@@ -210,7 +206,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
                 {selectData.map((item, index) => (
                   <li
                     className={indexOne === index ? 'actived' : ''}
-                    key={`${index}${item.value}`}
+                    key={`10086${item.value}`}
                     onClick={e => {
                       firstClick(e, item, index);
                     }}
@@ -228,7 +224,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
                     selectData[Number(indexOne)].children.map((item, index) => (
                       <li
                         className={indexTwo === index ? 'actived' : ''}
-                        key={`${index}${item.value}`}
+                        key={`10087${item.value}`}
                         onClick={e => {
                           secondClick(e, item, index);
                         }}
@@ -247,7 +243,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
                       Number(indexTwo)
                     ].children.map((item, index) => (
                       <li
-                        key={`${index}${item.value}`}
+                        key={`10088${item.value}`}
                         onClick={e => {
                           thirdClick(e, item, index);
                         }}
@@ -265,10 +261,17 @@ const CascadeSelect = React.forwardRef((props, ref) => {
                 <Button
                   hollow
                   titleName="保存"
-                  onClick={() => {
-                    selectArr[0].length === 0
-                      ? alert('至少选择一项')
-                      : onChange(selectArr[0], selectArr[1]);
+                  onClick={e => {
+                    if (selectArr[0].length === 0) {
+                      e.stopPropagation();
+                      // alert('至少选择一项');
+                      Toast.info('至少选择一项');
+                    } else {
+                      setSelectVlue(selectArr[0].join(' | '));
+                      setSelectVlueId(selectArr[1]);
+                    }
+                    // ? alert('至少选择一项')
+                    // : onChange(selectArr[0], selectArr[1]);
                   }}
                 />
               </div>
@@ -290,20 +293,20 @@ CascadeSelect.defaultProps = {
   type: 'text',
   col: 1,
   placeholder: '请选择',
-  onChange: () => {},
-  cancelBtnClick: () => {},
-  saveBtnClick: () => {},
-  maxOnChange: () => {},
+  // onChange: () => {},
+  // cancelBtnClick: () => {},
+  // saveBtnClick: () => {},
+  // maxOnChange: () => {},
 };
 
 CascadeSelect.propTypes = {
   type: PropTypes.string,
-  value: PropTypes.node,
+  // value: PropTypes.node,
   placeholder: PropTypes.string,
   titleName: PropTypes.string,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   wrongText: PropTypes.string,
-  onChange: PropTypes.func,
+  // onChange: PropTypes.func,
   maxLength: PropTypes.number,
   width: PropTypes.number,
   dataApi: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),

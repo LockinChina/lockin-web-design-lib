@@ -62,7 +62,7 @@ Image.defaultProps = {
   width: 120,
   height: 120,
   radius: 0,
-  link: '#',
+  link: 'javascipt:;',
   backgroundIm: baseHeaderBg,
   fileOnChange: () => {},
 };

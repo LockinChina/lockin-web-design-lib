@@ -1,10 +1,7 @@
-/* eslint-disable no-restricted-globals */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable no-plusplus */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
+/* eslint-disable no-plusplus */
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import DatePickerContainer from './datePickerStyle';
 
 let setYear = '';
@@ -28,20 +25,19 @@ function monthDays(date) {
 monthDays('2019-10-01');
 const DatePicker = React.forwardRef((props, ref) => {
   const {
-    value,
     placeholder,
     titleName,
     defaultValue,
     wrongText,
-    onChange,
     maxLength,
     width,
     insideWidth,
     invalid,
     hasDay,
     name,
+    type,
   } = props;
-  const [selectValue, setSelectVlue] = useState(value); //
+  const [selectValue, setSelectVlue] = useState(''); //
   const [yearIndex, setYearIndex] = useState(-100);
   const [monthIndex, setMonthIndex] = useState(-100);
   const [isShow, setIsShow] = useState(false); // 显示隐藏
@@ -53,8 +49,8 @@ const DatePicker = React.forwardRef((props, ref) => {
       }
       setIsShow(false);
     });
-    setSelectVlue(value);
-  }, [value]);
+    setSelectVlue(defaultValue);
+  }, [defaultValue]);
 
   const year = () => {
     let years = new Date().getFullYear();
@@ -73,12 +69,12 @@ const DatePicker = React.forwardRef((props, ref) => {
     }
     return (
       <ul className="scrollbar">
-        {props.type && props.type !== 'gTime' && (
-          <li onClick={() => onChange([props.type])}>{props.type}</li>
+        {type && type !== 'gTime' && (
+          <li onClick={() => setSelectVlue(type)}>{type}</li>
         )}
         {arr.map((item, index) => (
           <li
-            key={index}
+            key={item}
             className={index === yearIndex ? 'actived' : ''}
             onClick={e => {
               e.stopPropagation();
@@ -110,7 +106,7 @@ const DatePicker = React.forwardRef((props, ref) => {
       <ul className="scrollbar">
         {arr.map((item, index) => (
           <li
-            key={index}
+            key={item}
             className={
               monthIndex === index && yearIndex !== -100 ? 'actived' : ''
             }
@@ -121,8 +117,9 @@ const DatePicker = React.forwardRef((props, ref) => {
                 setMonth = String(item);
                 setMonthIndex(index);
                 if (!hasDay) {
-                  onChange([setYear, setMonth]);
+                  // onChange([setYear, setMonth]);
                   setIsShow(false);
+                  setSelectVlue(`${setYear}-${setMonth}`);
                 }
               }
             }}
@@ -138,6 +135,7 @@ const DatePicker = React.forwardRef((props, ref) => {
     let days = 30;
     const d = monthDays(`${setYear}-${setMonth}`);
     let arr = [];
+    // eslint-disable-next-line no-restricted-globals
     if (!isNaN(d)) {
       days = d;
     }
@@ -146,7 +144,7 @@ const DatePicker = React.forwardRef((props, ref) => {
     }
     return (
       <ul className="scrollbar">
-        {arr.map((item, index) => (
+        {arr.map(item => (
           <li
             key={item}
             style={{ color: monthIndex === -100 ? '#ccc' : '' }}
@@ -154,8 +152,9 @@ const DatePicker = React.forwardRef((props, ref) => {
               e.stopPropagation();
               if (yearIndex !== -100 && monthIndex !== -100) {
                 setDay = String(item);
-                onChange([setYear, setMonth, setDay]);
+                // onChange([setYear, setMonth, setDay]);
                 setIsShow(false);
+                setSelectVlue(`${setYear}-${setMonth}-${setDay}`);
               }
             }}
           >
@@ -176,7 +175,7 @@ const DatePicker = React.forwardRef((props, ref) => {
           className={`inputBody fadeAnim ${isShow ? 'openActive ' : ''}${
             wrongText ? 'textWrong ' : ''
           }${invalid ? 'invalid ' : ''}`}
-          onClick={e => {
+          onClick={() => {
             if (!invalid) {
               setIsShow(!isShow);
               setYear = [];
@@ -228,10 +227,24 @@ const DatePicker = React.forwardRef((props, ref) => {
 
 export default DatePicker;
 
-DatePickerContainer.defaultProps = {
-  type: 'text',
-  col: 1,
-  placeholder: '请选择',
-  onChange: () => {},
-  rightIconOnClick: () => {},
+// DatePicker.defaultProps = {
+//   type: 'text',
+//   col: 1,
+//   placeholder: '请选择',
+//   onChange: () => { },
+//   rightIconOnClick: () => { },
+// };
+
+DatePicker.propTypes = {
+  placeholder: PropTypes.string,
+  titleName: PropTypes.string,
+  defaultValue: PropTypes.string,
+  wrongText: PropTypes.string,
+  maxLength: PropTypes.number,
+  width: PropTypes.number,
+  insideWidth: PropTypes.number,
+  invalid: PropTypes.bool,
+  hasDay: PropTypes.bool,
+  name: PropTypes.string,
+  type: PropTypes.string,
 };

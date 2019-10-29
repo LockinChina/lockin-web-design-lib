@@ -1,16 +1,27 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import Button from '../../lib/Button/Button';
+// import Toast from '../../lib/Toast/Toast';
+import '../../static/css/animated.css';
+import Toast from '../../lib/Toast/Toast';
 
 import { GrayBox, Ptit, Space, BtnSpace, Table } from '../../globalDemoStyle';
 
-export default function ButtonDemo(props) {
+export default function ButtonDemo() {
   return (
     <div>
+      {/* <Toast msg="201" count={3} /> */}
       <GrayBox>
         <Ptit>按钮: </Ptit>
         <Space />
+        {/* <InfoBox /> */}
         <BtnSpace>
-          <Button titleName="默认样式" />
+          <Button
+            titleName="默认样式"
+            onClick={() => {
+              Toast.info('xxx');
+            }}
+          />
           <Button titleName="样式-solid" solid />
           <Button
             titleName="自定义圆角"

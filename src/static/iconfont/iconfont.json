@@ -13,6 +13,13 @@
       "unicode_decimal": 59043
     },
     {
+      "icon_id": "982641",
+      "name": "下",
+      "font_class": "xia-copy",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
       "icon_id": "1053358",
       "name": "公司 (1)",
       "font_class": "gongsi1",
@@ -39,6 +46,13 @@
       "font_class": "fenxiang",
       "unicode": "e603",
       "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "4443834",
+      "name": "无数据",
+      "font_class": "wushuju",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
     },
     {
       "icon_id": "5133184",
@@ -291,6 +305,27 @@
       "font_class": "shouhui",
       "unicode": "e690",
       "unicode_decimal": 59024
+    },
+    {
+      "icon_id": "11110158",
+      "name": "失败",
+      "font_class": "shibai",
+      "unicode": "e691",
+      "unicode_decimal": 59025
+    },
+    {
+      "icon_id": "11110191",
+      "name": "成功",
+      "font_class": "chenggong",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    },
+    {
+      "icon_id": "11442257",
+      "name": "jianli-2",
+      "font_class": "resumeF",
+      "unicode": "e693",
+      "unicode_decimal": 59027
     }
   ]
 }

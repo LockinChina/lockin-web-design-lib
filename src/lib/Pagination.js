@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const PageList = styled.ul`
   display: flex;
-  flex-direction:'row',
+  flex-direction: row;
   padding-left: 0;
   list-style: none;
   border-radius: 0.45rem;
@@ -34,17 +34,18 @@ const PageItem = styled.li`
 `;
 
 const PageLink = styled.a`
-  border-radius: 1rem;
   position: relative;
   display: block;
-  padding: 0.5rem 0.75rem;
-  margin-left: -1px;
-  line-height: 1.25;
-  color: #007bff;
-  border: 1px solid #dee2e6;
-  color: ${props => (props.selected ? '#fff' : '#007bff')};
-  background-color: ${props => (props.selected ? '#007bff' : '#fff')};
-  border-color: ${props => (props.selected ? '#007bff' : 'palevioletred')};
+  height: 30px;
+  line-height: 28px;
+  padding: 0 10px;
+  border-radius: 2px;
+  color: #979797;
+  margin-left: 10px;
+  border: 1px solid
+    ${props => (props.selected ? '#000099' : 'rgba(151,151,151,1)')};
+  color: ${props => (props.selected ? '#fff' : '#979797')};
+  background-color: ${props => (props.selected ? '#000099' : '#fff')};
 `;
 
 const Pagination = ({ pageSize, total, paginate, currentPage, lang }) => {
@@ -66,6 +67,9 @@ const Pagination = ({ pageSize, total, paginate, currentPage, lang }) => {
       setHasFirst(false);
     } else {
       setHasPrevious(true);
+    }
+    if (currentPage > 3 && pageNumbers.length > 5) {
+      setHasFirst(true);
     }
     if (pageNumbers.length === 1) {
       setHasFirst(false);
@@ -104,74 +108,76 @@ const Pagination = ({ pageSize, total, paginate, currentPage, lang }) => {
 
   return (
     <nav>
-      <PageList>
-        {/* 首页显示逻辑 */}
-        {hasFirst ? (
-          <PageItem key="firstpg">
-            <PageLink onClick={() => paginate(1)} href="javascript:void(0)">
-              {lang === 'en' ? 'First' : '首页'}
-            </PageLink>
-          </PageItem>
-        ) : null}
+      {total !== 0 && (
+        <PageList>
+          {/* 首页显示逻辑 */}
+          {hasFirst ? (
+            <PageItem key="firstpg">
+              <PageLink onClick={() => paginate(1)} href="javascript:void(0)">
+                {lang === 'en' ? 'First' : '首页'}
+              </PageLink>
+            </PageItem>
+          ) : null}
 
-        {/* 上一页显示逻辑 */}
-        {hasPrevious ? (
-          <PageItem key="prevpg">
-            <PageLink
-              onClick={() => paginate(currentPage - 1)}
-              href="javascript:void(0)"
-            >
-              {lang === 'en' ? 'Previous' : '上一页'}
-            </PageLink>
-          </PageItem>
-        ) : null}
-        {/* 显示更多 */}
-        {currentPage > 3 && pageNumbers.length > 5 ? (
-          <PageItem key="morepgm">
-            <PageLink href="javascript:void(0)">...</PageLink>
-          </PageItem>
-        ) : null}
-        {/* ==========================================> */}
-        {showPageArray.map(number => (
-          <PageItem key={number}>
-            <PageLink
-              selected={number === currentPage}
-              onClick={() => paginate(number)}
-              href="javascript:void(0)"
-            >
-              {number}
-            </PageLink>
-          </PageItem>
-        ))}
-        {/* =====================显示更多...=====================> */}
-        {showPageArray[showPageArray.length - 1] < pageNumbers[pageNumbers.length - 1] ? (
-          <PageItem key="morepgp">
-            <PageLink href="javascript:void(0)">...</PageLink>
-          </PageItem>
-        ) : null}
-        {/* 下一页显示逻辑 */}
-        {hasNext ? (
-          <PageItem key="nextpg">
-            <PageLink
-              onClick={() => paginate(currentPage + 1)}
-              href="javascript:void(0)"
-            >
-              {lang === 'en' ? 'Next' : '下一页'}
-            </PageLink>
-          </PageItem>
-        ) : null}
-        {/* 尾页显示逻辑 */}
-        {hasLast ? (
-          <PageItem key="endpg">
-            <PageLink
-              onClick={() => paginate(pageNumbers.length)}
-              href="javascript:void(0)"
-            >
-              {lang === 'en' ? 'End' : '尾页'}
-            </PageLink>
-          </PageItem>
-        ) : null}
-      </PageList>
+          {/* 上一页显示逻辑 */}
+          {hasPrevious ? (
+            <PageItem key="prevpg">
+              <PageLink
+                onClick={() => paginate(currentPage - 1)}
+                href="javascript:void(0)"
+              >
+                {lang === 'en' ? 'Previous' : '上一页'}
+              </PageLink>
+            </PageItem>
+          ) : null}
+          {/* 显示更多 */}
+          {currentPage > 3 && pageNumbers.length > 5 ? (
+            <PageItem key="morepgm">
+              <PageLink href="javascript:void(0)">...</PageLink>
+            </PageItem>
+          ) : null}
+          {/* ==========================================> */}
+          {showPageArray.map(number => (
+            <PageItem key={number}>
+              <PageLink
+                selected={number === currentPage}
+                onClick={() => paginate(number)}
+                href="javascript:void(0)"
+              >
+                {number}
+              </PageLink>
+            </PageItem>
+          ))}
+          {/* =====================显示更多...=====================> */}
+          {showPageArray[4] < pageNumbers[pageNumbers.length - 1] ? (
+            <PageItem key="morepgp">
+              <PageLink href="javascript:void(0)">...</PageLink>
+            </PageItem>
+          ) : null}
+          {/* 下一页显示逻辑 */}
+          {hasNext ? (
+            <PageItem key="nextpg">
+              <PageLink
+                onClick={() => paginate(currentPage + 1)}
+                href="javascript:void(0)"
+              >
+                {lang === 'en' ? 'Next' : '下一页'}
+              </PageLink>
+            </PageItem>
+          ) : null}
+          {/* 尾页显示逻辑 */}
+          {hasLast ? (
+            <PageItem key="endpg">
+              <PageLink
+                onClick={() => paginate(pageNumbers.length)}
+                href="javascript:void(0)"
+              >
+                {lang === 'en' ? 'End' : '尾页'}
+              </PageLink>
+            </PageItem>
+          ) : null}
+        </PageList>
+      )}
     </nav>
   );
 };
