@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GrayBox, Ptit, Space, Table } from '../../globalDemoStyle';
 import Slider from '../../lib/Slider/Slider';
 export default function SkillSliderDemo() {
-  const [n, setN] = useState(0);
+  // const [n, setN] = useState(0);
   return (
     <div>
       <GrayBox style={{ background: 'white' }}>

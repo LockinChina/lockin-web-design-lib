@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/prop-types */
 /* eslint-disable func-names */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import TextAreaContainer from './textAreaStyle';
@@ -11,7 +11,7 @@ import TextAreaContainer from './textAreaStyle';
 const TextArea = React.forwardRef(function(props, ref) {
   const [blurState, setBlurState] = useState(0);
   const {
-    value,
+    // value,
     placeholder,
     titleName,
     onChange,
@@ -31,6 +31,10 @@ const TextArea = React.forwardRef(function(props, ref) {
     name,
     readOnly,
   } = props;
+  const [sValue, setValue] = useState('');
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
 
   return (
     <TextAreaContainer style={{ width: `${width}px` }}>
@@ -46,11 +50,12 @@ const TextArea = React.forwardRef(function(props, ref) {
           className={`iconfont ${leftIconName || ''}`}
           style={{ color: `${leftIconColor}`, fontSize: `${leftIconSize}px ` }}
         />
+        <input type="hidden" name={name} ref={ref} value={sValue} />
         <textarea
-          name={name}
-          ref={ref}
+          // name={name}
+          // ref={ref}
           disabled={readOnly ? 'disabled' : ''}
-          defaultValue={defaultValue}
+          // defaultValue={defaultValue}
           placeholder={placeholder}
           className="text "
           maxLength={maxLength}
@@ -58,8 +63,9 @@ const TextArea = React.forwardRef(function(props, ref) {
           onChange={e => {
             const val = e.target.value;
             onChange(val);
+            setValue(val);
           }}
-          value={value}
+          value={sValue}
           rows={rows}
           onBlur={() => setBlurState(0)}
           onFocus={() => setBlurState(1)}
@@ -98,7 +104,7 @@ TextArea.propTypes = {
   maxLength: PropTypes.number,
   readOnly: PropTypes.bool,
   onChange: PropTypes.func,
-  value: PropTypes.string,
+  // value: PropTypes.string,
   rows: PropTypes.number,
   wrongText: PropTypes.string,
 };

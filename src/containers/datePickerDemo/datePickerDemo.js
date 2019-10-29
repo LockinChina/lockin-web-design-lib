@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+/* eslint-disable no-constant-condition */
+/* eslint-disable react/no-unescaped-entities */
+import React from 'react';
 import styled from 'styled-components';
 
 import DatePicker from '../../lib/DatePicker/DatePicker';

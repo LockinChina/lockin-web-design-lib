@@ -18,12 +18,12 @@ const defaultBtn = css`
   :active {
     background: rgba(240, 246, 255, 1);
   }
-  span {
-    font-family: 'iconfont', 'lockinu';
-    color: green;
-    vertical-align: middle;
-    margin-right: 4px;
-  }
+  //span {
+  //  font-family: 'iconfont', 'lockinu';
+  //  color: #fff;
+  //  vertical-align: middle;
+  //  margin-right: 4px;
+  //}
 `;
 
 const btnSolid = css`

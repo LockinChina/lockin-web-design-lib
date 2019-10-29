@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -9,6 +10,7 @@ import Toast from '../Toast/Toast';
 let labelObj = [];
 let valueObj = [];
 
+// eslint-disable-next-line no-unused-vars
 const CascadeSelect = React.forwardRef((props, ref) => {
   const {
     placeholder,
@@ -22,7 +24,10 @@ const CascadeSelect = React.forwardRef((props, ref) => {
     onChange,
     insideWidth,
     invalid,
-    name,
+    nameId,
+    refId,
+    nameValue,
+    refValue,
     type,
     max,
   } = props;
@@ -110,7 +115,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
     } else {
       setIsShow(false);
       valueObj = item.value;
-      // onChange(labelObj, valueObj);
+      onChange(labelObj, valueObj);
       setSelectVlue(labelObj[labelObj.length - 1]);
       setSelectVlueId(valueObj);
       setIndexOne(-100);
@@ -124,7 +129,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
     if (max) {
       maxFun(item);
     } else {
-      // onChange(labelObj, valueObj);
+      onChange(labelObj, valueObj);
       setSelectVlue(labelObj.join(' | '));
       setSelectVlueId(valueObj);
       // console.log(typeof valueObj);
@@ -155,7 +160,18 @@ const CascadeSelect = React.forwardRef((props, ref) => {
             labelObj = [];
           }}
         >
-          <input type="hidden" value={selectValueId} name={name} ref={ref} />
+          <input
+            type="hidden"
+            value={selectValueId}
+            name={nameId}
+            ref={refId}
+          />
+          <input
+            type="hidden"
+            value={selectValue}
+            name={nameValue}
+            ref={refValue}
+          />
           <input
             disabled="disabled"
             defaultValue={defaultValue}
@@ -271,7 +287,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
                       Toast.info('至少选择一项');
                     } else {
                       setSelectVlue(selectArr[0].join(' | '));
-                      setSelectVlueId(selectArr[1]);
+                      setSelectVlueId(selectArr[1].join('|'));
                     }
                     // ? alert('至少选择一项')
                     // : onChange(selectArr[0], selectArr[1]);
@@ -316,7 +332,7 @@ CascadeSelect.propTypes = {
   col: PropTypes.number,
   insideWidth: PropTypes.number,
   invalid: PropTypes.bool,
-  name: PropTypes.node,
+  // name: PropTypes.node,
   max: PropTypes.number,
 };
 
