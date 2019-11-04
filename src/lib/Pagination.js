@@ -37,15 +37,20 @@ const PageLink = styled.a`
   position: relative;
   display: block;
   height: 30px;
-  line-height: 28px;
-  padding: 0 10px;
-  border-radius: 2px;
+  line-height: 30px;
+  padding: 0 11px;
+  border-radius: 3px;
   color: #979797;
   margin-left: 10px;
+  font-size: 12px;
   border: 1px solid
     ${props => (props.selected ? '#000099' : 'rgba(151,151,151,1)')};
   color: ${props => (props.selected ? '#fff' : '#979797')};
   background-color: ${props => (props.selected ? '#000099' : '#fff')};
+  &:hover {
+    color: ${props => (props.selected ? '#fff' : '#000099')};
+    border-color: #000099;
+  }
 `;
 
 const Pagination = ({ pageSize, total, paginate, currentPage, lang }) => {

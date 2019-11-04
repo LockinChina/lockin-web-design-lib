@@ -106,11 +106,12 @@ const CascadeSelectContainer = styled.div`
       li {
         font-size: 12px;
         font-weight: 400;
-        color: rgba(0, 0, 153, 1);
+        color: #333;
         line-height: 17px;
         padding: 10px 14px;
         &.actived,
         &.actived:hover {
+          color: rgba(0, 0, 153, 1);
           background: #e7f1ff;
         }
         :hover {

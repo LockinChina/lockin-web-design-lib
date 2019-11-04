@@ -23,12 +23,25 @@ function Image(props) {
     borderColor,
     backgroundColor,
   } = props;
+  const linkFuc = () => {
+    if (!upload) {
+      if (link) {
+        if (blank) {
+          window.open(link);
+        } else {
+          window.location = `${link}`;
+        }
+      } else {
+        return null;
+      }
+    }
+    return null;
+  };
   return (
     <ImageContainer className="">
       <div
-        onClick={() =>
-          !upload && (blank ? window.open(link) : (window.location = `${link}`))
-        }
+        onClick={() => linkFuc()}
+        // onClick={() => {}}
         className="im"
         style={{
           borderRadius: `${radius}px`,
@@ -37,6 +50,7 @@ function Image(props) {
           backgroundImage: backgroundIm === 0 ? 'none' : `url(${backgroundIm})`,
           border: borderColor ? `1px solid ${borderColor}` : 'none',
           backgroundColor: backgroundColor || 'none',
+          cursor: link ? 'pointer' : 'default',
         }}
       >
         <img src={imUrl} alt={imAlt} radius={radius} />
@@ -62,7 +76,7 @@ Image.defaultProps = {
   width: 120,
   height: 120,
   radius: 0,
-  link: 'javascipt:;',
+  // link: 'javascipt:;',
   backgroundIm: baseHeaderBg,
   fileOnChange: () => {},
 };
@@ -73,7 +87,7 @@ Image.propTypes = {
   imAlt: PropTypes.string,
   radius: PropTypes.number,
   upload: PropTypes.bool,
-  backgroundIm: PropTypes.string,
+  backgroundIm: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   imUrl: PropTypes.string,
   blank: PropTypes.bool,
   link: PropTypes.string,

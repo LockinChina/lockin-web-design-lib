@@ -7,7 +7,8 @@ const StyleInput = styled.input`
   flex: 8;
   font-size: ${props => (props.big ? '16px' : '14px')};
   height: ${props => (props.big ? '40px' : '25px')};
-  background: rgba(255, 255, 255, 1);
+  background: ${props =>
+    props.inputBgColor ? `${props.inputBgColor}` : 'rgba(255, 255, 255, 1)'};
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
   border: none;
@@ -62,6 +63,7 @@ const LSearch = ({
   onClick,
   width,
   placeholder,
+  inputBgColor,
 }) => (
   <InputDiv width={width}>
     <StyleInput
@@ -69,6 +71,7 @@ const LSearch = ({
       value={value}
       placeholder={placeholder}
       big={big}
+      inputBgColor={inputBgColor}
       onChange={e => onChange && onChange(e.target.value)}
     />
     <ButtonStyle big={big} onClick={() => onClick()}>
@@ -86,6 +89,7 @@ LSearch.propTypes = {
   btnText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   onClick: PropTypes.func,
   width: PropTypes.number,
+  inputBgColor: PropTypes.string,
 };
 
 export default LSearch;

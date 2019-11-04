@@ -14,6 +14,19 @@ const TabDiv = styled.div`
   &:hover {
     color: rgba(0, 0, 153, 1);
   }
+  .nav-tip {
+    position: absolute;
+    line-height: 18px;
+    background: rgba(249, 85, 120, 1);
+    border-radius: 11px;
+    color: rgba(255, 255, 255, 1);
+    display: block;
+    right: -20px;
+    font-size: 12px;
+    padding: 0 8px;
+    cursor: pointer;
+    top: 0;
+  }
   ${props =>
     props.isHaveHover &&
     css`
@@ -78,6 +91,7 @@ const LTab = ({
         isSelectAllBorder={isSelectAllBorder}
       >
         {item.name}
+        {item.tip && <span className="nav-tip">{item.tip}</span>}
       </TabDiv>
     ))}
   </div>
@@ -85,7 +99,7 @@ const LTab = ({
 
 LTab.propTypes = {
   data: PropTypes.array,
-  selectIndex: PropTypes.number,
+  selectIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onClick: PropTypes.func,
   isHaveHover: PropTypes.bool,
   isHomeWidth: PropTypes.bool,
