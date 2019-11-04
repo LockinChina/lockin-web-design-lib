@@ -99,7 +99,7 @@ const LTab = ({
 
 LTab.propTypes = {
   data: PropTypes.array,
-  selectIndex: PropTypes.number,
+  selectIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onClick: PropTypes.func,
   isHaveHover: PropTypes.bool,
   isHomeWidth: PropTypes.bool,
