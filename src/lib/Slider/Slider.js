@@ -18,48 +18,16 @@ const skillArr = [
   { name: '精通', text: '可以使用该技能，完成高级／复杂的工作' },
   { name: '神通', text: '可以培训其他人该技能' },
 ];
-// const skillArrEn = [
-//   {
-//     name: 'Understand',
-//     text: 'Know the skill in detail, but can not apply it on your own',
-//   },
-//   { name: 'Know', text: 'Know the skill, but did not learn it in detail' },
-//   { name: 'Familiar', text: 'can apply the skill to work independently' },
-//   { name: 'Proficient', text: 'can apply the skill to finish complex works' },
-//   { name: 'Master', text: 'can train other people the skill' },
-// ];
-
-const setSkillText = value => {
-  if (value >= 0 && value <= 20) {
-    return [skillArr[0].name, skillArr[0].text];
-  }
-  if (value > 20 && value <= 40) {
-    return [skillArr[1].name, skillArr[1].text];
-  }
-  if (value > 40 && value <= 60) {
-    return [skillArr[2].name, skillArr[2].text];
-  }
-  if (value > 60 && value <= 80) {
-    return [skillArr[3].name, skillArr[3].text];
-  }
-
-  return [skillArr[4].name, skillArr[4].text];
-};
-
-const handle = props => {
-  const { value, dragging, index, ...restProps } = props;
-  return (
-    <Tooltip
-      prefixCls="rc-slider-tooltip"
-      overlay={`\v\v${setSkillText(value)[0]}\v\v`}
-      visible={dragging}
-      placement="top"
-      key={index}
-    >
-      <Handle {...restProps} />
-    </Tooltip>
-  );
-};
+const skillArrEn = [
+  {
+    name: 'Understand',
+    text: 'Know the skill in detail, but can not apply it on your own',
+  },
+  { name: 'Know', text: 'Know the skill, but did not learn it in detail' },
+  { name: 'Familiar', text: 'can apply the skill to work independently' },
+  { name: 'Proficient', text: 'can apply the skill to finish complex works' },
+  { name: 'Master', text: 'can train other people the skill' },
+];
 
 const Sliders = React.forwardRef((props, ref) => {
   const {
@@ -67,13 +35,68 @@ const Sliders = React.forwardRef((props, ref) => {
     max,
     onChange,
     disabled,
+    lang,
     name,
     defaultValue,
     width,
-    value,
+    // value,
     titleName,
   } = props;
-  const [skillNumber, setSkillNumber] = useState(value);
+  const isCn = lang === 'cn';
+  const setSkillText = value => {
+    if (value >= 0 && value <= 20) {
+      return [skillArr[0].name, skillArr[0].text];
+    }
+    if (value > 20 && value <= 40) {
+      return [skillArr[1].name, skillArr[1].text];
+    }
+    if (value > 40 && value <= 60) {
+      return [skillArr[2].name, skillArr[2].text];
+    }
+    if (value > 60 && value <= 80) {
+      return [skillArr[3].name, skillArr[3].text];
+    }
+    if (value > 80 && value <= 100) {
+      return [skillArr[4].name, skillArr[4].text];
+    }
+    return [skillArr[0].name, skillArr[0].text];
+  };
+  const setSkillTextEn = value => {
+    if (value >= 0 && value <= 20) {
+      return [skillArrEn[0].name, skillArrEn[0].text];
+    }
+    if (value > 20 && value <= 40) {
+      return [skillArrEn[1].name, skillArrEn[1].text];
+    }
+    if (value > 40 && value <= 60) {
+      return [skillArrEn[2].name, skillArrEn[2].text];
+    }
+    if (value > 60 && value <= 80) {
+      return [skillArrEn[3].name, skillArrEn[3].text];
+    }
+    if (value > 80 && value <= 100) {
+      return [skillArrEn[4].name, skillArrEn[4].text];
+    }
+    return [skillArrEn[0].name, skillArrEn[0].text];
+  };
+
+  const handle = props => {
+    const { value, dragging, index, ...restProps } = props;
+    return (
+      <Tooltip
+        prefixCls="rc-slider-tooltip"
+        overlay={`\v\v${
+          isCn ? setSkillText(value)[0] : setSkillTextEn(value)[0]
+        }\v\v`}
+        visible={dragging}
+        placement="top"
+        key={index}
+      >
+        <Handle {...restProps} />
+      </Tooltip>
+    );
+  };
+  const [skillNumber, setSkillNumber] = useState(defaultValue);
 
   useEffect(() => {
     setSkillNumber(defaultValue);
@@ -92,7 +115,7 @@ const Sliders = React.forwardRef((props, ref) => {
           {titleName}
         </p>
       )}
-      <input type="hidden" defaultValue={skillNumber} name={name} ref={ref} />
+      <input type="hidden" value={skillNumber} name={name} ref={ref} />
       <div className={disabled ? 'row' : ''}>
         <div className="skillslider" style={{ width }}>
           <Slider
@@ -100,7 +123,7 @@ const Sliders = React.forwardRef((props, ref) => {
             max={max}
             value={skillNumber}
             handle={handle}
-            railStyle={{ backgroundColor: '#f4f4f4', height: 10 }}
+            railStyle={{ height: 10 }}
             trackStyle={{ backgroundColor: '#013370', height: 10 }}
             handleStyle={{
               border: 'none',
@@ -132,9 +155,19 @@ const Sliders = React.forwardRef((props, ref) => {
         >
           {props.wrongText}
         </p>
-        <p className="skellP">
+        {isCn && (
+          <p className="skellP">
+            {setSkillText(skillNumber)[0]}: {setSkillText(skillNumber)[1]}
+          </p>
+        )}
+        {!isCn && (
+          <p className="skellP">
+            {setSkillTextEn(skillNumber)[0]}: {setSkillTextEn(skillNumber)[1]}
+          </p>
+        )}
+        {/* <p className="skellP">
           {setSkillText(skillNumber)[0]}: {setSkillText(skillNumber)[1]}
-        </p>
+        </p> */}
       </div>
     </SliderContainer>
   );
@@ -157,8 +190,9 @@ Sliders.propTypes = {
   disabled: PropTypes.bool,
   name: PropTypes.node,
   width: PropTypes.number,
-  value: PropTypes.number,
+  // value: PropTypes.number,
   titleName: PropTypes.string,
+  lang: PropTypes.string,
 };
 
 export default Sliders;

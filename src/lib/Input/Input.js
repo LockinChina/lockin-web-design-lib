@@ -119,6 +119,8 @@ Input.defaultProps = {
   rightIconOnClick: () => {},
   onFocus: () => {},
   onBlur: () => {},
+  rightIconMouseUpCapture: () => {},
+  rightIconMouseDownCapture: () => {},
 };
 
 Input.propTypes = {

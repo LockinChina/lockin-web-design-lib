@@ -30,6 +30,8 @@ const CascadeSelect = React.forwardRef((props, ref) => {
     refValue,
     type,
     max,
+    lang,
+    systemLang,
   } = props;
 
   const [selectValue, setSelectVlue] = useState(''); // label
@@ -40,7 +42,8 @@ const CascadeSelect = React.forwardRef((props, ref) => {
   const [indexTwo, setIndexTwo] = useState(-100); // 第二级索引
   const [isShow, setIsShow] = useState(false); // 显示隐藏
   const [selectArr, setSelectArr] = useState([[], []]); // 选N项存值
-
+  const isZh = systemLang === 'zh';
+  const isCn = lang === 'cn';
   useEffect(
     function getSelectData() {
       if (dataApi) {
@@ -81,10 +84,10 @@ const CascadeSelect = React.forwardRef((props, ref) => {
         arr[1].push(item.value);
         setSelectArr(arr);
       } else {
-        Toast.info('已添加');
+        Toast.info(isZh ? '已添加' : 'Added');
       }
     } else {
-      Toast.info(`最多选${max}项`);
+      Toast.info(isZh ? `最多选${max}项` : `Select ${max} items at most`);
     }
   }
   const firstClick = (e, item, index) => {
@@ -142,6 +145,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
 
   return (
     <CascadeSelectContainer style={{ width: `${width}px` }}>
+      {/* {`${lang} ${systemLang}`} */}
       {/* <span onClick={() => setIsShow(false)}>111</span> */}
       {/* <Label titleName="选择的名字" deleteBtnClick={() => alert(1)} hasDelete={1} /> */}
       {/* <input type="hidden" value={col} /> */}
@@ -195,7 +199,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
           >
             {max && (
               <div className="maxSelectBox">
-                <p>最多选{max}项:</p>
+                <p>{isCn ? `最多选${max}项` : `Select ${max} items at most`}</p>
                 <div style={{ overflow: 'hidden' }}>
                   {selectArr &&
                     selectArr[0].map(item => (
@@ -275,19 +279,20 @@ const CascadeSelect = React.forwardRef((props, ref) => {
             </div>
             {max && (
               <div style={{ padding: '15px', textAlign: 'right' }}>
-                <Button titleName="取消" />
+                <Button titleName={isCn ? '取消' : 'Cancel'} />
                 &nbsp;&nbsp;&nbsp;
                 <Button
                   hollow
-                  titleName="保存"
+                  titleName={isCn ? '确定' : 'Confirm'}
                   onClick={e => {
                     if (selectArr[0].length === 0) {
                       e.stopPropagation();
                       // alert('至少选择一项');
-                      Toast.info('至少选择一项');
+                      Toast.info(isZh ? '至少选择一项' : 'Select at least one');
                     } else {
                       setSelectVlue(selectArr[0].join(' | '));
                       setSelectVlueId(selectArr[1].join('|'));
+                      onChange(selectArr[0], selectArr[1]);
                     }
                     // ? alert('至少选择一项')
                     // : onChange(selectArr[0], selectArr[1]);
@@ -334,6 +339,7 @@ CascadeSelect.propTypes = {
   invalid: PropTypes.bool,
   // name: PropTypes.node,
   max: PropTypes.number,
+  lang: PropTypes.string,
 };
 
 export default CascadeSelect;

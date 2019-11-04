@@ -25,6 +25,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
     name,
     type,
     max,
+    isUpload,
   } = props;
 
   const [selectValue, setSelectVlue] = useState(''); // label
@@ -66,7 +67,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
     } else {
       setSelectVlue(defaultValue);
     }
-  }, []);
+  }, [isUpload]);
 
   function maxFun(item) {
     const arr = [...selectArr];
@@ -318,6 +319,7 @@ CascadeSelect.propTypes = {
   invalid: PropTypes.bool,
   name: PropTypes.node,
   max: PropTypes.number,
+  isUpload: PropTypes.node,
 };
 
 export default CascadeSelect;

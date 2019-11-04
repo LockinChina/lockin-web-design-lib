@@ -145,6 +145,7 @@ SchoolSelect.defaultProps = {
   invalid: false,
   // onChange: () => { },
   // inputChange: () => { },
+
   api: `${process.env.API}/schoolSearch?s=`,
   emptyMessage: '暂无搜索结果，请更换搜索关键词。或直接在输入框中添加大学',
 };
