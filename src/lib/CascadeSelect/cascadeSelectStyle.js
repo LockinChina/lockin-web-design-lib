@@ -67,6 +67,7 @@ const CascadeSelectContainer = styled.div`
       background: none;
       border: none;
       cursor: pointer;
+      color: #444;
     }
     .select-box {
       background: #fff;

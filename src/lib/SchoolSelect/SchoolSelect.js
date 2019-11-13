@@ -1,3 +1,4 @@
+/* eslint-disable no-script-url */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -114,7 +115,7 @@ const SchoolSelect = React.forwardRef((props, ref) => {
                     return (
                       <li key={item.id}>
                         <a
-                          href="javascirpt:;"
+                          href="javascript:;"
                           onClick={() => {
                             setIsShow(false);
                             // onChange(item.schoolName, item.id);

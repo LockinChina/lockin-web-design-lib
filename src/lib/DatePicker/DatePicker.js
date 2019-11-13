@@ -187,7 +187,6 @@ const DatePicker = React.forwardRef((props, ref) => {
           }}
         >
           <input
-            disabled="disabled"
             defaultValue={defaultValue}
             placeholder={placeholder}
             className="text "

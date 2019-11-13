@@ -1,8 +1,5 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable func-names */
-/* eslint-disable prefer-const */
-/* eslint-disable prettier/prettier */
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const BackTopContainer = styled.button`
@@ -19,61 +16,57 @@ const BackTopContainer = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255,255,255,1);
-  box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.25);
-  :hover{
-    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.4);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
+  :hover {
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.4);
   }
-  :active{
+  :active {
     outline: none;
     border: none;
   }
-  span{
-    color: #4784F8;
+  span {
+    color: #4784f8;
     font-size: 26px;
   }
-`
+`;
 
-function BackTop (props) {
+function BackTop() {
   const [isShow, setIsShow] = useState(false);
   const handelScroll = () => {
-    let scroll = document.documentElement.scrollTop;
-    if(scroll > 200){
-      setIsShow(true)
+    const scroll = document.documentElement.scrollTop;
+    if (scroll > 200) {
+      setIsShow(true);
+    } else {
+      setIsShow(false);
     }
-    else{
-      setIsShow(false)
-    }
-  }
-  function goTo () {
-    let scrollToTop = window.setInterval(function() {
-      let pos = window.pageYOffset;
-      if ( pos > 0 ) {
-        window.scrollTo( 0, pos - 20 );
+  };
+  function goTo() {
+    const scrollToTop = window.setInterval(function() {
+      const pos = window.pageYOffset;
+      if (pos > 0) {
+        window.scrollTo(0, pos - 20);
       } else {
-        window.clearInterval( scrollToTop );
+        window.clearInterval(scrollToTop);
       }
     }, 2);
   }
-  useEffect (()=> {
-    window.addEventListener('scroll', ()=>{
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
       handelScroll();
-    })
-  }, [isShow]) 
+    });
+  }, [isShow]);
 
-  return (
-    isShow 
-      ?
-      <BackTopContainer
-        className="fadeAnim" onClick={()=> {
-          goTo();
-        }}>
-        <span className="icon icontop"></span>
-      </BackTopContainer>
-      :
-      null
-  )
-
+  return isShow ? (
+    <BackTopContainer
+      className="fadeAnim"
+      onClick={() => {
+        goTo();
+      }}
+    >
+      <span className="icon icontop" />
+    </BackTopContainer>
+  ) : null;
 }
 
 export default BackTop;

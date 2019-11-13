@@ -158,7 +158,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
         >
           <input type="hidden" value={selectValueId} name={name} ref={ref} />
           <input
-            disabled="disabled"
+            // disabled="disabled"
             defaultValue={defaultValue}
             placeholder={placeholder}
             className="text "

@@ -15,6 +15,7 @@ export default function SchoolSelectDemo() {
         <SchoolSelect
           titleName="xxx"
           // defaultValue={value}
+          api="https://lockinweb4api.lockinu.com/schoolSearch?s="
           defaultValue={value}
           // onChange={(name, id) => {
           //   setVlaue(name, id);
