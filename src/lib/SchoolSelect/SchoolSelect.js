@@ -37,7 +37,6 @@ const SchoolSelect = React.forwardRef((props, ref) => {
   }, [isUpload]);
 
   useEffect(() => {
-    // eslint-disable-next-line func-names
     document.onclick = () => {
       setIsShow(false);
     };
