@@ -42,7 +42,7 @@ const globalStyle = createGlobalStyle`
   .fadeAnim{transition:all 0.2s linear 0s;  -moz-transition:all 0.2s linear 0s;  -webkit-transition:all 0.2s linear 0s;}
   .animated-fast{-webkit-animation-duration:.2s;animation-duration:.2s;-webkit-animation-fill-mode:both;animation-fill-mode:both}
   @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translateY(-20px);-ms-transform:translateY(-20px);transform:translateY(-20px)}100%{opacity:1;-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0)}}.fadeInDown{-webkit-animation-name:fadeInDown;animation-name:fadeInDown}
-  .w{ width: 1000px; margin: 0 auto;}
+  .w{ max-width: 1000px; margin: 0 auto;}
   .m-t-20{ margin-top: 20px;}
   .color-75{ color: #777;}
   .f-size-12{ font-size: 12px;}

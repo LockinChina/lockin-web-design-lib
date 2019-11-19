@@ -29,8 +29,8 @@ const LoadingContainer = styled.div`
       background: url(${loading}) no-repeat;
       margin: 0 auto;
       background-size: 100%;
-      width: 50px;
-      height: 50px;
+      width: 30px;
+      height: 30px;
       overflow: hidden;
       display: block;
       animation: loading 2s linear infinite;
@@ -60,8 +60,8 @@ function Loading(props) {
           className="mask"
           style={{
             background: opacity
-              ? `rgba(0, 0, 0, ${opacity})`
-              : 'rgba(0, 0, 0, .2)',
+              ? `rgba(255, 255, 255, ${opacity})`
+              : 'rgba(255, 255, 255, .3)',
           }}
         />
       )}

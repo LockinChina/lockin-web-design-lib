@@ -24,7 +24,7 @@ export const Space = styled.div`
 `;
 
 export const Table = styled.table`
-  max-width: 1000px;
+  width: 100%;
   thead {
     background: #f7f7f7;
     td {

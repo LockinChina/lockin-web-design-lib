@@ -4,18 +4,30 @@ import CascadeSelectContainer from '../CascadeSelect/cascadeSelectStyle';
 const DatePickerContainer = styled(CascadeSelectContainer)`
   .select-box {
     background: green;
-    height: 162px;
+    height: 225px;
+    .closebox {
+      text-align: right;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 10px;
+      border-bottom: 1px solid rgba(213, 213, 213, 1);
+      .close {
+        font-size: 15px;
+        color: #000099;
+        border: none;
+        background: none;
+      }
+    }
     .rowbox {
       ul {
-        max-height: 162px;
+        max-height: 225px;
         overflow-y: auto;
         li {
           display: flex;
-          height: 36px;
+          height: 50px;
           justify-content: center;
           align-items: center;
-          font-size: 12px;
-          line-height: 17px;
+          font-size: 15px;
           padding: 0 0;
           color: #000;
         }

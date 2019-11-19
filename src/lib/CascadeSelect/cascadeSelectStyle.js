@@ -71,9 +71,10 @@ const CascadeSelectContainer = styled.div`
     }
     .select-box {
       background: #fff;
-      position: absolute;
+      position: fixed;
       z-index: 9;
-      top: 38px;
+      /* top: 38px; */
+      bottom: 100px;
       left: 0;
       width: 100%;
       border: 1px solid rgba(213, 213, 213, 1);

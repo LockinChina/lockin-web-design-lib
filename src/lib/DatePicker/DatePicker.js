@@ -44,7 +44,7 @@ const DatePicker = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     document.body.addEventListener('click', e => {
-      if (e.target && e.target.matches('li')) {
+      if (e.target && e.target.matches('li, .button')) {
         return;
       }
       setIsShow(false);
@@ -203,9 +203,14 @@ const DatePicker = React.forwardRef((props, ref) => {
             style={{ color: isShow ? '#005ED4' : '' }}
           />
           <div
-            className="select-box animated-fast fadeInDown"
+            className="select-box animated-fast fadeInUp"
             style={{ display: isShow ? 'block' : 'none' }}
           >
+            <div className="closebox">
+              <button className="close button" type="button">
+                关闭
+              </button>
+            </div>
             <div className="rowbox" style={{ width: `${insideWidth}px` }}>
               {year()}
               {month()}

@@ -6,7 +6,7 @@ const Input = styled.div`
   }
   .title {
     height: 20px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     color: rgba(51, 51, 51, 1);
     line-height: 20px;
@@ -18,7 +18,7 @@ const Input = styled.div`
     flex-direction: row;
     border: 1px solid #a0a0a0;
     background: #fff;
-    height: 36px;
+    height: 42px;
     border-radius: 2px;
     width: 100%;
     align-items: center;
@@ -53,9 +53,8 @@ const Input = styled.div`
     .text {
       flex: 1;
       box-sizing: border-box;
-      padding: 8px 10px;
-      line-height: 20px;
-      padding: 8px 10px;
+      padding: 10px 10px;
+      line-height: 22px;
       background: none;
       border: none;
     }

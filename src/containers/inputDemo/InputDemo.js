@@ -39,7 +39,7 @@ export default function InputDemo() {
         <Input
           titleName="带左侧图标 并自定义长度和边框颜色"
           defaultValue=""
-          width={400}
+          // width={400}
           placeholder="请输入微信号"
           leftIconName="iconwechat"
           leftIconColor="green"
@@ -86,7 +86,7 @@ export default function InputDemo() {
           readOnly
         />
       </GrayBox>
-      <Table className="w">
+      <Table className="w" style={{ display: 'none' }}>
         <thead>
           <tr>
             <td>属性</td>
