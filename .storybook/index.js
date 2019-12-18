@@ -26,6 +26,9 @@ import EmptyDemo from '../src/containers/emptyDemo/EmptyDemo'
 import BackTopDemo from '../src/containers/backTopDemo/BackTopDemo'
 import SchoolSelectDemo from '../src/containers/schoolSelectDemo/SchoolSelectDemo';
 import Pagination from '../src/containers/pagination';
+import Range from '../src/lib/Range';
+import LabelTeam from '../src/lib/LabelTeam';
+import {GrayBox} from "../src/globalDemoStyle";
 // storiesOf('button样式', module).add('button样式1', () =>
 //     <Button type={1} onClick={() => alert('1')}>按钮</Button>
 // ).add('button样式2', () =>
@@ -173,6 +176,13 @@ storiesOf('SkillSlider', module).add('SkillSliderDemo', () =>
 storiesOf('分页组件', module).add('paginatoin', () =>
     <div><Pagination /><GlobelStyle /></div>
 );
+storiesOf('Range', module).add('Range', () =>
+    <div style={{ marginLeft: 50 }}><Range titleName="掌握技能" lang="cn" defaultValue={[0]} /></div>
+);
+storiesOf('LabelTeam', module).add('LabelTeam', () =>
+    <div><LabelTeam selectIndex={1} listData={['1', '2', '3', '4', '5']} selectArray={[0]} multiple={false} onClick={(index) => alert(index)}/></div>
+);
+
 
 
 
