@@ -43,14 +43,6 @@ labels.propTypes = {
   selectIndex: PropTypes.num,
   selectArray: PropTypes.array,
   multiple: PropTypes.bool,
-  // initValue: PropTypes.number,
-  // onChange: PropTypes.func,
-  // disabled: PropTypes.bool,
-  // name: PropTypes.node,
-  // width: PropTypes.number,
-  // value: PropTypes.number,
-  // titleName: PropTypes.string,
-  // lang: PropTypes.string,
 };
 
 export default labels;
