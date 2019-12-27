@@ -66,12 +66,12 @@ const LCheckBox = ({ type = 'checkbox', checked, text, onChange }) => (
   >
     <input
       type={type}
-      id="checkLab"
+      id={text}
       checked={checked}
       onChange={() => onChange()}
     />
     <label
-      htmlFor="checkLab"
+      htmlFor={text}
       style={{ marginLeft: text ? 10 : '', cursor: 'pointer' }}
     >
       {text}
