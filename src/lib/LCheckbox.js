@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -21,7 +21,7 @@ const CheckboxDiv = styled.div`
     background: #fff;
     width: 100%;
     height: 100%;
-    background: url('${require('../static/images/icons_checkbox.png')}');
+    background: url('${require('../images/icons_checkbox.png')}');
   }
   input[type='checkbox']:checked::before {
     position: absolute;
@@ -29,7 +29,7 @@ const CheckboxDiv = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('${require('../static/images/icons_checkbox.png')}');
+    background: url('${require('../images/icons_checkbox.png')}');
     background-position: 0 -20px;
   }
 
@@ -63,6 +63,10 @@ const CheckboxDiv = styled.div`
 const LCheckBox = React.forwardRef((props, ref) => {
   const { type, checked, text, name, onChange } = props;
   const [isChecked, setChecked] = useState(checked);
+  useEffect(() => {
+    setChecked(checked);
+  }, [checked]);
+
   return (
     <CheckboxDiv
       style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
