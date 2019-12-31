@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -60,30 +60,44 @@ const CheckboxDiv = styled.div`
     border-radius: 50%;
   }
 `;
-const LCheckBox = ({ type = 'checkbox', checked, text, onChange }) => (
-  <CheckboxDiv
-    style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-  >
-    <input
-      type={type}
-      id={text}
-      checked={checked}
-      onChange={() => onChange()}
-    />
-    <label
-      htmlFor={text}
-      style={{ marginLeft: text ? 10 : '', cursor: 'pointer' }}
+const LCheckBox = React.forwardRef((props, ref) => {
+  const { type, checked, text, name, onChange } = props;
+  const [isChecked, setChecked] = useState(checked);
+  return (
+    <CheckboxDiv
+      style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
     >
-      {text}
-    </label>
-  </CheckboxDiv>
-);
+      <input
+        type={type}
+        id={text}
+        checked={isChecked}
+        onChange={() => {
+          onChange();
+          setChecked(!isChecked);
+        }}
+        ref={ref}
+        name={name}
+      />
+      <label
+        htmlFor={text}
+        style={{ marginLeft: text ? 10 : '', cursor: 'pointer' }}
+      >
+        {text}
+      </label>
+    </CheckboxDiv>
+  );
+});
+LCheckBox.defaultProps = {
+  onChange: () => {},
+  type: 'checkbox',
+};
 
 LCheckBox.propTypes = {
   type: PropTypes.string,
   checked: PropTypes.bool,
   text: PropTypes.string,
   onChange: PropTypes.func,
+  name: PropTypes.node,
 };
 
 export default LCheckBox;
