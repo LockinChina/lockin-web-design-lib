@@ -21,7 +21,7 @@ const CheckboxDiv = styled.div`
     background: #fff;
     width: 100%;
     height: 100%;
-    background: url('${require('../images/icons_checkbox.png')}');
+    background: url('${require('../static/images/icons_checkbox.png')}');
   }
   input[type='checkbox']:checked::before {
     position: absolute;
@@ -29,7 +29,7 @@ const CheckboxDiv = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('${require('../images/icons_checkbox.png')}');
+    background: url('${require('../static/images/icons_checkbox.png')}');
     background-position: 0 -20px;
   }
 
