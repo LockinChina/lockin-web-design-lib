@@ -61,7 +61,7 @@ const CheckboxDiv = styled.div`
   }
 `;
 const LCheckBox = React.forwardRef((props, ref) => {
-  const { type, checked, text, name, onChange } = props;
+  const { type, checked, text, name, onChange, inputId } = props;
   const [isChecked, setChecked] = useState(checked);
   useEffect(() => {
     setChecked(checked);
@@ -73,7 +73,7 @@ const LCheckBox = React.forwardRef((props, ref) => {
     >
       <input
         type={type}
-        id={text}
+        id={inputId}
         checked={isChecked}
         onChange={() => {
           onChange();
@@ -83,7 +83,7 @@ const LCheckBox = React.forwardRef((props, ref) => {
         name={name}
       />
       <label
-        htmlFor={text}
+        htmlFor={inputId}
         style={{ marginLeft: text ? 10 : '', cursor: 'pointer' }}
       >
         {text}
@@ -102,6 +102,7 @@ LCheckBox.propTypes = {
   text: PropTypes.string,
   onChange: PropTypes.func,
   name: PropTypes.node,
+  inputId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default LCheckBox;
