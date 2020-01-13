@@ -18,6 +18,7 @@ const Ranges = React.forwardRef((props, ref) => {
     disabled,
     lang,
     name,
+    name1,
     defaultValue,
     width,
     mainColor,
@@ -25,7 +26,7 @@ const Ranges = React.forwardRef((props, ref) => {
     titleName,
   } = props;
   const isCn = lang === 'cn';
-  const marksCn = {
+  const marksTextCn = {
     0: '无经验',
     10: '1年',
     20: '2年',
@@ -40,7 +41,7 @@ const Ranges = React.forwardRef((props, ref) => {
     110: '以上',
   };
 
-  const marksEn = {
+  const marksTextEn = {
     0: 'No Experience',
     10: '1',
     20: '2',
@@ -54,8 +55,38 @@ const Ranges = React.forwardRef((props, ref) => {
     100: '10',
     110: 'Above',
   };
-  const setSkillText = value => marksCn[value];
-  const setSkillTextEn = value => marksEn[value];
+  const marksCn = {
+    0: { name: '无经验', value: '无工作经验' },
+    10: { name: '1年', value: '一年' },
+    20: { name: '2年', value: '两年' },
+    30: { name: '3年', value: '三年' },
+    40: { name: '4年', value: '四年' },
+    50: { name: '5年', value: '五年' },
+    60: { name: '6年', value: '六年' },
+    70: { name: '7年', value: '七年' },
+    80: { name: '8年', value: '八年' },
+    90: { name: '9年', value: '九年' },
+    100: { name: '10年', value: '十年' },
+    110: { name: '以上', value: '十年以上' },
+  };
+
+  const marksEn = {
+    0: { name: 'No Experience', value: '无工作经验' },
+    10: { name: '1', value: '一年' },
+    20: { name: '2', value: '两年' },
+    30: { name: '3', value: '三年' },
+    40: { name: '4', value: '四年' },
+    50: { name: '5', value: '五年' },
+    60: { name: '6', value: '六年' },
+    70: { name: '7', value: '七年' },
+    80: { name: '8', value: '八年' },
+    90: { name: '9', value: '九年' },
+    100: { name: '10', value: '十年' },
+    110: { name: 'Above', value: '十年以上' },
+  };
+  const setSkillText = value => marksCn[value].name;
+  const setSkillTextEn = value => marksEn[value].name;
+  const setSkillValue = value => marksEn[value].value;
 
   const handle = props => {
     const { value, dragging, index, ...restProps } = props;
@@ -73,10 +104,12 @@ const Ranges = React.forwardRef((props, ref) => {
       </Tooltip>
     );
   };
-  const [skillNumber, setSkillNumber] = useState(defaultValue);
+  const [skillNumber, setSkillNumber] = useState(defaultValue[0]);
+  const [skillNumber1, setSkillNumber1] = useState(defaultValue[1]);
 
   useEffect(() => {
-    setSkillNumber(defaultValue);
+    setSkillNumber(defaultValue[0]);
+    setSkillNumber1(defaultValue[1]);
   }, [defaultValue]);
 
   return (
@@ -92,19 +125,33 @@ const Ranges = React.forwardRef((props, ref) => {
           {titleName}
         </p>
       )}
-      <input type="hidden" value={skillNumber} name={name} ref={ref} />
+      <input
+        type="hidden"
+        value={setSkillValue(skillNumber)}
+        name={name}
+        ref={ref}
+      />
+      <input
+        type="hidden"
+        value={setSkillValue(skillNumber1)}
+        name={name1}
+        ref={ref}
+      />
       <div className={disabled ? 'row' : ''}>
         <div className="skillslider" style={{ width }}>
           <p className="skellP">
-            {isCn ? setSkillText(skillNumber) : setSkillTextEn(skillNumber)}
+            {isCn
+              ? `${setSkillText(skillNumber)} - ${setSkillText(skillNumber1)}`
+              : `${setSkillTextEn(skillNumber)} -
+              ${setSkillTextEn(skillNumber1)}`}
           </p>
           <Range
             min={min}
             max={max}
-            defaultValue={[0, defaultValue]}
+            defaultValue={[skillNumber, skillNumber1]}
             step={10}
             count={10}
-            marks={isCn ? marksCn : marksEn}
+            marks={isCn ? marksTextCn : marksTextEn}
             handle={handle}
             handleStyle={{
               border: 'none',
@@ -123,9 +170,8 @@ const Ranges = React.forwardRef((props, ref) => {
             // }}
             disabled={disabled}
             onChange={value => {
-              setSkillNumber(
-                Number(value[1] - value[0]) === 1 ? 0 : value[1] - value[0],
-              );
+              setSkillNumber(value[0]);
+              setSkillNumber1(value[1]);
               onChange(value);
             }}
             pushable
@@ -152,6 +198,7 @@ Ranges.defaultProps = {
   width: 600,
   // initValue: 0,
   disabled: false,
+  defaultValue: [0, 0],
   onChange: () => {},
 };
 
@@ -162,11 +209,13 @@ Ranges.propTypes = {
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
   name: PropTypes.node,
+  name1: PropTypes.node,
   width: PropTypes.number,
   // value: PropTypes.number,
   titleName: PropTypes.string,
   lang: PropTypes.string,
   mainColor: PropTypes.string,
+  defaultValue: PropTypes.array,
 };
 
 export default Ranges;

@@ -5,17 +5,19 @@ const LabelContainer = styled.div`
   flex-flow: row;
   align-items: center;
   font-size: 12px;
-  > div {
-    &:hover {
-      border: 1px solid #000099;
-      color: #000099;
-    }
+  flex-wrap: wrap;
+  > span {
+    //&:hover {
+    //  border: 1px solid #000099;
+    //  color: #000099;
+    //}
+    width: auto;
     cursor: pointer;
     background: #fff;
     border: 1px solid #888;
     box-sizing: border-box;
-    border-radius: 3px;
     line-height: 22px;
+    border-radius: 3px;
     padding: 0 12px;
     display: flex;
     color: #595959;
@@ -24,7 +26,7 @@ const LabelContainer = styled.div`
     margin-bottom: 10px;
     outline: none;
   }
-  > div.isSelect {
+  > span.isSelect {
     border: 1px solid #000099;
     color: #000099;
   }
