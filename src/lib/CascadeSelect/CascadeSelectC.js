@@ -74,7 +74,7 @@ const CascadeSelect = React.forwardRef((props, ref) => {
     } else {
       setSelectVlue(defaultValue);
     }
-  }, []);
+  }, [defaultValue]);
 
   function maxFun(item) {
     const arr = [...selectArr];
