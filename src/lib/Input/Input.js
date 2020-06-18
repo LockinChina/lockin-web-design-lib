@@ -77,6 +77,7 @@ const Input = React.forwardRef((props, ref) => {
           className="text "
           maxLength={maxLength}
           readOnly={readOnly}
+          autoComplete="off"
           onChange={e => {
             const val = e.target.value;
             onChange(val);
