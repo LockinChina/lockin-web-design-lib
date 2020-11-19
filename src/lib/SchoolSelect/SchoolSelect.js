@@ -6,7 +6,7 @@ import InputV from '../Input/InputV';
 import SchoolSelectContainer from './SchoolSelectStyle';
 
 let timer = null;
-
+const getSchoolOnSelect = () => {};
 // eslint-disable-next-line no-unused-vars
 const SchoolSelect = React.forwardRef((props, ref) => {
   const {
@@ -43,13 +43,13 @@ const SchoolSelect = React.forwardRef((props, ref) => {
     };
     clearTimeout(timer);
     timer = setTimeout(() => {
-      axios.post(`${api}${sValue}`).then(res => {
+      axios.get(`${api}suggest?search=${sValue}`).then(res => {
         if (res.status === 200) {
           const { data } = res;
           // console.log(res);
-          if (data && data.response && data.response.docs) {
-            if (data.response.docs.length > 0) {
-              setSchoolData(data.response.docs);
+          if (data && data.response) {
+            if (data.response.length > 0) {
+              setSchoolData(data.response);
             } else {
               setSchoolData([]);
               // setSe(true);
@@ -113,17 +113,29 @@ const SchoolSelect = React.forwardRef((props, ref) => {
                 {schoolData.map((item, index) => {
                   if (index < 10) {
                     return (
-                      <li key={item.id}>
+                      // eslint-disable-next-line react/no-array-index-key
+                      <li key={`sc-${index}`}>
                         <a
                           href="javascript:;"
                           onClick={() => {
                             setIsShow(false);
                             // onChange(item.schoolName, item.id);
-                            setVlaue(item.schoolName);
+                            setVlaue(item.term);
                             setSValueId(item.id);
+                            axios
+                              .get(`${api}querySchool?search=${sValue}`)
+                              .then(res => {
+                                if (res.status === 200) {
+                                  const { data } = res;
+                                  // console.log(res);
+                                  if (data && data.response) {
+                                    setSValueId(data.id);
+                                  }
+                                }
+                              });
                           }}
                         >
-                          {item.schoolName}
+                          {item.term}
                         </a>
                       </li>
                     );
@@ -146,7 +158,7 @@ SchoolSelect.defaultProps = {
   // onChange: () => { },
   // inputChange: () => { },
 
-  api: `${process.env.API}/schoolSearch?s=`,
+  api: `http://smartschoolsearch.lockinu.com/`,
   emptyMessage: '暂无搜索结果，请更换搜索关键词。或直接在输入框中添加大学',
 };
 
