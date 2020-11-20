@@ -28,6 +28,11 @@ const SchoolSelectContainer = styled.div`
       color: rgba(0, 0, 153, 1);
       line-height: 17px;
       a {
+        b {
+          font-weight: 800;
+          color: red;
+          font-size: 14px;
+        }
         padding: 10px 14px;
         display: block;
         &.actived,

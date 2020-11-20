@@ -6,7 +6,13 @@ import InputV from '../Input/InputV';
 import SchoolSelectContainer from './SchoolSelectStyle';
 
 let timer = null;
-const getSchoolOnSelect = () => {};
+const stripHtmlTags = str => {
+  if (str === null || str === '') return false;
+  // eslint-disable-next-line no-param-reassign
+  str = str.toString();
+  return str.replace(/<[^>]*>/g, '');
+};
+
 // eslint-disable-next-line no-unused-vars
 const SchoolSelect = React.forwardRef((props, ref) => {
   const {
@@ -43,24 +49,24 @@ const SchoolSelect = React.forwardRef((props, ref) => {
     };
     clearTimeout(timer);
     timer = setTimeout(() => {
-      axios.get(`${api}suggest?search=${sValue}`).then(res => {
-        if (res.status === 200) {
-          const { data } = res;
-          // console.log(res);
-          if (data && data.response) {
-            if (data.response.length > 0) {
-              setSchoolData(data.response);
+      axios
+        .get(`http://smartschoolsearch.lockinu.com/suggest?search=${sValue}`)
+        .then(res => {
+          if (res.status === 200) {
+            if (res.data) {
+              if (res.data.length > 0) {
+                setSchoolData(res.data);
+              } else {
+                setSchoolData([]);
+                // setSe(true);
+              }
             } else {
               setSchoolData([]);
               // setSe(true);
             }
-          } else {
-            setSchoolData([]);
-            // setSe(true);
           }
-        }
-      });
-    }, 300);
+        });
+    }, 1000);
   }, [sValue, api]);
 
   return (
@@ -120,23 +126,26 @@ const SchoolSelect = React.forwardRef((props, ref) => {
                           onClick={() => {
                             setIsShow(false);
                             // onChange(item.schoolName, item.id);
-                            setVlaue(item.term);
-                            setSValueId(item.id);
+                            setVlaue(stripHtmlTags(item.term));
+                            // setSValueId(item.id);
                             axios
-                              .get(`${api}querySchool?search=${sValue}`)
+                              .get(
+                                `http://smartschoolsearch.lockinu.com/querySchool?search=${encodeURI(
+                                  stripHtmlTags(item.term),
+                                )}`,
+                              )
                               .then(res => {
                                 if (res.status === 200) {
-                                  const { data } = res;
-                                  // console.log(res);
-                                  if (data && data.response) {
-                                    setSValueId(data.id);
+                                  console.log(res.data);
+                                  if (res.data) {
+                                    setSValueId(res.data.id);
                                   }
                                 }
                               });
                           }}
-                        >
-                          {item.term}
-                        </a>
+                          // eslint-disable-next-line react/no-danger
+                          dangerouslySetInnerHTML={{ __html: item.term }}
+                        />
                       </li>
                     );
                   }
