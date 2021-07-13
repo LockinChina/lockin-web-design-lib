@@ -1,1 +1,0 @@
-export const marryJson =[{"label":"已婚","value":"已婚","children":[]},{"label":"未婚","value":"未婚","children":[]},{"label":"保密","value":"保密","children":[]}];

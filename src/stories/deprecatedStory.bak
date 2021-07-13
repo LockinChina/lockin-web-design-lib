@@ -1,0 +1,22 @@
+/* eslint-disable max-len */
+
+import {storiesOf} from '@storybook/react';
+import {action} from '@storybook/addon-actions';
+import {linkTo} from '@storybook/addon-links';
+
+// eslint-disable-next-line no-unused-vars
+// import {Button, Welcome} from '@storybook/react/demo';
+import {Button} from '../components/Button';
+
+storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
+
+storiesOf('Button', module)
+    .add('文字测试', () => <Button onClick={action('clicked')}>Hello Button</Button>)
+    .add('背景颜色', () => <Button onClick={action('clicked')}>Hello Button</Button>)
+    .add('emoji', () => (
+      <Button onClick={action('clicked')}>
+        <span role="img" aria-label="so cool">
+          😀 😎 👍 💯
+        </span>
+      </Button>
+    ));

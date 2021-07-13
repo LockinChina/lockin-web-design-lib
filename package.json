@@ -1,33 +1,50 @@
 {
-  "name": "lockin-web-components",
-  "main": "dist/lockinwecmpnt.js",
-  "files": [
-    "/dist"
-  ],
+  "name": "lockin-web-design-lib",
+  "version": "0.1.0",
+  "private": false,
+  "main": "./build/index.js",
+  "module": "./build/index.es.js",
+  "types": "/build/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/LockinChina/lockin-web-design-lib.git"
   },
-  "version": "0.1.38",
   "dependencies": {
-    "install": "^0.13.0",
-    "npm": "^6.12.0",
-    "prop-types": "^15.7.2",
-    "rc-slider": "^8.7.1",
-    "react-hook-form": "^3.23.12",
-    "typescript": "^3.6.3"
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "styled-components": "^5.3.0",
+    "typescript": "^4.1.2",
+    "web-vitals": "^1.0.1"
   },
-  "license": "MIT",
   "scripts": {
-    "start": "npm start",
-    "build": "webpack --mode production",
-    "test": "npm  test",
-    "eject": "npm eject",
-    "storybook": "start-storybook -p 8011 -s public",
-    "lint": "eslint src"
+    "test": "react-scripts test",
+    "start": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public",
+    "build": "rollup -c"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
   },
   "browserslist": {
     "production": [
@@ -41,42 +58,54 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.6.2",
-    "@babel/preset-react": "^7.0.0",
-    "@storybook/react": "^5.2.1",
-    "axios": "^0.19.0",
-    "babel-preset-react-app": "^9.0.0",
-    "cross-env": "^6.0.0",
-    "css-loader": "^1.0.0",
-    "eslint": "5.16.0",
-    "eslint-config-airbnb": "17.1.0",
-    "eslint-config-airbnb-base": "13.1.0",
-    "eslint-config-prettier": "4.1.0",
-    "eslint-config-react-app": "^5.0.2",
-    "eslint-import-resolver-webpack": "0.11.1",
-    "eslint-plugin-import": "2.17.2",
-    "eslint-plugin-jsx-a11y": "6.2.1",
-    "eslint-plugin-prettier": "3.0.1",
-    "eslint-plugin-react": "7.12.4",
-    "eslint-plugin-react-hooks": "^1.6.0",
-    "file-loader": "^4.2.0",
-    "husky": "^3.0.7",
-    "lint-staged": "8.1.5",
-    "prettier": "1.17.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "^3.0.1",
-    "regenerator-runtime": "^0.13.3",
-    "rimraf": "^2.6.3",
-    "style-loader": "^0.23.1",
-    "styled-components": "^4.4.0",
-    "url-loader": "^1.1.2",
-    "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.0"
-  },
   "peerDependencies": {
-    "styled-components": ">= 3"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": ">= 5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-typescript": "^8.2.1",
+    "@storybook/addon-actions": "^6.3.3",
+    "@storybook/addon-links": "^6.3.3",
+    "@storybook/addons": "^6.3.3",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.3.3",
+    "babel-plugin-styled-components": "^1.13.2",
+    "eslint": "^7.30.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard-react": "^11.0.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.0.0",
+    "postcss": "^8.3.5",
+    "prettier": "2.3.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.10.1",
+    "rollup": "^2.52.8",
+    "rollup-plugin-dts": "^3.0.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.0"
+  },
+  "resolutions": {
+    "styled-components": "^5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --quiet --fix"
+    ],
+    "*.{json,md,html}": [
+      "prettier --write"
+    ]
   }
 }

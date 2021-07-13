@@ -1,1 +1,0 @@
-export const subordinatesJson = [{"label":"无","value":"无","children":[]},{"label":"五人以下","value":"五人以下","children":[]},{"label":"六到十人","value":"六到十人","children":[]},{"label":"十到二十人","value":"十到二十人","children":[]},{"label":"二十人至五十人","value":"二十人至五十人","children":[]},{"label":"五十以上","value":"五十以上","children":[]}];
