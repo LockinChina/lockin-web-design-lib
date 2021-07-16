@@ -1,6 +1,6 @@
 {
   "name": "lockin-web-design-lib",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "main": "./build/index.js",
   "module": "./build/index.es.js",
