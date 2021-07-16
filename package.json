@@ -4,7 +4,7 @@
   "private": false,
   "main": "./build/index.js",
   "module": "./build/index.es.js",
-  "types": "/build/index.d.ts",
+  "types": "./build/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/LockinChina/lockin-web-design-lib.git"
