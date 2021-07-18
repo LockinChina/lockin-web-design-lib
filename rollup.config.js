@@ -3,13 +3,11 @@ import resolve from '@rollup/plugin-node-resolve';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
-import dts from 'rollup-plugin-dts';
-
 
 import packageJson from './package.json';
 
-export default
-{
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
   input: './src/index.ts',
   output: [
     {
@@ -30,11 +28,4 @@ export default
     typescript(),
     postcss(),
   ],
-}
-// {
-//   // path to your declaration files root
-//   input: './dist/dts/index.d.ts',
-//   output: [{file: 'build/index.d.ts', format: 'es'}],
-//   plugins: [dts()],
-// },
-;
+};
