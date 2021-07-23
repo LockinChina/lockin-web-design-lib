@@ -6,7 +6,8 @@
     },
     "extends": [
         "google",
-        "standard-react"
+        "eslint:recommended",
+        "plugin:react/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -24,6 +25,7 @@
         "react"
     ],
     "rules": {
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "valid-jsdoc": "off"
     }
 }

@@ -1,112 +1,56 @@
 {
   "name": "lockin-web-design-lib",
-  "version": "0.1.6",
+  "version": "0.1.9",
   "private": false,
-  "main": "./build/index.js",
-  "module": "./build/index.esm.js",
-  "types": "./build/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LockinChina/lockin-web-design-lib.git"
-  },
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "styled-components": "^5.3.0",
-    "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
-  },
+  "description": "LockinChina web controls",
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "react-scripts test",
-    "start": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
-    "build": "rollup -c"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "build": "rollup -c",
+    "prepublishOnly": "yarn build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
+  "np": {
+    "publish": false,
+    "tests": false
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "styled-components": ">= 5"
-  },
+  "author": "Ray Huang, Ning Li",
+  "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@rollup/plugin-commonjs": "^19.0.1",
-    "@rollup/plugin-node-resolve": "^13.0.2",
-    "@rollup/plugin-typescript": "^8.2.1",
-    "@storybook/addon-actions": "^6.3.3",
-    "@storybook/addon-links": "^6.3.3",
-    "@storybook/addons": "^6.3.3",
-    "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.3.3",
-    "babel-plugin-styled-components": "^1.13.2",
-    "eslint": "^7.30.0",
+    "@babel/core": "^7.12.9",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@storybook/addon-actions": "^6.1.9",
+    "@storybook/addon-essentials": "^6.1.9",
+    "@storybook/addon-links": "^6.1.9",
+    "@storybook/react": "^6.1.9",
+    "@types/react": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.31.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-config-standard-react": "^11.0.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.0.8",
     "husky": "^7.0.1",
-    "lint-staged": "^11.0.0",
-    "postcss": "^8.3.5",
+    "postcss": "^8.2.1",
     "prettier": "2.3.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-hook-form": "^7.10.1",
-    "rollup": "^2.53.2",
-    "rollup-plugin-dts": "^3.0.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "rollup": "^2.34.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.0",
-    "rollup-plugin-typescript2": "^0.30.0"
+    "rollup-plugin-typescript2": "^0.29.0",
+    "typescript": "^4.1.2"
   },
-  "resolutions": {
-    "styled-components": "^5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "eslint --quiet --fix"
-    ],
-    "*.{json,md,html}": [
-      "prettier --write"
-    ]
+  "peerDependencies": {
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   }
 }

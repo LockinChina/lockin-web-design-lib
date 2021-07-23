@@ -1,32 +1,32 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+    "compilerOptions": {
+      "target": "es5",
+      "outDir": "lib",
+      "lib": [
+        "dom",
+        "dom.iterable",
+        "esnext"
+      ],
+      "declaration": true,
+      "declarationDir": "lib",
+      "allowJs": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "jsx": "react"
+    },
+    "include": [
+      "src"
     ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-     "noEmit": false,
-    "jsx": "react-jsx",
-    // enabling declaration (.d.ts) emit
-    "declaration": true,
-    // optional - in general it's a good practice to decouple declaration files from your actual transpiled JavaScript files
-    "declarationDir": "dist/dts",
-    // optional if you're using babel to transpile TS -> JS
-    // "emitDeclarationOnly": true
-  },
-  "include": [
-    "./src/**/*.tsx"
-  ]
-}
+    "exclude": [
+        "node_modules",
+        "lib"
+    ]
+  }
