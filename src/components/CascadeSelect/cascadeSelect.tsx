@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-import React, {MouseEvent, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import GlobalStyle from '../globalStyle';
 import classNames from 'classnames';
 import CascadeContent from './style';
