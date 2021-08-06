@@ -26,6 +26,18 @@
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
-        "valid-jsdoc": "off"
+        "valid-jsdoc": "off",
+        "object-curly-spacing": [
+            "error",
+            "never"
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 100
+            }
+        ],
+        "no-unused-vars": 0,
+        "react/prop-types": 0
     }
 }
