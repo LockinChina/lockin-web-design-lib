@@ -15,5 +15,9 @@ export {default as CascadeSelect} from './components/CascadeSelect';
 export {default as DatePicker} from './components/DatePicker';
 export {default as Modal} from './components/Modal';
 export {default as Transition} from './components/Transition';
-
+export {default as Silider} from './components/Slider';
+export {default as HaedClip} from './components/HeadClip';
+export {default as LabelsCheck} from './components/LabelsCheck';
+export {default as Label} from './components/Lable';
+export {default as Loading} from './components/Loading';
 

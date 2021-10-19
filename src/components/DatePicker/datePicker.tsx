@@ -140,8 +140,8 @@ const DatePicker: FC<DatePickerProps> = (props) => {
 
 
   useEffect(() => {
-    console.log(selectYear);
-    console.log(selectMonth);
+    // console.log(selectYear);
+    // console.log(selectMonth);
     if (selectYear && selectMonth) {
       const day = mouthHaveDays(`${selectYear}-${selectMonth}`);
       setFetchDays(day);

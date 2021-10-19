@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React, {FC} from 'react';
 import styled from 'styled-components';
 import {FontAwesomeIconProps} from '@fortawesome/react-fontawesome';
@@ -16,6 +14,7 @@ const NoContentBox = styled.div`
 `;
 export interface NoCProps extends FontAwesomeIconProps {
   messageText?: string;
+  icon: any;
 }
 
 const NoContent: FC<NoCProps> = ({messageText, icon, size, ...restProps}) => {
