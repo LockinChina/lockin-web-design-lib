@@ -1,5 +1,5 @@
-import HeadClip, {HeadClipProps} from './headClip';
+import HeadClip from './headClip';
 
 export default HeadClip;
 
-export type {HeadClipProps};
+// export type {HeadClipProps};
