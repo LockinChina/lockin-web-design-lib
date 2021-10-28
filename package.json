@@ -1,6 +1,6 @@
 {
   "name": "lockin-web-design-lib",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": false,
   "description": "LockinChina web controls",
   "main": "lib/index.js",
@@ -73,7 +73,5 @@
     "styled-components": "^5.3.3",
     "typescript": "^4.1.2"
   },
-  "peerDependencies": {
-    
-  }
+  "peerDependencies": {}
 }
