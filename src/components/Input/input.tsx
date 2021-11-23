@@ -118,8 +118,8 @@ const Input = React.forwardRef((props: InputProps, ref: any) => {
         <span
           title={rightIconTitle}
           onClick={() => rightIconOnClick && rightIconOnClick()}
-          onMouseDownCapture={() => rightIconMouseDownCapture()}
-          onMouseUpCapture={() => rightIconMouseUpCapture()}
+          onMouseDownCapture={() => rightIconMouseDownCapture && rightIconMouseDownCapture()}
+          onMouseUpCapture={() => rightIconMouseUpCapture && rightIconMouseUpCapture()}
           className={`iconfont ${rightIconName || ''}`}
           style={{color: `${rightIconColor}`, fontSize: `${rightIconSize}px`}}
         />
