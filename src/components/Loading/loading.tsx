@@ -1,76 +1,88 @@
 import React from 'react';
-import {Icon} from '../Icon/Icon';
 import styled from 'styled-components';
-import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-const LoadingContent = styled.div`
-  display: inline-block;
-  position: relative;
-  z-index: 9999999;
-  & > .animateBox {
-    display: inline-block;
-    animation: rotate 1s infinite;
-    -webkit-animation: rotate 1s infinite;
-    @keyframes rotate {
-      0%{
-          transform:rotate(0deg);
-          -ms-transform:rotate(0deg);     /* IE 9 */
-          -moz-transform:rotate(0deg);    /* Firefox */
-          -o-transform:rotate(0deg);
-      }
-      100% {
-          transform:rotate(360deg);
-          -ms-transform:rotate(360deg);   /* IE 9 */
-          -moz-transform:rotate(360deg);  /* Firefox */
-          -o-transform:rotate(360deg);    
+import loading from '../../static/images/loading.png';
+
+const LoadingContainer = styled.div`  
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99999999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background: rgba(0, 0, 0, .3); */
+  .mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .loadbox {
+    position: absolute;
+    .load {
+      background: url(${loading}) no-repeat;
+      margin: 0 auto;
+      background-size: 100%;
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+      display: block;
+      animation: loading 2s linear infinite;
+      @keyframes loading {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
     }
-  }
-  &.is-mask{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background: rgba(0, 0, 0, .3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  &.is-pos{
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .loadtext {
+      font-size: 18px;
+      text-align: center;
+      margin-top: 20px;
+    }
   }
 `;
 
 export interface LoadingProps {
-  size?: '1x' | '2x' | '3x' | '4x' | '5x';
-  color?: string;
-  mask?: boolean;
-  className?: string;
-  absolute?: boolean;
+  transparent?: boolean; // 是否透明
+  message?: string; // 文本提示
+  opacity?: number; // 透明度(其实只用这一个控制透明度即可)
 }
 
 const Loading: React.FC<LoadingProps> = (props) => {
-  const {size, color, mask, absolute, className} = props;
-  const classes = classNames(className, {
-    'is-mask': mask,
-    'is-pos': absolute,
-  });
+  const {transparent, message, opacity} = props;
   return (
-    <LoadingContent className={classes}>
-      <div className="animateBox">
-        <Icon className="" icon="spinner" size={size || '2x'} color={color} />
+    <LoadingContainer>
+      {!transparent && (
+        <div
+          className="mask"
+          style={{
+            background: opacity || opacity === 0 ?
+              `rgba(0, 0, 0, ${opacity})` :
+              'rgba(0, 0, 0, .2)',
+          }}
+        />
+      )}
+      <div className="loadbox">
+        <div className="load" />
+        <p className="loadtext">{message}</p>
       </div>
-    </LoadingContent>
+    </LoadingContainer>
   );
+};
+
+Loading.propTypes = {
+  transparent: PropTypes.bool,
+  message: PropTypes.string,
+  opacity: PropTypes.number,
 };
 
 export default Loading;

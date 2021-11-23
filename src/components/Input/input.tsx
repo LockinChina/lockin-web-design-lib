@@ -1,127 +1,173 @@
-import React, {useState} from 'react';
-import styled from 'styled-components';
-import classNames from 'classnames';
+import React, {useState, Children} from 'react';
+import PropTypes from 'prop-types';
+import InputContainer from './inputStyle';
 
-const InputContent = styled.div`
-  /* display: inline-block; */
-  border: 1px solid #f4f5f4;
-  border-radius: 3px;
-  background: #f4f5f4;
-  padding: 0 10px;
-  height: 38px;
-  transition: all 0.4s ease-in;
-  &.focus,
-  &:hover {
-    border: 1px solid #3c64b1;
-  }
-  &.disabled,
-  &.disabled:hover {
-    opacity: 0.5;
-    border: 1px solid rgb(205, 205, 205);
-  }
-  &.wrong {
-    border-color: red !important;
-  }
-  &.input-small {
-    height: 38px;
-  }
-  &.input-large {
-    height: 44px;
-  }
-  .i-content {
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    min-width: auto;
-    .l {
-      margin-right: 10px;
-    }
-    .r {
-      margin-left: 10px;
-    }
-    .l,
-    .r {
-      color: #333;
-    }
-    input {
-      outline: none;
-      flex: 1;
-      background: none;
-      height: 100%;
-      border: none;
-      font-size: 14px;
-      width: 100%;
-      &::placeholder {
-        color: 737b7d;
-      }
-    }
-  }
-`;
-
-type InputAllProps = Omit<React.InputHTMLAttributes<HTMLElement>, 'size'>;
-
-type InputSize = 'large' | 'small';
-
-export interface InputProps extends InputAllProps {
-  disabled?: boolean;
-  className?: string;
-  leftContent?: string | React.ReactElement;
-  rightContent?: string | React.ReactElement;
-  size?: InputSize;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  style?: React.CSSProperties;
-  wrong?: boolean;
+export interface InputProps extends React.InputHTMLAttributes<HTMLElement> {
+  value?: any;
+  placeholder?: string; // 占位文字
+  titleName?: string; // 标题
+  onChange?: (e: any) => void; // onChange事件
+  leftIconName?: string; // 左侧图标名
+  leftIconColor?: string; // 左侧图标颜色
+  leftIconSize?: number;// 左侧图标大小
+  rightIconName?: string; // 右侧图标名
+  rightIconColor?: string; // 右侧图标颜色
+  rightIconSize?: number; // 右侧图标大小
+  rightIconTitle?: string; // 右侧图标title(鼠标悬停提示)
+  rightIconOnClick?: () => void; // 右侧图标点击事件
+  defaultValue?: string; // 默认值
+  wrongText?: string; // 错误文本
+  type?: any; // type属性
+  maxLength?: number; // 最大长度
+  width?: number; // 宽度
+  readOnly?: boolean; // 只读
+  name?: any;
+  inputBorderColor?: string; // 边框颜色
+  rightIconMouseDownCapture?: () => void; // 右侧图标按下事件
+  rightIconMouseUpCapture?: () => void; // 右侧图标抬起事件
+  inputBackgroundColor?: string; // 背景颜色
+  children?: any;
+  onBlur?: (e: any) => void; // 失焦时间
+  onFocus?: (e: any) => void; // 焦点事件
 }
-export const Input: React.FC<InputProps> = (props) => {
+
+
+// eslint-disable-next-line react/display-name
+const Input = React.forwardRef((props: InputProps, ref: any) => {
+  const [blurState, setBlurState] = useState(0);
   const {
-    disabled,
-    className,
-    leftContent,
-    rightContent,
-    size,
-    onFocus,
+    value,
+    placeholder,
+    titleName,
+    onChange,
+    leftIconName,
+    leftIconColor,
+    leftIconSize,
+    rightIconName,
+    rightIconColor,
+    rightIconSize,
+    rightIconTitle,
+    rightIconOnClick,
+    defaultValue,
+    wrongText,
+    type,
+    maxLength,
+    width,
+    readOnly,
+    name,
+    inputBorderColor,
+    rightIconMouseDownCapture,
+    rightIconMouseUpCapture,
+    inputBackgroundColor,
+    children,
     onBlur,
-    wrong,
-    style,
+    onFocus,
     ...restProps
   } = props;
 
-  const [focusIn, setFocusIn] = useState(false);
-
-  const classes = classNames(
-      {
-        disabled,
-        [`input-${size}`]: size,
-        focus: focusIn,
-        wrong,
-      },
-      className,
-  );
-  const hancelFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    setFocusIn(true);
-    onFocus && onFocus(e);
-  };
-
-  const handelBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    setFocusIn(false);
-    onBlur && onBlur(e);
+  const setBorder = () => {
+    if (wrongText || (wrongText && inputBorderColor)) {
+      return 'red';
+    }
+    if (inputBorderColor) {
+      return inputBorderColor;
+    }
+    return '';
   };
 
   return (
-    <InputContent className={classes} style={style}>
-      <div className="i-content">
-        {leftContent && <div className="l">{leftContent}</div>}
+    <InputContainer style={{width: `${width}px`}}>
+      <p className='title' style={{display: titleName ? 'block' : 'none'}}>
+        {titleName}
+      </p>
+      <div
+        className={`inputBody fadeAnim ${blurState ? 'active ' : ''}
+        ${readOnly ? 'readOnlyOpacity ' : ''}`}
+        style={{
+          borderColor: setBorder(),
+          background: inputBackgroundColor || '#fff',
+        }}
+      >
+        <span className={`iconfont ${leftIconName || ''}`}
+          style={{color: `${leftIconColor}`, fontSize: `${leftIconSize}px `}} />
         <input
-          onFocus={(e) => hancelFocus(e)}
-          onBlur={(e) => handelBlur(e)}
-          disabled={disabled}
+          ref={ref}
+          name={name}
+          disabled={readOnly ? true : false}
+          type={type}
+          defaultValue={defaultValue}
+          placeholder={placeholder}
+          className='text '
+          maxLength={maxLength}
+          readOnly={readOnly}
+          onChange={(e) => {
+            const val = e.target.value;
+            onChange && onChange(val);
+          }}
+          value={value}
+          onBlur={(e) => {
+            setBlurState(0);
+            onBlur && onBlur(e.target.value);
+          }}
+          onFocus={(e) => {
+            setBlurState(1);
+            onFocus && onFocus(e.target.value);
+          }}
           {...restProps}
         />
-        {rightContent && <div className="r">{rightContent}</div>}
+        <span
+          title={rightIconTitle}
+          onClick={() => rightIconOnClick && rightIconOnClick()}
+          onMouseDownCapture={() => rightIconMouseDownCapture()}
+          onMouseUpCapture={() => rightIconMouseUpCapture()}
+          className={`iconfont ${rightIconName || ''}`}
+          style={{color: `${rightIconColor}`, fontSize: `${rightIconSize}px`}}
+        />
+        {Children.toArray(children)}
       </div>
-    </InputContent>
+
+      <p className='wrongText' style={{display: wrongText ? 'block' : 'none'}}>
+        {wrongText}
+      </p>
+    </InputContainer>
   );
+});
+
+Input.defaultProps = {
+  type: 'text',
+  placeholder: '请输入',
+  onChange: () => {},
+  rightIconOnClick: () => {},
+  onFocus: () => {},
+  onBlur: () => {},
 };
+
+Input.propTypes = {
+  defaultValue: PropTypes.string,
+  value: PropTypes.node,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  leftIconName: PropTypes.string,
+  leftIconColor: PropTypes.string,
+  leftIconSize: PropTypes.number,
+  rightIconName: PropTypes.string,
+  rightIconColor: PropTypes.string,
+  rightIconSize: PropTypes.number,
+  rightIconTitle: PropTypes.string,
+  rightIconOnClick: PropTypes.func,
+  rightIconMouseDownCapture: PropTypes.func,
+  rightIconMouseUpCapture: PropTypes.func,
+  wrongText: PropTypes.string,
+  type: PropTypes.string,
+  maxLength: PropTypes.number,
+  width: PropTypes.number,
+  readOnly: PropTypes.bool,
+  name: PropTypes.node,
+  inputBorderColor: PropTypes.string,
+  titleName: PropTypes.string,
+  inputBackgroundColor: PropTypes.string,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+};
+
+export default Input;

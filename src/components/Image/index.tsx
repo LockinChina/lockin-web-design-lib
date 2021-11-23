@@ -1,5 +1,4 @@
-import {Image, ImageProps} from './image';
+import Image, {ImageProps} from './Image';
 
 export default Image;
 export type {ImageProps};
-

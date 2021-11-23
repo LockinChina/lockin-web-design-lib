@@ -1,5 +1,5 @@
-import CascadeSelect, {CascadeProps} from './cascadeSelect';
+import CascadeSelect, {CascadeSelectProps} from './CascadeSelectC';
 
 export default CascadeSelect;
-export type {CascadeProps};
 
+export type {CascadeSelectProps};

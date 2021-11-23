@@ -7,6 +7,7 @@
         "dom.iterable",
         "esnext"
       ],
+      "rootDir": "src",
       "declaration": true,
       "declarationDir": "lib",
       "allowJs": true,
@@ -22,7 +23,10 @@
       "noEmit": true,
       "jsx": "react"
     },
-    "include": ["src/**/*.tsx"],
+    "include": [
+      "src/**/*.tsx",
+      "types"
+    ],
     "exclude": [
         "node_modules",
         "lib"

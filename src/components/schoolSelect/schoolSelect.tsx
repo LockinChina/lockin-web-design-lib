@@ -1,178 +1,193 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-import React, {useEffect, useState, FC} from 'react';
-import {Input, InputProps} from '../Input/input';
-import classNames from 'classnames';
+/* eslint-disable no-script-url */
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import SchoolSelectContent from './style';
-import Loading from '../Loading';
-import GlobalStyle from '../globalStyle';
+import PropTypes from 'prop-types';
+import InputV from '../Input/index';
+import SchoolSelectContainer from './SchoolSelectStyle';
 
-export interface SchoolSelectProps extends InputProps {
-  defaultValue?: string;
-  className?: string;
-  style?: React.CSSProperties;
-  onSelect?: (data: object) => void;
-  emptyMessage?: string;
+let timer: NodeJS.Timeout | null = null;
+const stripHtmlTags = (str: any) => {
+  if (str === null || str === '') return false;
+  // eslint-disable-next-line no-param-reassign
+  str = str.toString();
+  return str.replace(/<[^>]*>/g, '');
+};
+
+export interface SchoolSelectProps {
+  placeholder?: string; // 占位文字
+  titleName?: string; // 标题
+  defaultValue?: any; // 默认值
+  wrongText?: string; // 错误文本
+  invalid?: any; // 失效状态
+  api?: any; //
+  isUpload?: boolean;
+  emptyMessage?: string; // 搜索结果为空时提示文本
+  nameId?: any; // useForm name id
+  refId?: any; // useForm  ref id
+  nameValue?: any; // useForm name value
+  refValue?: any;// useForm ref value
 }
-
-
-const SchoolSelect: FC<SchoolSelectProps> = (props) => {
-  const {className, style, defaultValue, onSelect, emptyMessage, ...restProps} = props;
-
-  const classes = classNames(className, {});
-
-  const [inputValue, setInputValue] = useState(defaultValue || ''); // value
-  const [onFocus, setOnFocus] = useState(false); // 搜索列表是否为空
-  const [showLoading, setShowLoading] = useState(false); // 查询第一级学校列表loading;
-  const [fetchScroolDataList, setFetchSchoolDataList] = useState<any>([]); // 查询到的学校列表
-  const [schoolDataActive, setSchoolDataActive] = useState(-1);
-
-  let timer: NodeJS.Timeout | null = null;
-
-  // 第一步 输入关键词后查询学校列表；
-  const onChangEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setInputValue(value);
-    clearTimeout(Number(timer));
-    setSchoolDataActive(-1);
-    timer = setTimeout(() => {
-      setShowLoading(true);
-      axios.get(`http://smartschoolsearch.lockinu.com/suggest?search=${value}`)
-          .then((res) => {
-            if (res) {
-              const data = res.data;
-              if (data && data.length > 0) {
-                setOnFocus(false);
-              } else {
-                setOnFocus(true);
-              }
-              setFetchSchoolDataList(data);
-            }
-            setShowLoading(false);
-          })
-          .catch((error) => {
-            setShowLoading(false);
-            setOnFocus(true);
-          });
-    }, 500);
-  };
-
-  // 第二步 感觉当前学校名 查询学校详情;
-  const fetchSchoolDetail = (keyWords: string) => {
-    const words = encodeURI(keyWords?.replace(/<[^>]*>/g, ''));
-    axios.get(`http://smartschoolsearch.lockinu.com/querySchool?search=${words}`)
-        .then((res)=> {
-          const {data} = res;
-          if (data) {
-            setInputValue(data.schoolName);
-            if (onSelect) {
-              onSelect(data);
-            }
-          }
-        }).catch((error) => {
-          // console.log(error);
-        });
-  };
-
-  // 设置学校查询列表为空
-  const removeSchoolDataList = () => {
-    setTimeout(() => {
-      setFetchSchoolDataList([]);
-    }, 200);
-    setSchoolDataActive(-1);
-  };
-
-
-  // 键盘事件
-  const keyDownCallback = (e: {key: string}) => {
-    const key = e.key;
-    if (fetchScroolDataList?.length > 0) {
-      const length = fetchScroolDataList.length;
-      // 下键盘
-      if (key === 'ArrowDown') {
-        if (schoolDataActive === (length - 1) || schoolDataActive == -1 ) {
-          setSchoolDataActive(0);
-        } else {
-          setSchoolDataActive( schoolDataActive + 1 );
-        }
-      }
-      // 上键盘
-      if (key === 'ArrowUp') {
-        if (schoolDataActive === -1 || schoolDataActive === 0) {
-          setSchoolDataActive(length - 1);
-        } else {
-          setSchoolDataActive( schoolDataActive - 1 );
-        }
-      }
-
-      // 回车
-      if (key === 'Enter' && schoolDataActive !== -1) {
-        const selectWords = fetchScroolDataList[schoolDataActive]?.term;
-        fetchSchoolDetail(selectWords);
-        removeSchoolDataList();
-        // console.log(InputRef.current.value);
-        const inputDom = document.getElementById('inputDom');
-        if (inputDom) {
-          inputDom.blur();
-        }
-      }
-    }
-  };
-
+const SchoolSelect = React.forwardRef((props: SchoolSelectProps, ref: any) => {
+  const {
+    // value,
+    placeholder,
+    titleName,
+    defaultValue,
+    wrongText,
+    // onChange,
+    invalid,
+    // name,
+    api,
+    isUpload,
+    emptyMessage,
+  } = props;
+  const [schoolData, setSchoolData] = useState<any>([]); // 获取到的学校数据
+  const [sValue, setVlaue] = useState('');
+  const [sValueId, setSValueId] = useState('');
+  // const [se, setSe] = useState(false);
+  const [isShow, setIsShow] = useState(false);
 
   useEffect(() => {
-    //
-    return () => {
-      clearTimeout(Number(timer));
+    if (defaultValue && defaultValue.length === 2) {
+      setVlaue(defaultValue[0].join(' | '));
+      setSValueId(defaultValue[1]);
+    } else {
+      setVlaue('');
+    }
+  }, [isUpload]);
+
+  useEffect(() => {
+    document.onclick = () => {
+      setIsShow(false);
     };
-  }, []);
+    clearTimeout(Number(timer));
+    timer = setTimeout(() => {
+      axios.get(`https://smartschoolsearch.lockinu.com/suggest?search=${sValue}`).then((res) => {
+        if (res.status === 200) {
+          if (res.data) {
+            if (res.data.length > 0) {
+              setSchoolData(res.data);
+            } else {
+              setSchoolData([]);
+              // setSe(true);
+            }
+          } else {
+            setSchoolData([]);
+            // setSe(true);
+          }
+        }
+      });
+    }, 1000);
+  }, [sValue, api]);
 
   return (
-    <>
-      <SchoolSelectContent className={classes} style={style}>
-        <Input
-          id="inputDom"
-          value={inputValue}
-          onChange={(e) => onChangEvent(e)}
-          onKeyUp={keyDownCallback}
-          onBlur={() => {
-            removeSchoolDataList();
-            setOnFocus(false);
-          }}
-          {...restProps}
-        />
-        {fetchScroolDataList &&
-          fetchScroolDataList.length > 0 &&
-          <ul className="fetch-item-list">
-            {showLoading && <Loading className="loading" size="1x" color="blue" />}
-            {fetchScroolDataList.map((item:{term: string}, index: number) => {
-              return (
-                <li
-                  className={index === schoolDataActive ? 'actived' : ''}
-                  key={item.term} dangerouslySetInnerHTML={{__html: item.term}}
-                  onClick={ () => {
-                    fetchSchoolDetail(item.term);
-                    removeSchoolDataList();
-                  }}
-                />
-              );
-            })}
-          </ul>
+    <SchoolSelectContainer>
+      <input type="hidden" name={props.nameId} ref={props.refId} value={sValueId} />
+      <input type="hidden" name={props.nameValue} ref={props.refValue} value={sValue} />
+      <InputV
+        titleName={titleName}
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+        wrongText={wrongText}
+        disabled={props.invalid}
+        value={sValue}
+        onChange={(val) => {
+          // props.inputChange(val);
+          setVlaue(val);
+          setSValueId('');
+          setIsShow(true);
+        }}
+        // eslint-disable-next-line react/no-children-prop
+        children={
+          <div className="select-box" style={{display: isShow ? 'block' : 'none'}}>
+            <div className="rowbox animated-fast fadeInDown">
+              <ul>
+                {schoolData.length === 0 && (
+                  <p
+                    style={{
+                      padding: '30px 0',
+                      textAlign: 'center',
+                      fontSize: '14px',
+                      color: '#757575',
+                    }}
+                  >
+                    {emptyMessage}
+                  </p>
+                )}
+                {schoolData.map((item: any, index: number) => {
+                  if (index < 10) {
+                    return (
+                      // eslint-disable-next-line react/no-array-index-key
+                      <li key={`sc-${index}`}>
+                        <a
+                          href="javascript:;"
+                          onClick={() => {
+                            setIsShow(false);
+                            // onChange(item.schoolName, item.id);
+                            setVlaue(stripHtmlTags(item.term));
+                            // setSValueId(item.id);
+                            axios
+                                .get(
+                                    `https://smartschoolsearch.lockinu.com/querySchool?search=
+                                    ${encodeURI(
+                          stripHtmlTags(item.term),
+                      )}`,
+                                )
+                                .then((res) => {
+                                  if (res.status === 200) {
+                                  // console.log(res.data);
+                                    if (res.data) {
+                                      setSValueId(res.data.id);
+                                    }
+                                  }
+                                });
+                          }}
+                          // eslint-disable-next-line react/no-danger
+                          dangerouslySetInnerHTML={{__html: item.term}}
+                        />
+                      </li>
+                    );
+                  }
+                  return null;
+                })}
+              </ul>
+            </div>
+          </div>
         }
-        {
-          // 暂无数据
-          onFocus && (
-            <div className="empty-item">{emptyMessage}</div>
-          )
-        }
-      </SchoolSelectContent>
-      <GlobalStyle />
-    </>
+      />
+    </SchoolSelectContainer>
   );
-};
+});
+
 SchoolSelect.defaultProps = {
-  emptyMessage: '暂无搜索结果，请更换搜索关键词。',
+  titleName: '',
+  wrongText: '',
+  invalid: false,
+  // onChange: () => { },
+  // inputChange: () => { },
+
+  api: `https://smartschoolsearch.lockinu.com/`,
+  emptyMessage: '暂无搜索结果，请更换搜索关键词。或直接在输入框中添加大学',
 };
 
+SchoolSelect.propTypes = {
+  // value: PropTypes.string,
+  placeholder: PropTypes.string,
+  titleName: PropTypes.string,
+  defaultValue: PropTypes.string,
+  wrongText: PropTypes.string,
+  // onChange: PropTypes.func,
+  invalid: PropTypes.bool,
+  // name: PropTypes.node,
+  api: PropTypes.node,
+  nameId: PropTypes.string,
+  refId: PropTypes.object,
+  nameValue: PropTypes.string,
+  refValue: PropTypes.object,
+
+  // inputChange: PropTypes.func,
+  emptyMessage: PropTypes.string,
+};
+
+SchoolSelect.displayName = 'SchoolSelect';
 export default SchoolSelect;

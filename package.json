@@ -1,14 +1,15 @@
 {
-  "name": "lockin-web-design-lib",
-  "version": "0.3.0",
+  "name": "lockin-lib",
+  "version": "0.1.1",
   "private": false,
   "description": "LockinChina web controls",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
   "scripts": {
+    "start": "react-scripts start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build": "rollup -c",
     "prepublishOnly": "yarn build"
@@ -27,12 +28,8 @@
     "@types/react-image-crop": "^8.1.3",
     "@types/react-transition-group": "^4.4.2",
     "@types/styled-components": "^5.1.11",
-    "axios": "^0.21.1",
-    "classnames": "^2.3.1",
-    "rc-slider": "^9.7.2",
-    "react-image-crop": "^8.3.1",
-    "react-transition-group": "^4.4.2",
-    "styled-components": "^5.3.0"
+    "axios": "^0.24.0",
+    "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -41,18 +38,20 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-image": "^2.1.1",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@storybook/addon-actions": "^6.1.9",
     "@storybook/addon-essentials": "^6.1.9",
     "@storybook/addon-links": "^6.1.9",
     "@storybook/react": "^6.1.9",
     "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.11",
     "@types/react-image-crop": "^8.1.3",
     "@types/react-transition-group": "^4.4.2",
-    "@types/styled-components": "^5.1.11",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.7.0",
     "babel-loader": "^8.2.2",
+    "css-loader": "^3.6.0",
     "eslint": "^7.31.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.3.0",
@@ -63,15 +62,20 @@
     "husky": "^7.0.1",
     "postcss": "^8.2.1",
     "prettier": "2.3.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "rc-slider": "^9.7.4",
     "rollup": "^2.34.2",
+    "rollup-plugin-css-porter": "^1.0.2",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.0",
-    "rollup-plugin-typescript2": "^0.29.0",
-    "styled-components": "^5.3.3",
-    "typescript": "^4.1.2"
+    "rollup-plugin-typescript2": "^0.31.0",
+    "style-loader": "^1.3.0",
+    "typescript": "^4.1.2",
+    "url-loader": "^4.1.1"
   },
-  "peerDependencies": {}
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "styled-components": ">=4.2.0"
+  }
 }
